@@ -99,12 +99,75 @@
   <header class="chapter-head">
     <span class="step-tag">STEP 5</span>
     <h3>쌓고 붙이기</h3>
-    <p class="lede">웨이퍼를 칩(다이) 단위로 잘라 낸 뒤, 맨 아래 베이스(로직) 다이 위에 DRAM 칩을 8단·12단·16단으로 정확히 쌓아 붙입니다.</p>
+    <p class="lede">잘라 낸 DRAM 칩 가운데 검사를 통과한 칩만 골라, 아직 자르지 않은 베이스 웨이퍼 위에 한 장씩 8단·12단·16단으로 쌓아 붙입니다.</p>
   </header>
   <div class="chapter-body">
     <div class="prose">
-      <p>먼저 웨이퍼를 다이아몬드 날이나 레이저로 잘라 낱개 칩, 즉 <b>다이(Die)</b>로 만듭니다. 맨 아래에는 신호를 정리하고 GPU와 대화하는 <b>베이스 다이</b>가 놓이고, 그 위에 DRAM 다이가 층층이 올라갑니다.</p>
-      <p>칩을 쌓을 때는 위 칩의 범프와 아래 칩의 TSV가 정확히 맞닿아야 합니다. 머리카락보다 훨씬 작은 오차 안에서 수천 개의 연결점을 한꺼번에 맞춰야 하니, 아주 정밀한 기술이 필요해요. 칩을 붙이는 방법은 회사와 세대에 따라 다르며, 대표적인 세 가지를 아래에서 비교해 보세요.</p>
+      <p>DRAM 웨이퍼는 다이아몬드 날이나 레이저로 잘라 낱개 칩, 즉 <b>다이(Die)</b>로 만들고, 하나하나 검사해서 정상인 칩만 골라 둡니다. 반면 맨 아래에 들어갈 <b>베이스 다이</b>(신호를 정리하고 GPU와 대화하는 칩)는 <b>자르지 않은 웨이퍼 상태 그대로</b> 받침으로 씁니다.</p>
+      <p>베이스 웨이퍼 위의 칸마다 골라 둔 DRAM 칩을 한 장씩 올려 쌓고, 다 쌓은 다음 STEP 6에서 몰딩한 뒤에야 베이스 웨이퍼를 잘라 HBM 한 개씩으로 나눕니다. 이렇게 칩을 웨이퍼 위에 쌓는 방식을 <b>CoW(Chip-on-Wafer, 칩 온 웨이퍼)</b>라고 해요.</p>
+    </div>
+
+    <figure class="media-card" id="cw">
+      <div class="seg" role="tablist" aria-label="쌓는 방식 비교" id="cw-seg">
+        <button class="seg-btn" role="tab" aria-pressed="true" data-panel="cw-cow">CoW · 칩을 웨이퍼 위에</button>
+        <button class="seg-btn" role="tab" aria-pressed="false" data-panel="cw-wow">WoW · 웨이퍼끼리 통째로</button>
+      </div>
+      <div id="cw-cow" style="margin-top:12px">
+        <svg viewBox="0 0 600 280" role="img" aria-label="CoW: 자르지 않은 베이스 웨이퍼 위 세 칸에 검사를 통과한 칩만 한 장씩 내려와 쌓인다">
+          <text x="20" y="22" style="fill:var(--fg2);font-size:12px;font-weight:600">① 잘라서 검사한 DRAM 칩</text>
+          <g>
+            <rect x="20" y="34" width="56" height="14" rx="3" style="fill:var(--blue)"/><text x="84" y="45" style="fill:var(--green);font-size:12px;font-weight:700">✓</text>
+            <rect x="100" y="34" width="56" height="14" rx="3" style="fill:var(--blue)"/><text x="164" y="45" style="fill:var(--green);font-size:12px;font-weight:700">✓</text>
+            <rect x="180" y="34" width="56" height="14" rx="3" style="fill:var(--red);opacity:.75"/><text x="244" y="45" style="fill:var(--red);font-size:12px;font-weight:700">✕ 버림</text>
+          </g>
+          <path class="flow" d="M128 52 C 128 80, 300 70, 300 96" style="fill:none;stroke:var(--fg3);stroke-width:1.5"/>
+          <g class="cw-drop"><rect x="250" y="98" width="100" height="14" rx="3" style="fill:var(--blue)"/></g>
+          <g>
+            <rect x="90" y="178" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.8"/><rect x="90" y="162" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.7"/><rect x="90" y="146" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.6"/><rect x="90" y="130" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.5"/>
+            <rect x="250" y="178" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.8"/><rect x="250" y="162" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.7"/><rect x="250" y="146" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.6"/>
+            <rect x="410" y="178" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.8"/><rect x="410" y="162" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.7"/><rect x="410" y="146" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.6"/><rect x="410" y="130" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.5"/>
+          </g>
+          <rect x="40" y="196" width="520" height="26" rx="13" style="fill:var(--teal)"/>
+          <g style="stroke:var(--surface2);stroke-width:2;stroke-dasharray:4 3"><line x1="220" y1="198" x2="220" y2="220"/><line x1="380" y1="198" x2="380" y2="220"/></g>
+          <text x="300" y="213" text-anchor="middle" style="fill:#fff;font-size:12px;font-weight:600">② 자르지 않은 베이스 다이 웨이퍼</text>
+          <text x="300" y="246" text-anchor="middle" style="fill:var(--fg2);font-size:12px">점선 = 나중에(STEP 6 이후) 자를 자리</text>
+          <text x="300" y="268" text-anchor="middle" style="fill:var(--green);font-size:13px;font-weight:600">좋은 칩만 골라 쌓으니 → 스택 전체가 정상</text>
+        </svg>
+      </div>
+      <div id="cw-wow" hidden style="margin-top:12px">
+        <svg viewBox="0 0 600 280" role="img" aria-label="WoW: 웨이퍼를 통째로 겹치면 한 층의 불량 칩 때문에 그 칸의 스택 전체가 불량이 된다">
+          <text x="20" y="22" style="fill:var(--fg2);font-size:12px;font-weight:600">자르지 않은 웨이퍼를 통째로 겹쳐 붙이기</text>
+          <g>
+            <rect x="40" y="60" width="520" height="22" rx="11" style="fill:var(--blue);opacity:.55"/>
+            <rect x="40" y="88" width="520" height="22" rx="11" style="fill:var(--blue);opacity:.65"/>
+            <rect x="40" y="116" width="520" height="22" rx="11" style="fill:var(--blue);opacity:.75"/>
+            <rect x="40" y="144" width="520" height="22" rx="11" style="fill:var(--blue);opacity:.85"/>
+            <rect x="40" y="172" width="520" height="22" rx="11" style="fill:var(--teal)"/>
+          </g>
+          <g style="stroke:var(--surface2);stroke-width:2;stroke-dasharray:4 3"><line x1="170" y1="60" x2="170" y2="194"/><line x1="300" y1="60" x2="300" y2="194"/><line x1="430" y1="60" x2="430" y2="194"/></g>
+          <rect class="pulse" x="303" y="57" width="124" height="140" rx="6" style="fill:var(--red);opacity:.22;stroke:var(--red);stroke-width:2"/>
+          <text x="365" y="131" text-anchor="middle" style="fill:var(--red);font-size:20px;font-weight:700">✕</text>
+          <text x="365" y="48" text-anchor="middle" style="fill:var(--red);font-size:12px;font-weight:600">이 층에 불량 칩 1개</text>
+          <text x="300" y="228" text-anchor="middle" style="fill:var(--fg2);font-size:12px">미리 골라낼 수 없어서, 한 층만 불량이어도 그 칸의 스택 전체가 불량</text>
+          <text x="300" y="256" text-anchor="middle" style="fill:var(--red);font-size:13px;font-weight:600">층이 많을수록 버려지는 양이 커짐 → HBM 양산에서는 잘 쓰지 않음</text>
+        </svg>
+      </div>
+      <figcaption><b>그림 5-0</b> 쌓는 방식 비교. 오늘날 HBM은 대부분 CoW로 만듭니다. 웨이퍼끼리 붙이는 WoW는 한 번에 처리해 빠르지만, 불량 칩을 미리 걸러 낼 수 없어 수율 문제가 큽니다.</figcaption>
+    </figure>
+    <div class="compare">
+      <div><h4>CoW (칩 온 웨이퍼)</h4><p style="margin:0;color:var(--fg2);font-size:15px">검사를 통과한 칩만 골라 한 장씩 올려요. 느리지만 버리는 칩이 적어서 현재 HBM의 기본 방식입니다.</p></div>
+      <div><h4>WoW (웨이퍼 온 웨이퍼)</h4><p style="margin:0;color:var(--fg2);font-size:15px">웨이퍼를 통째로 겹쳐 한 번에 붙여요. 빠르지만 불량 칩까지 함께 쌓여, 층이 많은 HBM에는 불리합니다.</p></div>
+    </div>
+    <script>
+    (function(){var seg=document.getElementById('cw-seg');if(!seg)return;var b=seg.querySelectorAll('.seg-btn');
+      b.forEach(function(x){x.addEventListener('click',function(){b.forEach(function(y){var on=y===x;y.setAttribute('aria-pressed',on);document.getElementById(y.dataset.panel).hidden=!on;});});});})();
+    </script>
+    <style>
+      @media (prefers-reduced-motion:no-preference){.cw-drop{animation:cw-drop 2.4s ease-in infinite}}
+      @keyframes cw-drop{0%{transform:translateY(-30px);opacity:0}25%{opacity:1}70%,100%{transform:translateY(32px);opacity:1}}
+    </style>
+
+    <div class="prose">      <p>칩을 쌓을 때는 위 칩의 범프와 아래 칩의 TSV가 정확히 맞닿아야 합니다. 머리카락보다 훨씬 작은 오차 안에서 수천 개의 연결점을 한꺼번에 맞춰야 하니, 아주 정밀한 기술이 필요해요. 칩을 붙이는 방법은 회사와 세대에 따라 다르며, 대표적인 세 가지를 아래에서 비교해 보세요.</p>
     </div>
 
     <div class="seg" role="tablist" aria-label="본딩 방식 선택" id="pb-bond-seg">
