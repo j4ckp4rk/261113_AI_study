@@ -1,0 +1,329 @@
+<style>
+@keyframes pb-grind{0%{transform:translateY(0)}100%{transform:translateY(34px)}}
+@keyframes pb-shrink{0%{transform:scaleY(1)}100%{transform:scaleY(.3)}}
+@keyframes pb-spin{to{transform:rotate(360deg)}}
+@keyframes pb-drop{0%{transform:translateY(-60px);opacity:0}30%{opacity:1}70%,100%{transform:translateY(0);opacity:1}}
+@keyframes pb-pulse{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes pb-flow{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes pb-fade{0%,100%{opacity:0}40%,60%{opacity:1}}
+.pb-grinder{animation:pb-grind 3s ease-in-out infinite alternate}
+.pb-wafer{transform-box:fill-box;transform-origin:bottom;animation:pb-shrink 3s ease-in-out infinite alternate}
+.pb-wheel{transform-box:fill-box;transform-origin:center;animation:pb-spin 1.2s linear infinite}
+.pb-d1{animation:pb-drop 4s ease-out infinite}
+.pb-d2{animation:pb-drop 4s ease-out .4s infinite both}
+.pb-d3{animation:pb-drop 4s ease-out .8s infinite both}
+.pb-d4{animation:pb-drop 4s ease-out 1.2s infinite both}
+.pb-heat{animation:pb-pulse 1.6s ease-in-out infinite}
+.pb-fill{transform-box:fill-box;transform-origin:left;animation:pb-flow 3s ease-in-out infinite alternate}
+.pb-scan{animation:pb-fade 2.4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){[class^="pb-"],[class*=" pb-"]{animation:none!important}}
+</style>
+
+<div class="part-divider">
+  <span class="part-no">PART 2</span>
+  <h2>쌓기</h2>
+  <p>회로가 그려진 DRAM 칩을 얇게 깎고, 아파트처럼 위로 차곡차곡 쌓아 붙인 다음, 단단히 감싸고 검사합니다. HBM이 "높은(High) 대역폭"을 낼 수 있는 비밀이 바로 이 쌓기 단계에 있어요.</p>
+</div>
+
+<!-- ============ STEP 4 ============ -->
+<section class="chapter" id="step-4">
+  <header class="chapter-head">
+    <span class="step-tag">STEP 4</span>
+    <h3>얇게 깎고 범프 달기</h3>
+    <p class="lede">웨이퍼 뒷면을 종이보다 얇게 갈아내 TSV 구멍의 끝을 드러내고, 칩끼리 연결할 아주 작은 납땜 구슬(마이크로범프)을 붙입니다.</p>
+  </header>
+  <div class="chapter-body">
+    <div class="prose">
+      <p>앞 단계에서 만든 웨이퍼는 두께가 수백 μm(마이크로미터)나 됩니다. 이대로 여러 장을 쌓으면 너무 두꺼워지고, 칩 속에 뚫어 둔 TSV(실리콘 관통 전극)도 아직 뒷면까지 뚫려 있지 않아요.</p>
+      <p>그래서 <b>백그라인딩(Back Grinding)</b>으로 웨이퍼 뒷면을 빙글빙글 도는 연마 휠로 갈아 수십 μm 두께까지 얇게 만듭니다. 그러면 안에 묻혀 있던 TSV 구리 기둥의 끝이 뒷면에 '쏙' 드러나게 됩니다.</p>
+      <p>이렇게 얇아진 웨이퍼는 감자칩처럼 쉽게 휘거나 깨지기 때문에, 작업하는 동안 단단한 <b>캐리어 웨이퍼</b>에 임시로 붙여 둡니다. 마지막으로 TSV 끝 위에 <b>마이크로범프</b>라는 아주 작은 납땜 구슬을 만들어, 위아래 칩을 전기적으로 연결할 준비를 마칩니다.</p>
+    </div>
+
+    <figure class="media-card">
+      <svg viewBox="0 0 600 300" role="img" aria-label="연마 휠이 웨이퍼 뒷면을 갈아 TSV 끝이 드러나는 모습">
+        <rect x="0" y="0" width="600" height="300" style="fill:var(--surface2)"/>
+        <!-- carrier -->
+        <rect x="80" y="230" width="440" height="30" rx="4" style="fill:var(--fill)"/>
+        <text x="300" y="250" text-anchor="middle" style="fill:var(--fg2);font-size:12px">캐리어 웨이퍼 (임시 받침)</text>
+        <rect x="80" y="222" width="440" height="8" style="fill:var(--yellow);opacity:.6"/>
+        <!-- wafer (shrinks) -->
+        <g class="pb-wafer">
+          <rect x="80" y="120" width="440" height="102" style="fill:var(--blue);opacity:.35"/>
+        </g>
+        <!-- TSV pillars -->
+        <g>
+          <rect x="130" y="170" width="10" height="52" style="fill:var(--copper)"/>
+          <rect x="210" y="170" width="10" height="52" style="fill:var(--copper)"/>
+          <rect x="290" y="170" width="10" height="52" style="fill:var(--copper)"/>
+          <rect x="370" y="170" width="10" height="52" style="fill:var(--copper)"/>
+          <rect x="450" y="170" width="10" height="52" style="fill:var(--copper)"/>
+        </g>
+        <!-- grinder -->
+        <g class="pb-grinder">
+          <rect x="250" y="30" width="100" height="16" rx="3" style="fill:var(--fg3)"/>
+          <rect x="292" y="10" width="16" height="22" style="fill:var(--fg3)"/>
+          <g class="pb-wheel">
+            <rect x="200" y="46" width="200" height="22" rx="11" style="fill:var(--fg2)"/>
+            <rect x="215" y="52" width="20" height="10" style="fill:var(--surface)"/>
+            <rect x="290" y="52" width="20" height="10" style="fill:var(--surface)"/>
+            <rect x="365" y="52" width="20" height="10" style="fill:var(--surface)"/>
+          </g>
+        </g>
+        <text x="540" y="60" text-anchor="end" style="fill:var(--fg2);font-size:12px">연마 휠</text>
+        <text x="540" y="140" text-anchor="end" style="fill:var(--fg2);font-size:12px">웨이퍼 (뒷면이 위)</text>
+        <text x="100" y="200" style="fill:var(--fg2);font-size:12px">TSV</text>
+        <!-- bumps inset -->
+        <g transform="translate(20,276)">
+          <circle cx="115" cy="0" r="6" style="fill:var(--orange)"/>
+          <text x="128" y="4" style="fill:var(--fg2);font-size:12px">마이크로범프 = TSV 끝에 붙이는 작은 납땜 구슬</text>
+        </g>
+      </svg>
+      <figcaption><b>그림 4-1</b> 연마 휠이 웨이퍼를 갈아내면 두께가 줄어들고, 속에 묻혀 있던 TSV(구리 기둥) 끝이 표면에 드러납니다.</figcaption>
+    </figure>
+
+    <div class="analogy">
+      <span class="analogy-label">쉽게 말하면</span>
+      <p>두꺼운 식빵 속에 이쑤시개를 꽂아 두고, 빵 아래쪽을 얇게 썰어 내서 이쑤시개 끝이 반대편으로 나오게 하는 것과 비슷해요. 그 끝에 접착용 작은 풀 방울(범프)을 하나씩 찍어 두는 거죠.</p>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><b>수십 μm</b><span>깎고 난 DRAM 칩 두께 (머리카락 굵기 정도)</span></div>
+      <div class="fact"><b>수천 개</b><span>칩 한 장에 뚫린 TSV 연결 통로</span></div>
+      <div class="fact"><b>임시 접착</b><span>얇은 웨이퍼를 캐리어에 붙였다 뗌</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 5 ============ -->
+<section class="chapter" id="step-5">
+  <header class="chapter-head">
+    <span class="step-tag">STEP 5</span>
+    <h3>쌓고 붙이기</h3>
+    <p class="lede">웨이퍼를 칩(다이) 단위로 잘라 낸 뒤, 맨 아래 베이스(로직) 다이 위에 DRAM 칩을 8단·12단·16단으로 정확히 쌓아 붙입니다.</p>
+  </header>
+  <div class="chapter-body">
+    <div class="prose">
+      <p>먼저 웨이퍼를 다이아몬드 날이나 레이저로 잘라 낱개 칩, 즉 <b>다이(Die)</b>로 만듭니다. 맨 아래에는 신호를 정리하고 GPU와 대화하는 <b>베이스 다이</b>가 놓이고, 그 위에 DRAM 다이가 층층이 올라갑니다.</p>
+      <p>칩을 쌓을 때는 위 칩의 범프와 아래 칩의 TSV가 정확히 맞닿아야 합니다. 머리카락보다 훨씬 작은 오차 안에서 수천 개의 연결점을 한꺼번에 맞춰야 하니, 아주 정밀한 기술이 필요해요. 칩을 붙이는 방법은 회사와 세대에 따라 다르며, 대표적인 세 가지를 아래에서 비교해 보세요.</p>
+    </div>
+
+    <div class="seg" role="tablist" aria-label="본딩 방식 선택" id="pb-bond-seg">
+      <button class="seg-btn" role="tab" aria-pressed="true" data-panel="pb-bond-ncf">TC-NCF</button>
+      <button class="seg-btn" role="tab" aria-pressed="false" data-panel="pb-bond-muf">MR-MUF</button>
+      <button class="seg-btn" role="tab" aria-pressed="false" data-panel="pb-bond-hyb">하이브리드 본딩</button>
+    </div>
+
+    <div id="pb-bond-ncf" role="tabpanel">
+      <figure class="media-card">
+        <svg viewBox="0 0 600 300" role="img" aria-label="TC-NCF: 필름을 끼우고 한 층씩 열과 압력으로 누르는 모습">
+          <rect x="0" y="0" width="600" height="300" style="fill:var(--surface2)"/>
+          <rect x="150" y="240" width="300" height="30" rx="3" style="fill:var(--purple);opacity:.6"/>
+          <text x="300" y="260" text-anchor="middle" style="fill:var(--fg);font-size:12px">베이스(로직) 다이</text>
+          <g class="pb-d1"><rect x="150" y="226" width="300" height="10" style="fill:var(--yellow);opacity:.7"/><rect x="150" y="200" width="300" height="26" rx="3" style="fill:var(--blue);opacity:.55"/></g>
+          <g class="pb-d2"><rect x="150" y="186" width="300" height="10" style="fill:var(--yellow);opacity:.7"/><rect x="150" y="160" width="300" height="26" rx="3" style="fill:var(--blue);opacity:.55"/></g>
+          <g class="pb-d3"><rect x="150" y="146" width="300" height="10" style="fill:var(--yellow);opacity:.7"/><rect x="150" y="120" width="300" height="26" rx="3" style="fill:var(--blue);opacity:.55"/></g>
+          <g class="pb-d4">
+            <rect x="200" y="60" width="200" height="30" rx="4" style="fill:var(--fg3)"/>
+            <text x="300" y="80" text-anchor="middle" style="fill:var(--surface);font-size:12px">열 + 압력 헤드</text>
+          </g>
+          <g class="pb-heat">
+            <rect x="230" y="96" width="6" height="16" rx="3" style="fill:var(--red)"/>
+            <rect x="297" y="96" width="6" height="16" rx="3" style="fill:var(--red)"/>
+            <rect x="364" y="96" width="6" height="16" rx="3" style="fill:var(--red)"/>
+          </g>
+          <text x="470" y="231" style="fill:var(--fg2);font-size:12px">← NCF 필름</text>
+          <text x="470" y="176" style="fill:var(--fg2);font-size:12px">← DRAM 다이</text>
+          <text x="30" y="40" style="fill:var(--fg2);font-size:12px">한 층 놓고, 꾹 누르고, 또 한 층…</text>
+        </svg>
+        <figcaption><b>그림 5-1</b> TC-NCF: 칩 사이에 얇은 접착 필름(NCF)을 끼우고, 한 층씩 열과 압력을 가해 붙입니다.</figcaption>
+      </figure>
+      <div class="facts">
+        <div class="fact"><b>장점</b><span>필름이 칩 사이 간격을 고르게 잡아 주고 휘어짐을 눌러 줌</span></div>
+        <div class="fact"><b>단점</b><span>한 층씩 눌러야 해서 시간이 걸리고, 열이 빠지는 길이 상대적으로 좁음</span></div>
+        <div class="fact"><b>비유</b><span>양면테이프를 붙이고 다리미로 한 장씩 꾹꾹 누르기</span></div>
+      </div>
+    </div>
+
+    <div id="pb-bond-muf" role="tabpanel" hidden>
+      <figure class="media-card">
+        <svg viewBox="0 0 600 300" role="img" aria-label="MR-MUF: 한꺼번에 녹여 붙이고 액체 보호재를 채우는 모습">
+          <rect x="0" y="0" width="600" height="300" style="fill:var(--surface2)"/>
+          <rect x="150" y="240" width="300" height="30" rx="3" style="fill:var(--purple);opacity:.6"/>
+          <text x="300" y="260" text-anchor="middle" style="fill:var(--fg);font-size:12px">베이스(로직) 다이</text>
+          <!-- gaps filled -->
+          <g class="pb-fill"><rect x="150" y="226" width="300" height="14" style="fill:var(--teal);opacity:.6"/></g>
+          <g class="pb-fill"><rect x="150" y="186" width="300" height="14" style="fill:var(--teal);opacity:.6"/></g>
+          <g class="pb-fill"><rect x="150" y="146" width="300" height="14" style="fill:var(--teal);opacity:.6"/></g>
+          <rect x="150" y="200" width="300" height="26" rx="3" style="fill:var(--blue);opacity:.55"/>
+          <rect x="150" y="160" width="300" height="26" rx="3" style="fill:var(--blue);opacity:.55"/>
+          <rect x="150" y="120" width="300" height="26" rx="3" style="fill:var(--blue);opacity:.55"/>
+          <g style="fill:var(--orange)">
+            <circle cx="190" cy="233" r="4"/><circle cx="260" cy="233" r="4"/><circle cx="340" cy="233" r="4"/><circle cx="410" cy="233" r="4"/>
+            <circle cx="190" cy="193" r="4"/><circle cx="260" cy="193" r="4"/><circle cx="340" cy="193" r="4"/><circle cx="410" cy="193" r="4"/>
+            <circle cx="190" cy="153" r="4"/><circle cx="260" cy="153" r="4"/><circle cx="340" cy="153" r="4"/><circle cx="410" cy="153" r="4"/>
+          </g>
+          <!-- nozzle -->
+          <rect x="100" y="140" width="40" height="14" rx="3" style="fill:var(--fg3)"/>
+          <text x="60" y="130" style="fill:var(--fg2);font-size:12px">액체 보호재 주입</text>
+          <g class="pb-heat">
+            <text x="300" y="100" text-anchor="middle" style="fill:var(--red);font-size:13px">한 번에 가열 → 범프가 동시에 녹아 붙음</text>
+          </g>
+          <text x="470" y="236" style="fill:var(--fg2);font-size:12px">← 보호재(MUF)</text>
+          <text x="470" y="196" style="fill:var(--fg2);font-size:12px">← 범프</text>
+        </svg>
+        <figcaption><b>그림 5-2</b> MR-MUF: 칩을 먼저 모두 쌓은 뒤 한꺼번에 열을 가해 범프를 녹여 붙이고, 칩 사이 틈을 액체 보호재로 채워 굳힙니다.</figcaption>
+      </figure>
+      <div class="facts">
+        <div class="fact"><b>장점</b><span>여러 층을 한 번에 붙여 빠르고, 보호재가 열을 잘 빼 줌</span></div>
+        <div class="fact"><b>단점</b><span>층이 많아질수록 칩 휘어짐과 틈 사이를 고르게 채우는 것이 어려움</span></div>
+        <div class="fact"><b>비유</b><span>쿠키를 쌓아 오븐에 한 번에 굽고 틈에 초콜릿을 부어 굳히기</span></div>
+      </div>
+    </div>
+
+    <div id="pb-bond-hyb" role="tabpanel" hidden>
+      <figure class="media-card">
+        <svg viewBox="0 0 600 300" role="img" aria-label="하이브리드 본딩: 범프 없이 구리 면끼리 직접 붙는 모습">
+          <rect x="0" y="0" width="600" height="300" style="fill:var(--surface2)"/>
+          <rect x="150" y="240" width="300" height="30" rx="3" style="fill:var(--purple);opacity:.6"/>
+          <text x="300" y="260" text-anchor="middle" style="fill:var(--fg);font-size:12px">베이스(로직) 다이</text>
+          <g class="pb-d1"><rect x="150" y="212" width="300" height="28" rx="2" style="fill:var(--blue);opacity:.55"/>
+            <g style="fill:var(--copper)"><rect x="180" y="236" width="18" height="4"/><rect x="250" y="236" width="18" height="4"/><rect x="330" y="236" width="18" height="4"/><rect x="400" y="236" width="18" height="4"/></g></g>
+          <g class="pb-d2"><rect x="150" y="184" width="300" height="28" rx="2" style="fill:var(--blue);opacity:.55"/>
+            <g style="fill:var(--copper)"><rect x="180" y="208" width="18" height="4"/><rect x="250" y="208" width="18" height="4"/><rect x="330" y="208" width="18" height="4"/><rect x="400" y="208" width="18" height="4"/></g></g>
+          <g class="pb-d3"><rect x="150" y="156" width="300" height="28" rx="2" style="fill:var(--blue);opacity:.55"/>
+            <g style="fill:var(--copper)"><rect x="180" y="180" width="18" height="4"/><rect x="250" y="180" width="18" height="4"/><rect x="330" y="180" width="18" height="4"/><rect x="400" y="180" width="18" height="4"/></g></g>
+          <g class="pb-d4"><rect x="150" y="128" width="300" height="28" rx="2" style="fill:var(--blue);opacity:.55"/>
+            <g style="fill:var(--copper)"><rect x="180" y="152" width="18" height="4"/><rect x="250" y="152" width="18" height="4"/><rect x="330" y="152" width="18" height="4"/><rect x="400" y="152" width="18" height="4"/></g></g>
+          <text x="470" y="215" style="fill:var(--fg2);font-size:12px">← 구리-구리 직접 접합</text>
+          <text x="30" y="60" style="fill:var(--fg2);font-size:12px">범프도, 필름도 없이 칩끼리 바로 맞붙어요</text>
+          <text x="30" y="80" style="fill:var(--fg2);font-size:12px">→ 같은 높이에 더 많은 층을 쌓을 수 있음</text>
+        </svg>
+        <figcaption><b>그림 5-3</b> 하이브리드 본딩: 칩 표면을 거울처럼 평평하게 닦은 뒤, 구리 패드와 절연막을 맞대어 범프 없이 직접 붙입니다.</figcaption>
+      </figure>
+      <div class="facts">
+        <div class="fact"><b>장점</b><span>칩 사이 틈이 거의 없어 더 얇게, 더 많이 쌓고 연결점도 더 촘촘히</span></div>
+        <div class="fact"><b>단점</b><span>먼지 한 톨도 허용하지 않는 극도로 깨끗하고 평평한 표면이 필요해 어려움</span></div>
+        <div class="fact"><b>차세대</b><span>16단 이상 고적층 HBM을 위해 개발 중인 기술</span></div>
+      </div>
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-label">쉽게 말하면</span>
+      <p>얇은 과자 여러 장을 아주 정확하게 겹쳐 붙여 '과자 탑'을 만드는 일이에요. 테이프로 붙일지(TC-NCF), 한꺼번에 구워 초콜릿으로 메울지(MR-MUF), 아니면 표면을 매끈하게 만들어 그냥 착 달라붙게 할지(하이브리드 본딩)의 차이랍니다.</p>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><b>8 · 12 · 16단</b><span>세대가 올라갈수록 늘어나는 DRAM 적층 수</span></div>
+      <div class="fact"><b>1개</b><span>맨 아래에서 신호를 정리하는 베이스 다이</span></div>
+      <div class="fact"><b>수천 곳</b><span>한 층 사이에서 동시에 맞춰야 하는 연결점</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEP 6 ============ -->
+<section class="chapter" id="step-6">
+  <header class="chapter-head">
+    <span class="step-tag">STEP 6</span>
+    <h3>감싸고 검사하기</h3>
+    <p class="lede">다 쌓은 칩 탑을 단단한 보호재로 감싸고(몰딩), 정말 잘 작동하는지 꼼꼼히 검사해 '합격한 탑(KGSD)'만 다음 단계로 보냅니다.</p>
+  </header>
+  <div class="chapter-body">
+    <div class="prose">
+      <p>쌓아 올린 칩 탑은 아직 연약합니다. 그래서 <b>몰딩(Molding)</b>으로 바깥을 에폭시 같은 보호재로 감싸 충격, 습기, 먼지로부터 지켜 줍니다. HBM은 좁은 공간에서 많은 일을 하기 때문에 열이 많이 나는데, 보호재와 구조는 이 열이 잘 빠져나가도록 설계됩니다.</p>
+      <p>그다음은 <b>KGSD(Known Good Stacked Die)</b> 검사입니다. "확실히 좋은 쌓은 칩"이라는 뜻이에요. 쌓은 칩 중 <b>단 한 층이라도 불량이면 탑 전체가 불량</b>이 되기 때문에, 층이 많아질수록 모든 층이 완벽할 확률(수율)이 빠르게 떨어집니다. 아래 슬라이더로 직접 확인해 보세요.</p>
+    </div>
+
+    <figure class="media-card">
+      <svg viewBox="0 0 600 300" role="img" aria-label="몰딩으로 감싼 HBM 칩 탑을 검사 장비가 스캔하는 모습">
+        <rect x="0" y="0" width="600" height="300" style="fill:var(--surface2)"/>
+        <!-- mold -->
+        <rect x="170" y="80" width="260" height="190" rx="10" style="fill:var(--fg3);opacity:.35"/>
+        <rect x="190" y="235" width="220" height="24" rx="2" style="fill:var(--purple);opacity:.65"/>
+        <rect x="190" y="207" width="220" height="24" rx="2" style="fill:var(--blue);opacity:.55"/>
+        <rect x="190" y="179" width="220" height="24" rx="2" style="fill:var(--blue);opacity:.55"/>
+        <rect x="190" y="151" width="220" height="24" rx="2" style="fill:var(--blue);opacity:.55"/>
+        <rect x="190" y="123" width="220" height="24" rx="2" style="fill:var(--blue);opacity:.55"/>
+        <rect x="190" y="95" width="220" height="24" rx="2" style="fill:var(--blue);opacity:.55"/>
+        <text x="440" y="100" style="fill:var(--fg2);font-size:12px">몰딩(보호재)</text>
+        <text x="440" y="250" style="fill:var(--fg2);font-size:12px">베이스 다이</text>
+        <!-- probe scan -->
+        <g class="pb-scan">
+          <rect x="185" y="88" width="230" height="174" rx="6" style="fill:none;stroke:var(--green);stroke-width:2;stroke-dasharray:6 4"/>
+          <text x="300" y="60" text-anchor="middle" style="fill:var(--green);font-size:13px">✔ 전기 신호·속도·온도 검사 중</text>
+        </g>
+        <!-- heat arrows -->
+        <g class="pb-heat" style="fill:var(--orange)">
+          <rect x="120" y="140" width="40" height="5" rx="2"/>
+          <rect x="120" y="180" width="40" height="5" rx="2"/>
+          <text x="30" y="165" style="fill:var(--orange);font-size:12px">열 빼기</text>
+        </g>
+      </svg>
+      <figcaption><b>그림 6-1</b> 보호재로 감싼 칩 탑을 검사 장비가 확인합니다. 열이 잘 빠지는지도 중요한 검사 항목이에요.</figcaption>
+    </figure>
+
+    <div class="media-card" id="pb-yield">
+      <label for="pb-yield-range"><b>쌓는 층수</b> (층마다 합격 확률 99%라고 가정)</label>
+      <input type="range" class="range" id="pb-yield-range" min="4" max="16" step="1" value="8" aria-describedby="pb-yield-out">
+      <output class="readout" id="pb-yield-out" for="pb-yield-range">8단 → 전체 합격 확률 92.3%</output>
+      <svg viewBox="0 0 600 70" role="img" aria-label="전체 수율 막대 그래프" style="width:100%;height:auto;margin-top:8px">
+        <rect x="0" y="20" width="600" height="28" rx="14" style="fill:var(--fill)"/>
+        <rect id="pb-yield-bar" x="0" y="20" width="554" height="28" rx="14" style="fill:var(--green)"/>
+        <text x="0" y="66" style="fill:var(--fg3);font-size:12px">0%</text>
+        <text x="600" y="66" text-anchor="end" style="fill:var(--fg3);font-size:12px">100%</text>
+      </svg>
+      <p style="color:var(--fg2);margin:8px 0 0">층수 = <span id="pb-yield-n">8</span> → 계산식: 0.99<sup id="pb-yield-sup">8</sup> = <span id="pb-yield-v">0.923</span>. 그래서 <b>쌓기 전에 각 칩을 미리 검사</b>하고, 불량 층을 줄이는 기술이 아주 중요해요.</p>
+    </div>
+
+    <div class="analogy">
+      <span class="analogy-label">쉽게 말하면</span>
+      <p>시험 문제를 한 문제씩 맞힐 확률이 99%라도, 16문제를 <i>전부</i> 맞혀야 통과라면 통과 확률은 85% 정도로 떨어져요. 칩 탑도 똑같아서, 층이 많을수록 '한 층도 틀리지 않기'가 어려워집니다.</p>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><b>KGSD</b><span>Known Good Stacked Die, 검증된 정상 적층 칩</span></div>
+      <div class="fact"><b>1층 불량 = 전체 불량</b><span>쌓은 뒤에는 한 층만 바꿀 수 없음</span></div>
+      <div class="fact"><b>열 관리</b><span>층이 많을수록 열이 갇히기 쉬워 설계가 중요</span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  // Bonding segmented control
+  var seg = document.getElementById('pb-bond-seg');
+  if (seg) {
+    var btns = seg.querySelectorAll('.seg-btn');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(o){
+          var on = o === b;
+          o.setAttribute('aria-pressed', on ? 'true' : 'false');
+          o.setAttribute('aria-selected', on ? 'true' : 'false');
+          var p = document.getElementById(o.getAttribute('data-panel'));
+          if (p) p.hidden = !on;
+        });
+      });
+    });
+  }
+  // Yield slider
+  var r = document.getElementById('pb-yield-range');
+  if (r) {
+    var out = document.getElementById('pb-yield-out');
+    var bar = document.getElementById('pb-yield-bar');
+    var nEl = document.getElementById('pb-yield-n');
+    var sup = document.getElementById('pb-yield-sup');
+    var vEl = document.getElementById('pb-yield-v');
+    var update = function(){
+      var n = parseInt(r.value, 10);
+      var y = Math.pow(0.99, n);
+      var pct = (y * 100).toFixed(1);
+      out.textContent = n + '단 → 전체 합격 확률 ' + pct + '%';
+      bar.setAttribute('width', (600 * y).toFixed(1));
+      bar.style.fill = y > 0.9 ? 'var(--green)' : (y > 0.86 ? 'var(--yellow)' : 'var(--orange)');
+      nEl.textContent = n; sup.textContent = n; vEl.textContent = y.toFixed(3);
+    };
+    r.addEventListener('input', update);
+    update();
+  }
+})();
+</script>

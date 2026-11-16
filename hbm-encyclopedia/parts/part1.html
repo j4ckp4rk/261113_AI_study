@@ -1,0 +1,333 @@
+<style>
+@media (prefers-reduced-motion: no-preference) {
+  .pa-pull { animation: pa-pull 4s ease-in-out infinite alternate; }
+  @keyframes pa-pull { from { transform: translateY(0); } to { transform: translateY(-40px); } }
+  .pa-spin { transform-box: fill-box; transform-origin: center; animation: pa-spin 3s linear infinite; }
+  @keyframes pa-spin { to { transform: rotate(360deg); } }
+  .pa-fill { animation: pa-fill 3s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom; }
+  @keyframes pa-fill { from { transform: scaleY(0.1); } to { transform: scaleY(1); } }
+  .pa-ride { animation: pa-ride 2.4s linear infinite; }
+  .pa-ride.d2 { animation-delay: .8s; } .pa-ride.d3 { animation-delay: 1.6s; }
+  @keyframes pa-ride { from { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } to { transform: translateY(-190px); opacity: 0; } }
+  .pa-blink { animation: pa-blink 1.6s ease-in-out infinite; }
+  @keyframes pa-blink { 50% { opacity: .25; } }
+}
+</style>
+
+<div class="part-divider">
+  <span class="part-no">PART 1</span>
+  <h2>칩 만들기</h2>
+  <p>HBM은 메모리 칩을 여러 장 쌓은 부품이에요. 쌓으려면 먼저 칩 한 장 한 장을 잘 만들어야 해요. 모래에서 출발해 구멍 뚫린 메모리 칩이 되기까지의 세 단계를 따라가 봅시다.</p>
+</div>
+
+<!-- ================= STEP 1 ================= -->
+<section class="chapter" id="step-1">
+  <header class="chapter-head">
+    <span class="step-tag">STEP 1</span>
+    <h3>웨이퍼 준비</h3>
+    <p class="lede">반도체의 출발점은 모래예요. 모래에서 아주 순수한 실리콘을 뽑아 기둥으로 키운 뒤, 얇은 원판으로 썰면 ‘웨이퍼’가 됩니다.</p>
+  </header>
+  <div class="chapter-body">
+    <div class="prose">
+      <p>모래의 주성분은 <strong>규소(실리콘, Si)</strong>와 산소가 결합한 물질이에요. 공장에서는 이것을 녹이고 정제해서 순도가 99.999999999%(9가 11개, ‘일레븐 나인’)에 가까운 <strong>고순도 실리콘</strong>을 만듭니다.</p>
+      <p>이 실리콘을 뜨거운 도가니에서 녹인 다음, 작은 씨앗 결정(시드)을 담갔다가 천천히 돌리며 위로 끌어올려요. 그러면 원자가 질서 정연하게 늘어선 커다란 원기둥, <strong>잉곳</strong>이 자랍니다. 이 방법을 <strong>초크랄스키법</strong>이라고 불러요.</p>
+      <p>잉곳을 다이아몬드 톱으로 얇게 썰고, 표면을 거울처럼 매끈하게 <strong>연마</strong>하면 지름 300mm짜리 둥근 판, <strong>웨이퍼</strong>가 완성돼요. 웨이퍼 한 장 위에 수백 개의 칩을 한꺼번에 만듭니다.</p>
+    </div>
+
+    <figure class="media-card">
+      <svg viewBox="0 0 600 300" role="img" aria-label="도가니에서 잉곳을 돌리며 끌어올리는 초크랄스키법 그림">
+        <rect x="200" y="200" width="200" height="80" rx="18" style="fill:var(--fill);stroke:var(--sep);stroke-width:2"/>
+        <rect x="212" y="222" width="176" height="46" rx="12" style="fill:var(--orange);opacity:.85"/>
+        <text x="300" y="250" text-anchor="middle" style="fill:var(--bg);font-size:13px;font-weight:600">녹은 실리콘 약 1,400℃</text>
+        <g class="pa-pull">
+          <line x1="300" y1="10" x2="300" y2="70" style="stroke:var(--fg3);stroke-width:3"/>
+          <rect x="262" y="70" width="76" height="150" rx="30" style="fill:var(--surface2);stroke:var(--fg3);stroke-width:2"/>
+          <rect x="270" y="90" width="10" height="110" rx="5" style="fill:var(--fg);opacity:.12"/>
+          <text x="300" y="150" text-anchor="middle" style="fill:var(--fg2);font-size:13px">잉곳</text>
+        </g>
+        <g transform="translate(470 80)">
+          <circle r="22" style="fill:none;stroke:var(--blue);stroke-width:2;stroke-dasharray:6 6" class="pa-spin"/>
+          <text y="48" text-anchor="middle" style="fill:var(--fg2);font-size:12px">천천히 회전</text>
+        </g>
+        <g transform="translate(110 80)">
+          <path d="M0 40 L0 0 M-10 12 L0 0 L10 12" style="fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round"/>
+          <text y="62" text-anchor="middle" style="fill:var(--fg2);font-size:12px">위로 끌어올림</text>
+        </g>
+      </svg>
+      <figcaption><b>그림 1-1</b> 초크랄스키법. 씨앗 결정을 녹은 실리콘에 담근 뒤 돌리면서 천천히 끌어올리면 잉곳이 자라요.</figcaption>
+    </figure>
+
+    <div class="stepper" data-stepper>
+      <div class="seg" role="group" aria-label="모래에서 웨이퍼까지">
+        <button type="button" class="seg-btn" aria-pressed="true">① 모래</button>
+        <button type="button" class="seg-btn" aria-pressed="false">② 정제</button>
+        <button type="button" class="seg-btn" aria-pressed="false">③ 잉곳</button>
+        <button type="button" class="seg-btn" aria-pressed="false">④ 웨이퍼</button>
+      </div>
+      <div class="stepper-panel">
+        <svg viewBox="0 0 600 180" role="img" aria-label="모래 알갱이">
+          <g style="fill:var(--yellow)">
+            <circle cx="220" cy="120" r="9"/><circle cx="245" cy="128" r="7"/><circle cx="268" cy="116" r="10"/><circle cx="295" cy="126" r="8"/><circle cx="320" cy="114" r="9"/><circle cx="345" cy="127" r="7"/><circle cx="370" cy="118" r="10"/><circle cx="257" cy="100" r="7"/><circle cx="310" cy="98" r="8"/><circle cx="340" cy="100" r="6"/>
+          </g>
+          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">모래(규사) 속 실리콘을 꺼내는 것부터 시작해요</text>
+        </svg>
+      </div>
+      <div class="stepper-panel" hidden>
+        <svg viewBox="0 0 600 180" role="img" aria-label="실리콘 정제">
+          <rect x="160" y="40" width="110" height="90" rx="16" style="fill:var(--fill);stroke:var(--sep);stroke-width:2"/>
+          <text x="215" y="90" text-anchor="middle" style="fill:var(--fg2);font-size:13px">불순물 많음</text>
+          <path d="M285 85 L325 85 M315 75 L325 85 L315 95" style="fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round"/>
+          <rect x="340" y="40" width="110" height="90" rx="16" style="fill:var(--surface2);stroke:var(--blue);stroke-width:2"/>
+          <text x="395" y="90" text-anchor="middle" style="fill:var(--blue);font-size:13px;font-weight:600">초고순도 Si</text>
+          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">화학 처리로 불순물을 걸러 거의 100% 순수하게</text>
+        </svg>
+      </div>
+      <div class="stepper-panel" hidden>
+        <svg viewBox="0 0 600 180" role="img" aria-label="잉곳">
+          <rect x="180" y="55" width="240" height="70" rx="35" style="fill:var(--surface2);stroke:var(--fg3);stroke-width:2"/>
+          <rect x="200" y="65" width="200" height="10" rx="5" style="fill:var(--fg);opacity:.1"/>
+          <text x="300" y="96" text-anchor="middle" style="fill:var(--fg2);font-size:13px">단결정 실리콘 잉곳</text>
+          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">원자가 한 방향으로 가지런히 늘어선 커다란 기둥</text>
+        </svg>
+      </div>
+      <div class="stepper-panel" hidden>
+        <svg viewBox="0 0 600 180" role="img" aria-label="웨이퍼">
+          <circle cx="300" cy="80" r="62" style="fill:var(--surface2);stroke:var(--fg3);stroke-width:2"/>
+          <g style="stroke:var(--sep);stroke-width:1">
+            <line x1="250" y1="40" x2="250" y2="120"/><line x1="275" y1="25" x2="275" y2="135"/><line x1="300" y1="20" x2="300" y2="140"/><line x1="325" y1="25" x2="325" y2="135"/><line x1="350" y1="40" x2="350" y2="120"/>
+            <line x1="245" y1="55" x2="355" y2="55"/><line x1="240" y1="80" x2="360" y2="80"/><line x1="245" y1="105" x2="355" y2="105"/>
+          </g>
+          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">얇게 썰고 거울처럼 연마한 300mm 웨이퍼, 칸 하나가 칩 하나</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>잉곳은 ‘김밥 한 줄’, 웨이퍼는 ‘얇게 썬 김밥 한 조각’이에요. 다만 이 김밥은 아주 단단하고, 썬 면을 거울처럼 반짝일 때까지 갈아서 그 위에 회로 그림을 그려요.</p></div>
+
+    <div class="facts">
+      <div class="fact"><b>300mm</b><span>요즘 주로 쓰는 웨이퍼 지름</span></div>
+      <div class="fact"><b>9가 11개</b><span>실리콘 순도 99.999999999%</span></div>
+      <div class="fact"><b>약 1mm 미만</b><span>웨이퍼 한 장의 두께</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STEP 2 ================= -->
+<section class="chapter" id="step-2">
+  <header class="chapter-head">
+    <span class="step-tag">STEP 2</span>
+    <h3>DRAM 셀 만들기</h3>
+    <p class="lede">웨이퍼 위에 정보를 저장하는 아주 작은 방, ‘셀’을 수십억 개 만들어요. 빛으로 그림을 찍고, 깎고, 쌓는 과정을 수백 번 반복합니다.</p>
+  </header>
+  <div class="chapter-body">
+    <div class="prose">
+      <p>HBM 안에 들어가는 칩은 <strong>DRAM</strong>이라는 메모리예요. DRAM의 기본 단위인 <strong>셀</strong>은 스위치 역할의 <strong>트랜지스터 1개</strong>와 전기를 담아두는 <strong>커패시터 1개</strong>로 이루어져 있어요. 커패시터에 전기가 차 있으면 1, 비어 있으면 0이에요.</p>
+      <p>이 셀을 만드는 과정을 <strong>전공정</strong>이라고 해요. 표면에 얇은 막을 입히는 <strong>산화</strong>, 빛으로 회로 무늬를 찍는 <strong>포토(노광)</strong>, 필요 없는 부분을 깎는 <strong>식각</strong>, 새 재료를 얇게 쌓는 <strong>증착</strong>, 전기가 잘 통하게 불순물을 넣는 <strong>이온 주입</strong>, 셀끼리 잇는 <strong>배선</strong>이 있어요.</p>
+      <p>회로가 너무 작아서 요즘은 아주 짧은 파장의 빛인 <strong>EUV(극자외선)</strong>로 그림을 찍기도 해요. 이 과정을 층마다 되풀이하기 때문에 한 웨이퍼가 완성되기까지 수백 단계, 몇 주에서 몇 달이 걸립니다.</p>
+    </div>
+
+    <figure class="media-card">
+      <svg viewBox="0 0 600 300" role="img" aria-label="트랜지스터와 커패시터로 이루어진 DRAM 셀, 컵에 물이 차고 빠지는 애니메이션">
+        <line x1="40" y1="70" x2="560" y2="70" style="stroke:var(--fg3);stroke-width:3"/>
+        <text x="48" y="58" style="fill:var(--fg2);font-size:12px">워드라인(스위치 켜는 선)</text>
+        <line x1="90" y1="90" x2="90" y2="270" style="stroke:var(--fg3);stroke-width:3"/>
+        <text x="100" y="285" style="fill:var(--fg2);font-size:12px">비트라인(데이터 길)</text>
+        <rect x="200" y="110" width="110" height="70" rx="14" style="fill:var(--surface2);stroke:var(--blue);stroke-width:2"/>
+        <text x="255" y="150" text-anchor="middle" style="fill:var(--blue);font-size:13px;font-weight:600">트랜지스터</text>
+        <line x1="255" y1="70" x2="255" y2="110" style="stroke:var(--blue);stroke-width:2"/>
+        <line x1="90" y1="145" x2="200" y2="145" style="stroke:var(--fg3);stroke-width:3"/>
+        <line x1="310" y1="145" x2="390" y2="145" style="stroke:var(--fg3);stroke-width:3"/>
+        <circle class="pa-blink" cx="350" cy="145" r="5" style="fill:var(--yellow)"/>
+        <path d="M390 110 L400 250 Q400 258 410 258 L470 258 Q480 258 480 250 L490 110" style="fill:none;stroke:var(--fg2);stroke-width:3;stroke-linejoin:round"/>
+        <rect class="pa-fill" x="400" y="160" width="80" height="94" rx="6" style="fill:var(--teal);opacity:.75"/>
+        <text x="440" y="100" text-anchor="middle" style="fill:var(--fg2);font-size:13px">커패시터 = 컵</text>
+        <text x="440" y="285" text-anchor="middle" style="fill:var(--fg2);font-size:12px">가득 = 1 / 빔 = 0</text>
+      </svg>
+      <figcaption><b>그림 2-1</b> DRAM 셀 한 개. 트랜지스터(수도꼭지)를 열면 커패시터(컵)에 전기가 차거나 빠지며 1과 0을 기억해요.</figcaption>
+    </figure>
+
+    <div class="stepper" data-stepper>
+      <div class="seg" role="group" aria-label="전공정 단계">
+        <button type="button" class="seg-btn" aria-pressed="true">산화</button>
+        <button type="button" class="seg-btn" aria-pressed="false">포토</button>
+        <button type="button" class="seg-btn" aria-pressed="false">식각</button>
+        <button type="button" class="seg-btn" aria-pressed="false">증착</button>
+        <button type="button" class="seg-btn" aria-pressed="false">이온주입</button>
+        <button type="button" class="seg-btn" aria-pressed="false">배선</button>
+      </div>
+      <div class="stepper-panel">
+        <svg viewBox="0 0 600 180" role="img" aria-label="산화막 형성">
+          <rect x="150" y="90" width="300" height="50" rx="6" style="fill:var(--surface2);stroke:var(--fg3)"/>
+          <rect x="150" y="76" width="300" height="14" rx="4" style="fill:var(--teal);opacity:.8"/>
+          <text x="300" y="120" text-anchor="middle" style="fill:var(--fg2);font-size:12px">실리콘</text>
+          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">뜨거운 산소로 표면에 얇은 보호막(산화막)을 만들어요</text>
+        </svg>
+      </div>
+      <div class="stepper-panel" hidden>
+        <svg viewBox="0 0 600 180" role="img" aria-label="포토 공정">
+          <path d="M260 10 L340 10 L320 40 L280 40 Z" style="fill:var(--purple);opacity:.8"/>
+          <rect x="200" y="46" width="200" height="8" rx="3" style="fill:var(--fg3)"/>
+          <rect x="230" y="46" width="30" height="8" style="fill:var(--bg)"/><rect x="290" y="46" width="30" height="8" style="fill:var(--bg)"/><rect x="350" y="46" width="30" height="8" style="fill:var(--bg)"/>
+          <path d="M245 54 L245 96 M305 54 L305 96 M365 54 L365 96" style="stroke:var(--purple);stroke-width:4;stroke-dasharray:4 4"/>
+          <rect x="150" y="96" width="300" height="14" rx="4" style="fill:var(--orange);opacity:.7"/>
+          <rect x="150" y="110" width="300" height="34" rx="4" style="fill:var(--surface2);stroke:var(--fg3)"/>
+          <text x="300" y="168" text-anchor="middle" style="fill:var(--fg2);font-size:13px">마스크(필름)를 통과한 빛이 감광액에 회로 무늬를 찍어요</text>
+        </svg>
+      </div>
+      <div class="stepper-panel" hidden>
+        <svg viewBox="0 0 600 180" role="img" aria-label="식각">
+          <path d="M150 70 H230 V100 H260 V70 H330 V100 H360 V70 H450 V140 H150 Z" style="fill:var(--surface2);stroke:var(--fg3)"/>
+          <path d="M245 40 L245 64 M345 40 L345 64" style="stroke:var(--red);stroke-width:3;stroke-linecap:round"/>
+          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">빛을 받은 곳만 가스나 약품으로 깎아내 홈을 파요</text>
+        </svg>
+      </div>
+      <div class="stepper-panel" hidden>
+        <svg viewBox="0 0 600 180" role="img" aria-label="증착">
+          <rect x="150" y="90" width="300" height="50" rx="6" style="fill:var(--surface2);stroke:var(--fg3)"/>
+          <rect x="150" y="72" width="300" height="18" rx="4" style="fill:var(--green);opacity:.75"/>
+          <g style="fill:var(--green)"><circle cx="200" cy="40" r="4"/><circle cx="260" cy="30" r="4"/><circle cx="320" cy="45" r="4"/><circle cx="380" cy="32" r="4"/><circle cx="420" cy="48" r="4"/></g>
+          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">원자 몇 개 두께의 새 막을 고르게 쌓아 올려요</text>
+        </svg>
+      </div>
+      <div class="stepper-panel" hidden>
+        <svg viewBox="0 0 600 180" role="img" aria-label="이온 주입">
+          <rect x="150" y="80" width="300" height="60" rx="6" style="fill:var(--surface2);stroke:var(--fg3)"/>
+          <rect x="230" y="80" width="140" height="22" rx="4" style="fill:var(--yellow);opacity:.6"/>
+          <path d="M250 20 L250 76 M300 20 L300 76 M350 20 L350 76" style="stroke:var(--yellow);stroke-width:3;stroke-linecap:round;stroke-dasharray:8 6"/>
+          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">특정 원소를 쏘아 넣어 전기가 흐르는 성질을 바꿔요</text>
+        </svg>
+      </div>
+      <div class="stepper-panel" hidden>
+        <svg viewBox="0 0 600 180" role="img" aria-label="배선">
+          <rect x="150" y="100" width="300" height="40" rx="6" style="fill:var(--surface2);stroke:var(--fg3)"/>
+          <rect x="190" y="100" width="12" height="-0" />
+          <path d="M196 100 V60 H404 V100 M300 60 V100" style="fill:none;stroke:var(--copper);stroke-width:8;stroke-linejoin:round"/>
+          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">금속(구리 등) 길을 깔아 수십억 개 셀을 서로 연결해요</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>셀은 ‘수도꼭지 달린 컵’이에요. 수도꼭지(트랜지스터)를 열어 물(전기)을 채우면 1, 비우면 0. 다만 컵에 작은 틈이 있어서 물이 조금씩 새기 때문에, DRAM은 1초에도 여러 번 물을 다시 채워 주는 ‘리프레시’를 해요.</p></div>
+
+    <div class="facts">
+      <div class="fact"><b>1T + 1C</b><span>셀 하나 = 트랜지스터 1 + 커패시터 1</span></div>
+      <div class="fact"><b>수백 단계</b><span>층을 쌓기 위해 반복하는 공정 수</span></div>
+      <div class="fact"><b>수십억 개</b><span>DRAM 칩 한 개에 담긴 셀</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STEP 3 ================= -->
+<section class="chapter" id="step-3">
+  <header class="chapter-head">
+    <span class="step-tag">STEP 3</span>
+    <h3>TSV 뚫기</h3>
+    <p class="lede">칩을 위로 쌓으려면 층과 층을 잇는 길이 필요해요. 칩을 위아래로 꿰뚫는 아주 가는 구멍을 수천 개 뚫고 구리로 채우는데, 이것이 TSV예요.</p>
+  </header>
+  <div class="chapter-body">
+    <div class="prose">
+      <p><strong>TSV(Through-Silicon Via, 실리콘 관통 전극)</strong>는 실리콘 칩을 위에서 아래까지 꿰뚫는 전기 통로예요. 예전에는 칩 가장자리에서 가는 금선으로 연결했지만(와이어 본딩), TSV는 칩 한가운데를 직접 뚫어 <strong>훨씬 짧고 많은 길</strong>을 만들 수 있어요.</p>
+      <p>먼저 <strong>식각</strong>으로 머리카락 굵기보다 훨씬 가는 깊은 구멍을 파요. 구멍 벽에 전기가 새지 않도록 <strong>절연막</strong>을 입힌 뒤, <strong>구리</strong>를 꽉 채워 넣습니다. 그다음 웨이퍼 뒷면을 갈아서 얇게 만들면 구리 기둥 끝이 뒷면으로 드러나요.</p>
+      <p>HBM 칩 한 장에는 이런 TSV가 <strong>수천 개</strong> 있어요. 길이 많고 짧기 때문에 한꺼번에 아주 많은 데이터를 빠르게 주고받을 수 있습니다.</p>
+    </div>
+
+    <figure class="media-card">
+      <svg viewBox="0 0 600 300" role="img" aria-label="쌓인 칩들을 TSV가 엘리베이터처럼 관통하고 데이터가 오르내리는 애니메이션">
+        <g>
+          <rect x="120" y="50" width="360" height="36" rx="8" style="fill:var(--surface2);stroke:var(--fg3)"/>
+          <rect x="120" y="100" width="360" height="36" rx="8" style="fill:var(--surface2);stroke:var(--fg3)"/>
+          <rect x="120" y="150" width="360" height="36" rx="8" style="fill:var(--surface2);stroke:var(--fg3)"/>
+          <rect x="120" y="200" width="360" height="36" rx="8" style="fill:var(--surface2);stroke:var(--fg3)"/>
+          <rect x="100" y="250" width="400" height="30" rx="8" style="fill:var(--fill);stroke:var(--sep)"/>
+          <text x="300" y="270" text-anchor="middle" style="fill:var(--fg2);font-size:12px">맨 아래 바닥 칩</text>
+        </g>
+        <g style="fill:var(--copper)">
+          <rect x="200" y="50" width="10" height="200" rx="3"/>
+          <rect x="295" y="50" width="10" height="200" rx="3"/>
+          <rect x="390" y="50" width="10" height="200" rx="3"/>
+        </g>
+        <g style="fill:var(--blue)">
+          <circle class="pa-ride" cx="205" cy="245" r="6"/>
+          <circle class="pa-ride d2" cx="300" cy="245" r="6"/>
+          <circle class="pa-ride d3" cx="395" cy="245" r="6"/>
+        </g>
+        <text x="500" y="72" style="fill:var(--fg2);font-size:12px">DRAM 칩</text>
+        <text x="40" y="160" style="fill:var(--copper);font-size:12px;font-weight:600">TSV</text>
+        <path d="M70 156 L195 156" style="stroke:var(--copper);stroke-width:1.5;stroke-dasharray:3 3"/>
+      </svg>
+      <figcaption><b>그림 3-1</b> TSV는 쌓인 칩들을 위아래로 잇는 ‘엘리베이터 통로’. 파란 점(데이터)이 층과 층 사이를 바로 오르내려요.</figcaption>
+    </figure>
+
+    <div class="media-card tsv-lab">
+      <label for="tsv-range" style="font-weight:600">슬라이더를 움직여 TSV 만드는 과정을 보세요</label>
+      <input type="range" class="range" id="tsv-range" min="0" max="100" value="0" aria-describedby="tsv-status">
+      <svg viewBox="0 0 600 260" role="img" aria-label="TSV 형성 단계">
+        <rect id="tsv-wafer" x="150" y="40" width="300" height="180" rx="8" style="fill:var(--surface2);stroke:var(--fg3);stroke-width:2"/>
+        <rect id="tsv-thin" x="150" y="220" width="300" height="0" style="fill:var(--bg)"/>
+        <rect id="tsv-hole" x="270" y="40" width="60" height="0" rx="4" style="fill:var(--bg);stroke:var(--fg3)"/>
+        <rect id="tsv-liner" x="270" y="40" width="60" height="0" rx="4" style="fill:none;stroke:var(--teal);stroke-width:5;opacity:0"/>
+        <rect id="tsv-cu" x="276" y="40" width="48" height="0" rx="3" style="fill:var(--copper)"/>
+        <text x="300" y="250" text-anchor="middle" id="tsv-label" style="fill:var(--fg2);font-size:13px">① 매끈한 웨이퍼</text>
+      </svg>
+      <p id="tsv-status" class="caption" aria-live="polite">구멍을 뚫기 전, 회로가 다 만들어진 웨이퍼예요.</p>
+    </div>
+
+    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>칩을 쌓은 HBM은 ‘아파트’, TSV는 아파트 한가운데를 관통하는 ‘엘리베이터’예요. 바깥 계단(와이어)으로 빙 돌아가는 대신, 엘리베이터 수천 대가 한꺼번에 층을 오가니 훨씬 빨라요.</p></div>
+
+    <div class="facts">
+      <div class="fact"><b>수천 개</b><span>칩 한 장에 뚫는 TSV 수</span></div>
+      <div class="fact"><b>구리</b><span>구멍을 채우는 금속</span></div>
+      <div class="fact"><b>머리카락보다 가늘게</b><span>TSV 구멍의 굵기</span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  ['step-1', 'step-2'].forEach(function (id) {
+    var sec = document.getElementById(id);
+    if (!sec) return;
+    sec.querySelectorAll('[data-stepper]').forEach(function (st) {
+      var btns = st.querySelectorAll('.seg-btn');
+      var panels = st.querySelectorAll('.stepper-panel');
+      btns.forEach(function (b, i) {
+        b.addEventListener('click', function () {
+          btns.forEach(function (x, j) { x.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+          panels.forEach(function (p, j) { p.hidden = j !== i; });
+        });
+      });
+    });
+  });
+
+  var s3 = document.getElementById('step-3');
+  if (!s3) return;
+  var r = s3.querySelector('#tsv-range');
+  var hole = s3.querySelector('#tsv-hole'), liner = s3.querySelector('#tsv-liner'),
+      cu = s3.querySelector('#tsv-cu'), thin = s3.querySelector('#tsv-thin'),
+      label = s3.querySelector('#tsv-label'), status = s3.querySelector('#tsv-status');
+  var stages = [
+    ['① 매끈한 웨이퍼', '구멍을 뚫기 전, 회로가 다 만들어진 웨이퍼예요.'],
+    ['② 식각으로 깊은 구멍 파기', '가스로 실리콘을 깊고 곧게 깎아 가는 구멍을 만들어요.'],
+    ['③ 절연막 입히기', '구멍 벽에 얇은 막을 입혀 전기가 실리콘으로 새지 않게 해요.'],
+    ['④ 구리 채우기', '도금 방식으로 구멍 안을 구리로 빈틈없이 채워요.'],
+    ['⑤ 뒷면 갈기', '뒷면을 갈아 웨이퍼를 얇게 만들면 구리 기둥 끝이 드러나요. 이제 칩을 쌓을 준비 완료!']
+  ];
+  function upd() {
+    var v = +r.value;
+    var depth = Math.min(v / 30, 1) * 150;
+    hole.setAttribute('height', depth);
+    liner.setAttribute('height', depth);
+    liner.style.opacity = v >= 35 ? 1 : 0;
+    var fill = v >= 55 ? Math.min((v - 55) / 25, 1) * 150 : 0;
+    cu.setAttribute('height', fill);
+    var cut = v >= 85 ? Math.min((v - 85) / 15, 1) * 30 : 0;
+    thin.setAttribute('y', 220 - cut);
+    thin.setAttribute('height', cut + 2 * (cut > 0));
+    var k = v < 5 ? 0 : v < 35 ? 1 : v < 55 ? 2 : v < 85 ? 3 : 4;
+    label.textContent = stages[k][0];
+    status.textContent = stages[k][1];
+  }
+  r.addEventListener('input', upd);
+  upd();
+})();
+</script>

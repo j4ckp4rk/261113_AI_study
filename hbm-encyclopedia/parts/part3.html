@@ -1,0 +1,332 @@
+<div class="part-divider"><span class="part-no">PART 3</span><h2>연결하기</h2><p>완성된 HBM 탑을 GPU 바로 옆에 붙이고, 마지막 검사를 거쳐 데이터센터로 보내는 과정입니다.</p></div>
+
+<section class="chapter" id="step-7">
+  <header class="chapter-head"><span class="step-tag">STEP 7</span><h3>GPU 옆에 붙이기: 2.5D 패키징</h3><p class="lede">HBM은 혼자서는 일하지 않습니다. 계산을 담당하는 GPU 바로 옆, 손가락 한 마디도 안 되는 거리에 붙어야 진짜 실력이 나옵니다.</p></header>
+  <div class="chapter-body">
+    <div class="prose">
+      <p>보통 컴퓨터에서는 메모리가 기판 위 멀리 떨어진 곳에 꽂혀 있고, 수십 개 정도의 선으로 CPU와 이어집니다. HBM은 다릅니다. <b>실리콘 인터포저</b>라는 얇은 실리콘 판을 깔고, 그 위에 GPU와 HBM 탑 여러 개를 나란히 올립니다.</p>
+      <p>인터포저는 반도체 공정으로 만든 판이라서 머리카락보다 훨씬 가는 배선을 아주 촘촘하게 그릴 수 있습니다. 덕분에 HBM 탑 하나와 GPU 사이에 <b>1024개가 넘는 데이터 통로</b>를 깔 수 있습니다. 칩을 위로 쌓지는 않고 판 위에 옆으로 나란히 놓지만, 판 자체가 칩처럼 정교하기 때문에 2D와 3D 사이라는 뜻으로 <b>2.5D</b>라고 부릅니다.</p>
+    </div>
+
+    <figure class="media-card">
+      <svg viewBox="0 0 600 300" role="img" aria-label="실리콘 인터포저 위에 GPU와 HBM 네 개가 놓이고 그 사이로 데이터가 흐르는 단면도">
+        <style>
+          @keyframes pc-flow { from { stroke-dashoffset: 24; } to { stroke-dashoffset: 0; } }
+          .pc-lane { stroke-dasharray: 6 6; animation: pc-flow 0.8s linear infinite; }
+          @media (prefers-reduced-motion: reduce) { .pc-lane { animation: none; } }
+        </style>
+        <rect x="30" y="240" width="540" height="34" rx="6" style="fill:var(--fill)"/>
+        <text x="300" y="262" text-anchor="middle" font-size="13" style="fill:var(--fg2)">패키지 기판 (초록색 회로기판)</text>
+        <rect x="60" y="208" width="480" height="28" rx="4" style="fill:var(--copper);opacity:.85"/>
+        <text x="300" y="227" text-anchor="middle" font-size="13" style="fill:var(--bg)">실리콘 인터포저 (촘촘한 배선판)</text>
+        <rect x="220" y="110" width="160" height="94" rx="8" style="fill:var(--blue)"/>
+        <text x="300" y="162" text-anchor="middle" font-size="18" font-weight="600" style="fill:var(--bg)">GPU</text>
+        <g>
+          <rect x="80" y="70" width="56" height="134" rx="6" style="fill:var(--purple)"/>
+          <rect x="146" y="70" width="56" height="134" rx="6" style="fill:var(--purple)"/>
+          <rect x="398" y="70" width="56" height="134" rx="6" style="fill:var(--purple)"/>
+          <rect x="464" y="70" width="56" height="134" rx="6" style="fill:var(--purple)"/>
+          <g style="stroke:var(--bg);stroke-width:1.5;opacity:.6">
+            <line x1="80" y1="95" x2="136" y2="95"/><line x1="80" y1="120" x2="136" y2="120"/><line x1="80" y1="145" x2="136" y2="145"/><line x1="80" y1="170" x2="136" y2="170"/>
+            <line x1="146" y1="95" x2="202" y2="95"/><line x1="146" y1="120" x2="202" y2="120"/><line x1="146" y1="145" x2="202" y2="145"/><line x1="146" y1="170" x2="202" y2="170"/>
+            <line x1="398" y1="95" x2="454" y2="95"/><line x1="398" y1="120" x2="454" y2="120"/><line x1="398" y1="145" x2="454" y2="145"/><line x1="398" y1="170" x2="454" y2="170"/>
+            <line x1="464" y1="95" x2="520" y2="95"/><line x1="464" y1="120" x2="520" y2="120"/><line x1="464" y1="145" x2="520" y2="145"/><line x1="464" y1="170" x2="520" y2="170"/>
+          </g>
+          <text x="141" y="58" text-anchor="middle" font-size="13" style="fill:var(--fg2)">HBM 탑</text>
+          <text x="459" y="58" text-anchor="middle" font-size="13" style="fill:var(--fg2)">HBM 탑</text>
+        </g>
+        <g fill="none" style="stroke:var(--yellow);stroke-width:2.5">
+          <path class="pc-lane" d="M174 216 H 300"/>
+          <path class="pc-lane" d="M108 222 H 300"/>
+          <path class="pc-lane" d="M426 216 H 300"/>
+          <path class="pc-lane" d="M492 222 H 300"/>
+        </g>
+        <text x="300" y="30" text-anchor="middle" font-size="14" style="fill:var(--fg)">노란 선 = 인터포저 속 데이터 통로 (탑마다 1024개 이상)</text>
+      </svg>
+      <figcaption><b>그림 7-1</b> 2.5D 패키징의 옆모습. GPU 양옆의 HBM 탑이 인터포저 속 배선으로 연결됩니다.</figcaption>
+    </figure>
+
+    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>일반 메모리가 2차선 시골길로 연결된 창고라면, HBM은 1024차선 고속도로로 공장 바로 옆에 붙은 창고입니다. 차 한 대의 속도는 크게 다르지 않아도, 한 번에 지나가는 차가 엄청나게 많아서 짐(데이터)이 훨씬 빨리 옮겨집니다.</p></div>
+
+    <div class="seg" role="tablist" aria-label="패키징 방식 비교" id="pkg-seg">
+      <button class="seg-btn" role="tab" aria-pressed="false" data-panel="pkg-2d">2D</button>
+      <button class="seg-btn" role="tab" aria-pressed="true" data-panel="pkg-25d">2.5D</button>
+      <button class="seg-btn" role="tab" aria-pressed="false" data-panel="pkg-3d">3D</button>
+    </div>
+
+    <figure class="media-card" id="pkg-2d" hidden>
+      <svg viewBox="0 0 600 260" role="img" aria-label="2D 방식: 기판 위에 칩이 멀리 떨어져 있고 긴 배선 몇 개로 연결">
+        <rect x="30" y="190" width="540" height="40" rx="6" style="fill:var(--fill)"/>
+        <text x="300" y="216" text-anchor="middle" font-size="13" style="fill:var(--fg2)">일반 회로기판</text>
+        <rect x="70" y="120" width="130" height="68" rx="8" style="fill:var(--blue)"/>
+        <text x="135" y="160" text-anchor="middle" font-size="16" style="fill:var(--bg)">GPU</text>
+        <rect x="420" y="130" width="110" height="58" rx="8" style="fill:var(--purple)"/>
+        <text x="475" y="164" text-anchor="middle" font-size="14" style="fill:var(--bg)">메모리</text>
+        <g fill="none" style="stroke:var(--orange);stroke-width:2.5">
+          <path d="M200 175 C 300 175, 320 175, 420 175"/>
+          <path d="M200 165 C 300 150, 320 150, 420 165"/>
+        </g>
+        <text x="310" y="132" text-anchor="middle" font-size="13" style="fill:var(--fg)">멀고 가는 길 몇 개</text>
+        <text x="300" y="40" text-anchor="middle" font-size="15" font-weight="600" style="fill:var(--fg)">2D: 기판 위에 따로따로</text>
+        <text x="300" y="64" text-anchor="middle" font-size="13" style="fill:var(--fg2)">거리가 멀고 통로가 적어 데이터가 천천히 오갑니다</text>
+      </svg>
+      <figcaption><b>그림 7-2</b> 2D 방식. 그래픽카드의 일반 메모리(GDDR)가 이런 식으로 놓입니다.</figcaption>
+    </figure>
+
+    <figure class="media-card" id="pkg-25d">
+      <svg viewBox="0 0 600 260" role="img" aria-label="2.5D 방식: 인터포저 위에 GPU와 HBM이 나란히, 촘촘한 배선">
+        <rect x="30" y="200" width="540" height="34" rx="6" style="fill:var(--fill)"/>
+        <rect x="90" y="170" width="420" height="28" rx="4" style="fill:var(--copper);opacity:.85"/>
+        <text x="300" y="189" text-anchor="middle" font-size="13" style="fill:var(--bg)">실리콘 인터포저</text>
+        <rect x="250" y="100" width="150" height="68" rx="8" style="fill:var(--blue)"/>
+        <text x="325" y="140" text-anchor="middle" font-size="16" style="fill:var(--bg)">GPU</text>
+        <rect x="150" y="80" width="70" height="88" rx="6" style="fill:var(--purple)"/>
+        <text x="185" y="130" text-anchor="middle" font-size="13" style="fill:var(--bg)">HBM</text>
+        <g style="stroke:var(--yellow);stroke-width:1.2">
+          <line x1="220" y1="174" x2="250" y2="174"/><line x1="220" y1="178" x2="250" y2="178"/><line x1="220" y1="182" x2="250" y2="182"/><line x1="220" y1="186" x2="250" y2="186"/><line x1="220" y1="190" x2="250" y2="190"/><line x1="220" y1="194" x2="250" y2="194"/>
+        </g>
+        <text x="300" y="40" text-anchor="middle" font-size="15" font-weight="600" style="fill:var(--fg)">2.5D: 정교한 판 위에 나란히</text>
+        <text x="300" y="64" text-anchor="middle" font-size="13" style="fill:var(--fg2)">짧고 넓은 길 수천 개. 지금 AI 가속기의 표준 방식</text>
+      </svg>
+      <figcaption><b>그림 7-3</b> 2.5D 방식. HBM과 GPU가 인터포저 위에서 아주 가까이 붙습니다.</figcaption>
+    </figure>
+
+    <figure class="media-card" id="pkg-3d" hidden>
+      <svg viewBox="0 0 600 260" role="img" aria-label="3D 방식: 메모리를 계산 칩 바로 위에 쌓아 수직으로 연결">
+        <rect x="30" y="200" width="540" height="34" rx="6" style="fill:var(--fill)"/>
+        <rect x="220" y="160" width="160" height="38" rx="6" style="fill:var(--blue)"/>
+        <text x="300" y="184" text-anchor="middle" font-size="14" style="fill:var(--bg)">계산 칩</text>
+        <rect x="235" y="128" width="130" height="28" rx="4" style="fill:var(--purple)"/>
+        <rect x="235" y="96" width="130" height="28" rx="4" style="fill:var(--purple)"/>
+        <rect x="235" y="64" width="130" height="28" rx="4" style="fill:var(--purple)"/>
+        <text x="300" y="114" text-anchor="middle" font-size="13" style="fill:var(--bg)">메모리</text>
+        <g style="stroke:var(--yellow);stroke-width:2">
+          <line x1="260" y1="64" x2="260" y2="160"/><line x1="285" y1="64" x2="285" y2="160"/><line x1="315" y1="64" x2="315" y2="160"/><line x1="340" y1="64" x2="340" y2="160"/>
+        </g>
+        <text x="300" y="34" text-anchor="middle" font-size="15" font-weight="600" style="fill:var(--fg)">3D: 위로 바로 쌓기</text>
+        <text x="460" y="120" text-anchor="middle" font-size="13" style="fill:var(--fg2)">거리가 가장 짧지만</text>
+        <text x="460" y="140" text-anchor="middle" font-size="13" style="fill:var(--fg2)">열을 빼기 어려워요</text>
+      </svg>
+      <figcaption><b>그림 7-4</b> 3D 방식. 미래 기술로 연구 중이며, HBM 탑 내부(칩끼리 쌓기)에는 이미 쓰이고 있습니다.</figcaption>
+    </figure>
+
+    <div class="facts">
+      <div class="fact"><b>1024개+</b><span>HBM 탑 하나당 데이터 통로 수</span></div>
+      <div class="fact"><b>수 mm</b><span>GPU와 HBM 사이 거리</span></div>
+      <div class="fact"><b>4~8개</b><span>최신 AI 가속기 한 개에 붙는 HBM 탑 수</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="step-8">
+  <header class="chapter-head"><span class="step-tag">STEP 8</span><h3>최종 검사와 출하</h3><p class="lede">하나라도 고장 나면 비싼 GPU 전체를 버려야 할 수 있기 때문에, 마지막 검사는 아주 꼼꼼합니다.</p></header>
+  <div class="chapter-body">
+    <div class="prose">
+      <p>먼저 <b>번인(Burn-in) 테스트</b>를 합니다. 칩을 일부러 뜨거운 온도와 높은 전압에 오래 두어서, 금방 고장 날 약한 칩을 미리 걸러냅니다. 사람으로 치면 입사 전에 체력 시험을 보는 것과 비슷합니다.</p>
+      <p>다음은 <b>시스템 레벨 테스트</b>입니다. 실제로 AI 계산을 시키듯 데이터를 쉬지 않고 읽고 쓰게 해서, 모든 통로가 정확한지 확인합니다. 통과한 패키지는 AI 가속기 보드에 장착되고, 서버에 들어가 <b>데이터센터</b>로 출발합니다.</p>
+    </div>
+
+    <figure class="media-card">
+      <svg viewBox="0 0 600 220" role="img" aria-label="번인 테스트, 시스템 테스트, 보드 장착, 데이터센터로 이어지는 네 단계 흐름">
+        <style>
+          @keyframes pc-move { 0% { transform: translateX(0); } 100% { transform: translateX(450px); } }
+          .pc-dot { animation: pc-move 4s linear infinite; }
+          @media (prefers-reduced-motion: reduce) { .pc-dot { animation: none; } }
+        </style>
+        <line x1="75" y1="100" x2="525" y2="100" style="stroke:var(--sep);stroke-width:3"/>
+        <g font-size="13" text-anchor="middle">
+          <circle cx="75" cy="100" r="34" style="fill:var(--red)"/><text x="75" y="105" style="fill:var(--bg)">번인</text>
+          <text x="75" y="160" style="fill:var(--fg)">고온·고전압</text><text x="75" y="178" style="fill:var(--fg2)">약한 칩 걸러내기</text>
+          <circle cx="225" cy="100" r="34" style="fill:var(--orange)"/><text x="225" y="105" style="fill:var(--bg)">실전 시험</text>
+          <text x="225" y="160" style="fill:var(--fg)">시스템 테스트</text><text x="225" y="178" style="fill:var(--fg2)">실제처럼 읽고 쓰기</text>
+          <circle cx="375" cy="100" r="34" style="fill:var(--green)"/><text x="375" y="105" style="fill:var(--bg)">보드 장착</text>
+          <text x="375" y="160" style="fill:var(--fg)">AI 가속기 보드</text><text x="375" y="178" style="fill:var(--fg2)">서버에 꽂기</text>
+          <circle cx="525" cy="100" r="34" style="fill:var(--teal)"/><text x="525" y="105" style="fill:var(--bg)">출하</text>
+          <text x="525" y="160" style="fill:var(--fg)">데이터센터</text><text x="525" y="178" style="fill:var(--fg2)">AI 학습·서비스</text>
+        </g>
+        <circle class="pc-dot" cx="75" cy="56" r="7" style="fill:var(--yellow)"/>
+      </svg>
+      <figcaption><b>그림 8-1</b> 마지막 여정. 검사를 통과한 HBM만 데이터센터에 도착합니다.</figcaption>
+    </figure>
+
+    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>완성된 자동차를 출고하기 전에 혹한·폭염 시험장을 달리게 하고, 실제 도로에서 시운전을 한 뒤 고객에게 보내는 것과 같습니다.</p></div>
+  </div>
+</section>
+
+<div class="part-divider"><span class="part-no">APPENDIX</span><h2>부록</h2><p>세대별 비교, 용어집, 그리고 배운 내용을 확인하는 퀴즈입니다.</p></div>
+
+<section class="chapter" id="generations">
+  <header class="chapter-head"><span class="step-tag">부록</span><h3>HBM 세대 비교</h3><p class="lede">세대가 바뀔 때마다 더 높이 쌓고, 더 빨리 데이터를 주고받게 되었습니다.</p></header>
+  <div class="chapter-body">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>세대</th><th>처음 나온 시기</th><th>스택당 대역폭</th><th>최대 단수</th></tr></thead>
+        <tbody>
+          <tr><td>HBM</td><td>약 2015년</td><td>약 128 GB/s</td><td>4단</td></tr>
+          <tr><td>HBM2</td><td>약 2016년</td><td>약 256 GB/s</td><td>8단</td></tr>
+          <tr><td>HBM2E</td><td>약 2020년</td><td>약 460 GB/s</td><td>8단</td></tr>
+          <tr><td>HBM3</td><td>약 2022년</td><td>약 819 GB/s</td><td>12단</td></tr>
+          <tr><td>HBM3E</td><td>약 2024년</td><td>약 1.2 TB/s</td><td>12단</td></tr>
+          <tr><td>HBM4</td><td>약 2025~2026년</td><td>약 2 TB/s</td><td>16단</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="media-card">
+      <svg viewBox="0 0 600 300" role="img" aria-label="세대별 스택당 대역폭 막대그래프, HBM 128에서 HBM4 2000 GB/s까지">
+        <g font-size="13" style="fill:var(--fg2)">
+          <line x1="110" y1="20" x2="110" y2="262" style="stroke:var(--sep)"/>
+          <line x1="310" y1="20" x2="310" y2="262" style="stroke:var(--sep);stroke-dasharray:3 4"/>
+          <line x1="510" y1="20" x2="510" y2="262" style="stroke:var(--sep);stroke-dasharray:3 4"/>
+          <text x="110" y="284" text-anchor="middle">0</text>
+          <text x="310" y="284" text-anchor="middle">1,000</text>
+          <text x="510" y="284" text-anchor="middle">2,000 GB/s</text>
+        </g>
+        <g font-size="13">
+          <text x="100" y="45" text-anchor="end" style="fill:var(--fg)">HBM</text>
+          <rect x="110" y="30" width="25.6" height="24" rx="4" style="fill:var(--blue);opacity:.45"/>
+          <text x="142" y="47" style="fill:var(--fg2)">128</text>
+          <text x="100" y="85" text-anchor="end" style="fill:var(--fg)">HBM2</text>
+          <rect x="110" y="70" width="51.2" height="24" rx="4" style="fill:var(--blue);opacity:.55"/>
+          <text x="168" y="87" style="fill:var(--fg2)">256</text>
+          <text x="100" y="125" text-anchor="end" style="fill:var(--fg)">HBM2E</text>
+          <rect x="110" y="110" width="92" height="24" rx="4" style="fill:var(--blue);opacity:.65"/>
+          <text x="209" y="127" style="fill:var(--fg2)">460</text>
+          <text x="100" y="165" text-anchor="end" style="fill:var(--fg)">HBM3</text>
+          <rect x="110" y="150" width="163.8" height="24" rx="4" style="fill:var(--blue);opacity:.75"/>
+          <text x="281" y="167" style="fill:var(--fg2)">819</text>
+          <text x="100" y="205" text-anchor="end" style="fill:var(--fg)">HBM3E</text>
+          <rect x="110" y="190" width="240" height="24" rx="4" style="fill:var(--blue);opacity:.88"/>
+          <text x="357" y="207" style="fill:var(--fg2)">약 1,200</text>
+          <text x="100" y="245" text-anchor="end" style="fill:var(--fg)">HBM4</text>
+          <rect x="110" y="230" width="400" height="24" rx="4" style="fill:var(--blue)"/>
+          <text x="500" y="247" text-anchor="end" style="fill:var(--bg)">약 2,000</text>
+        </g>
+      </svg>
+      <figcaption><b>그림 A-1</b> 스택 하나가 1초에 주고받는 데이터 양(약값, GB/s). 10년 사이 약 15배가 되었습니다. 제조사와 제품에 따라 수치는 조금씩 다릅니다.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="chapter" id="glossary">
+  <header class="chapter-head"><span class="step-tag">부록</span><h3>용어집</h3><p class="lede">책을 읽다 막히는 단어가 있으면 여기서 찾아보세요.</p></header>
+  <div class="chapter-body">
+    <input type="search" class="search" id="gloss-q" placeholder="용어 검색 (예: TSV)" aria-label="용어 검색">
+    <dl class="glossary" id="gloss-list">
+      <div><dt>웨이퍼</dt><dd>반도체를 만드는 둥글고 얇은 실리콘 원판. 지름은 보통 300mm로, 피자 한 판 크기입니다.</dd></div>
+      <div><dt>다이 (Die)</dt><dd>웨이퍼를 잘라 낸 칩 한 조각. HBM 탑은 이 다이를 여러 장 쌓아 만듭니다.</dd></div>
+      <div><dt>DRAM</dt><dd>전기를 담는 작은 그릇(커패시터)에 0과 1을 저장하는 메모리. 전원이 꺼지면 내용이 사라집니다.</dd></div>
+      <div><dt>TSV</dt><dd>실리콘 관통 전극. 칩에 아주 가는 구멍을 뚫고 구리를 채워, 위아래 칩을 엘리베이터처럼 잇는 통로입니다.</dd></div>
+      <div><dt>마이크로범프</dt><dd>칩과 칩 사이를 붙이는 아주 작은 금속 돌기. 지름이 수십 마이크로미터 정도입니다.</dd></div>
+      <div><dt>인터포저</dt><dd>GPU와 HBM을 나란히 올려놓는 얇은 실리콘 배선판. 촘촘한 길을 수천 개 깔 수 있습니다.</dd></div>
+      <div><dt>대역폭</dt><dd>1초에 주고받을 수 있는 데이터 양. 도로의 차선 수 × 차의 속도와 비슷한 개념입니다.</dd></div>
+      <div><dt>수율</dt><dd>만든 칩 가운데 합격품의 비율. 100개 중 90개가 좋으면 수율 90%입니다.</dd></div>
+      <div><dt>KGSD</dt><dd>Known Good Stacked Die. 쌓은 뒤 검사까지 마쳐 '좋은 것으로 확인된' HBM 탑을 말합니다.</dd></div>
+      <div><dt>MR-MUF</dt><dd>칩을 쌓은 뒤 액체 보호재를 한꺼번에 흘려 넣어 굳히는 방식. 열을 잘 빼는 장점이 있습니다.</dd></div>
+      <div><dt>TC-NCF</dt><dd>칩 사이에 얇은 접착 필름을 깔고, 열과 압력으로 한 층씩 눌러 붙이는 방식입니다.</dd></div>
+      <div><dt>하이브리드 본딩</dt><dd>범프 없이 구리 면과 구리 면을 직접 붙이는 차세대 기술. 탑을 더 얇게, 더 높이 쌓을 수 있습니다.</dd></div>
+      <div><dt>베이스 다이</dt><dd>HBM 탑 맨 아래에 놓이는 칩. 위층 메모리를 관리하고 GPU와 신호를 주고받는 관제탑 역할을 합니다.</dd></div>
+    </dl>
+    <p class="readout" id="gloss-empty" hidden>찾는 용어가 없습니다. 다른 단어로 검색해 보세요.</p>
+  </div>
+</section>
+
+<section class="chapter" id="quiz">
+  <header class="chapter-head"><span class="step-tag">부록</span><h3>확인 퀴즈</h3><p class="lede">다섯 문제로 지금까지 배운 내용을 점검해 봅시다. 보기를 누르면 바로 정답과 설명이 나옵니다.</p></header>
+  <div class="chapter-body">
+    <div class="quiz-q">
+      <p class="q">1. HBM 칩을 위아래로 연결하는, 칩을 관통하는 구리 통로의 이름은?</p>
+      <div class="quiz-opts"><button class="quiz-opt">인터포저</button><button class="quiz-opt" data-ok="1">TSV</button><button class="quiz-opt">웨이퍼</button></div>
+      <p class="quiz-exp" hidden>TSV(실리콘 관통 전극)는 칩에 구멍을 뚫고 구리를 채워 만든 수직 통로입니다.</p>
+    </div>
+    <div class="quiz-q">
+      <p class="q">2. GPU와 HBM을 나란히 올려놓는 얇은 실리콘 배선판은?</p>
+      <div class="quiz-opts"><button class="quiz-opt" data-ok="1">인터포저</button><button class="quiz-opt">베이스 다이</button><button class="quiz-opt">마이크로범프</button></div>
+      <p class="quiz-exp" hidden>인터포저 위에 GPU와 HBM을 나란히 놓기 때문에 이 방식을 2.5D 패키징이라고 부릅니다.</p>
+    </div>
+    <div class="quiz-q">
+      <p class="q">3. HBM이 일반 메모리보다 데이터를 훨씬 많이 주고받을 수 있는 가장 큰 이유는?</p>
+      <div class="quiz-opts"><button class="quiz-opt">칩 하나의 크기가 커서</button><button class="quiz-opt" data-ok="1">데이터 통로가 1024개 이상으로 매우 많아서</button><button class="quiz-opt">전기를 더 많이 써서</button></div>
+      <p class="quiz-exp" hidden>차선이 아주 많은 고속도로처럼, 한 번에 지나가는 데이터가 많아 대역폭이 커집니다.</p>
+    </div>
+    <div class="quiz-q">
+      <p class="q">4. 칩을 뜨거운 온도와 높은 전압에 오래 두어 약한 칩을 걸러내는 검사는?</p>
+      <div class="quiz-opts"><button class="quiz-opt">하이브리드 본딩</button><button class="quiz-opt">MR-MUF</button><button class="quiz-opt" data-ok="1">번인 테스트</button></div>
+      <p class="quiz-exp" hidden>번인 테스트는 일찍 고장 날 칩을 출하 전에 미리 찾아내는 체력 시험입니다.</p>
+    </div>
+    <div class="quiz-q">
+      <p class="q">5. 만든 칩 100개 중 95개가 합격이라면 수율은?</p>
+      <div class="quiz-opts"><button class="quiz-opt">5%</button><button class="quiz-opt" data-ok="1">95%</button><button class="quiz-opt">100%</button></div>
+      <p class="quiz-exp" hidden>수율은 합격품의 비율입니다. HBM은 여러 장을 쌓기 때문에 한 장만 불량이어도 탑 전체가 불량이 되어 수율 관리가 특히 중요합니다.</p>
+    </div>
+    <output class="readout" id="quiz-score">0 / 5 문제 풀이</output>
+  </div>
+</section>
+
+<script>
+(function () {
+  // 2D / 2.5D / 3D 비교
+  var seg = document.getElementById('pkg-seg');
+  if (seg) {
+    var btns = seg.querySelectorAll('.seg-btn');
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        btns.forEach(function (o) {
+          var on = o === b;
+          o.setAttribute('aria-pressed', on ? 'true' : 'false');
+          var p = document.getElementById(o.dataset.panel);
+          if (p) p.hidden = !on;
+        });
+      });
+    });
+  }
+
+  // 용어집 검색
+  var q = document.getElementById('gloss-q');
+  var list = document.getElementById('gloss-list');
+  var empty = document.getElementById('gloss-empty');
+  if (q && list) {
+    q.addEventListener('input', function () {
+      var t = q.value.trim().toLowerCase();
+      var shown = 0;
+      list.querySelectorAll(':scope > div').forEach(function (row) {
+        var hit = !t || row.textContent.toLowerCase().indexOf(t) !== -1;
+        row.hidden = !hit;
+        if (hit) shown++;
+      });
+      if (empty) empty.hidden = shown !== 0;
+    });
+  }
+
+  // 퀴즈
+  var quiz = document.getElementById('quiz');
+  var score = document.getElementById('quiz-score');
+  if (quiz) {
+    var answered = 0, correct = 0;
+    var total = quiz.querySelectorAll('.quiz-q').length;
+    quiz.querySelectorAll('.quiz-q').forEach(function (qq) {
+      var opts = qq.querySelectorAll('.quiz-opt');
+      opts.forEach(function (o) {
+        o.addEventListener('click', function () {
+          if (qq.dataset.done) return;
+          qq.dataset.done = '1';
+          answered++;
+          if (o.dataset.ok) correct++;
+          opts.forEach(function (x) {
+            x.disabled = true;
+            if (x.dataset.ok) x.classList.add('correct');
+            else if (x === o) x.classList.add('wrong');
+          });
+          var exp = qq.querySelector('.quiz-exp');
+          if (exp) exp.hidden = false;
+          if (score) {
+            score.textContent = answered < total
+              ? correct + ' / ' + answered + ' 정답 (' + answered + '/' + total + ' 문제 풀이)'
+              : '최종 점수 ' + correct + ' / ' + total + (correct === total ? ' · 완벽합니다!' : ' · 틀린 문제의 설명을 다시 읽어 보세요');
+          }
+        });
+      });
+    });
+  }
+})();
+</script>
