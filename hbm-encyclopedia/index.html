@@ -5,7 +5,7 @@
 :root{
   --bg:#f2f2f7; --surface:#ffffff; --surface2:#f7f7fa; --fg:#1c1c1e; --fg2:#3c3c43cc; --fg3:#3c3c4399;
   --sep:#3c3c4329; --fill:#7878801f; --blue:#007aff; --green:#34c759; --orange:#ff9500; --purple:#af52de;
-  --red:#ff3b30; --teal:#30b0c7; --yellow:#ffcc00; --copper:#c8743a; --nav:rgba(249,249,251,.78);
+  --red:#ff3b30; --teal:#00849b; --yellow:#ffcc00; --copper:#c8743a; --nav:rgba(249,249,251,.78);
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo","Pretendard","Noto Sans KR",system-ui,sans-serif;
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono",Menlo,monospace;
@@ -13,14 +13,14 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#000000; --surface:#1c1c1e; --surface2:#2c2c2e; --fg:#f2f2f7; --fg2:#ebebf5cc; --fg3:#ebebf599;
   --sep:#54545899; --fill:#7878805c; --blue:#0a84ff; --green:#30d158; --orange:#ff9f0a; --purple:#bf5af2;
-  --red:#ff453a; --teal:#40c8e0; --yellow:#ffd60a; --copper:#e08a4e; --nav:rgba(22,22,24,.72); color-scheme:dark}}
+  --red:#ff453a; --teal:#1a9cb3; --yellow:#ffd60a; --copper:#e08a4e; --nav:rgba(22,22,24,.72); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#000000; --surface:#1c1c1e; --surface2:#2c2c2e; --fg:#f2f2f7; --fg2:#ebebf5cc; --fg3:#ebebf599;
   --sep:#54545899; --fill:#7878805c; --blue:#0a84ff; --green:#30d158; --orange:#ff9f0a; --purple:#bf5af2;
-  --red:#ff453a; --teal:#40c8e0; --yellow:#ffd60a; --copper:#e08a4e; --nav:rgba(22,22,24,.72); color-scheme:dark}
+  --red:#ff453a; --teal:#1a9cb3; --yellow:#ffd60a; --copper:#e08a4e; --nav:rgba(22,22,24,.72); color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:64px}
-body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;word-break:keep-all}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.72;letter-spacing:-.003em;-webkit-font-smoothing:antialiased;word-break:keep-all}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--nav)}
 .wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 a{color:var(--blue);text-decoration:none}
@@ -29,11 +29,12 @@ strong{font-weight:650}
 
 /* nav */
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sep)}
-.nav .wrap{display:flex;align-items:center;gap:14px;height:52px}
+.nav{position:sticky}.nav .wrap{display:flex;align-items:center;gap:14px;height:52px}
 .nav-title{font-weight:600;font-size:15px;white-space:nowrap}
 .nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0}
 .nav-links::-webkit-scrollbar{display:none}
-.nav-links a{font-size:13px;color:var(--fg2);padding:5px 10px;border-radius:999px;white-space:nowrap}
+.nav-links a{font-size:13px;color:var(--fg2);padding:6px 11px;min-height:32px;display:inline-flex;align-items:center;border-radius:999px;white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-.5px;height:2px;width:100%;background:var(--blue);transform-origin:0 50%;transform:scaleX(0)}
 .nav-links a:hover,.nav-links a.on{background:var(--fill);color:var(--fg)}
 
 /* hero */
@@ -57,17 +58,18 @@ strong{font-weight:650}
 @media (max-width:720px){.roadmap{grid-template-columns:repeat(2,1fr)}}
 
 /* part divider + chapters */
-.part-divider{padding-block:44px 8px}
+.part-divider{padding-block:64px 4px;border-top:.5px solid var(--sep);margin-top:40px}
+.part-divider:first-of-type{border-top:0}
 .part-no{font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--fg3)}
 .part-divider h2{font-family:var(--display);font-size:clamp(28px,4.5vw,40px);margin:.1em 0 .2em;letter-spacing:-.015em;font-weight:700}
 .part-divider p{color:var(--fg2);margin:0;max-width:40em}
-.chapter{background:var(--surface);border-radius:22px;padding:28px clamp(18px,4vw,36px);margin-block:18px}
+.chapter{background:var(--surface);border-radius:22px;padding:32px clamp(16px,4vw,40px);margin-block:20px;box-shadow:0 .5px 0 var(--sep)}
 .chapter-head{margin-bottom:14px}
 .step-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.05em;color:var(--blue);background:color-mix(in srgb,var(--blue) 12%,transparent);padding:3px 10px;border-radius:999px}
 .chapter-head h3{font-family:var(--display);font-size:clamp(23px,3.4vw,30px);line-height:1.2;margin:.45em 0 .25em;letter-spacing:-.01em;text-wrap:balance;font-weight:700}
 .lede{color:var(--fg2);font-size:18px;margin:0}
-.chapter-body{display:flex;flex-direction:column;gap:18px}
-.prose{max-width:40em}.prose p{margin:0 0 .8em}.prose p:last-child{margin:0}
+.chapter-body{display:flex;flex-direction:column;gap:22px}
+.prose{max-width:38em}.prose p{margin:0 0 .9em}.prose p:last-child{margin:0}
 .prose ul,.prose ol{margin:0 0 .8em;padding-left:1.2em}
 
 .media-card{margin:0;background:var(--surface2);border-radius:18px;padding:16px;overflow:hidden}
@@ -79,14 +81,14 @@ strong{font-weight:650}
 .analogy-label{font-size:12px;font-weight:700;color:var(--orange);letter-spacing:.04em}
 .analogy p{margin:.2em 0 0}
 
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--sep);border-radius:16px;overflow:hidden}
-.fact{background:var(--surface2);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.facts{display:flex;flex-wrap:wrap;gap:1px;background:var(--sep);border-radius:16px;overflow:hidden}
+.fact{flex:1 1 150px;background:var(--surface2);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
 .fact b{font-family:var(--display);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.fact span{font-size:13px;color:var(--fg2);line-height:1.4}
+.fact span{font-size:14px;color:var(--fg2);line-height:1.4}
 
 /* controls */
 .seg{display:inline-flex;flex-wrap:wrap;gap:2px;background:var(--fill);padding:2px;border-radius:10px;max-width:100%}
-.seg-btn{border:0;background:transparent;color:var(--fg);font:500 14px var(--font);padding:7px 14px;border-radius:8px;cursor:pointer;transition:background .2s,box-shadow .2s}
+.seg-btn{border:0;background:transparent;color:var(--fg);font:500 14px var(--font);padding:7px 14px;min-height:36px;flex:1 1 auto;border-radius:8px;cursor:pointer;transition:background .2s,box-shadow .2s}
 .seg-btn[aria-pressed="true"],.seg-btn[aria-selected="true"]{background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.12),0 0 0 .5px var(--sep);font-weight:600}
 .range{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:var(--fill);outline-offset:6px}
 .range::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 0 0 .5px rgba(0,0,0,.04),0 3px 8px rgba(0,0,0,.15),0 3px 1px rgba(0,0,0,.06);cursor:pointer}
@@ -110,7 +112,7 @@ p.caption{font-size:14px;color:var(--fg2);margin:8px 0 0}
 .quiz-q{background:var(--surface2);border-radius:16px;padding:16px}
 .quiz-q .q{font-weight:600;margin:0 0 10px}
 .quiz-opts{display:flex;flex-direction:column;gap:8px}
-.quiz-opt{text-align:left;font:15px var(--font);padding:11px 14px;border-radius:12px;border:.5px solid var(--sep);background:var(--surface);color:var(--fg);cursor:pointer}
+.quiz-opt{text-align:left;font:16px var(--font);padding:12px 16px;min-height:44px;border-radius:12px;border:.5px solid var(--sep);background:var(--surface);color:var(--fg);cursor:pointer}
 .quiz-opt:hover{background:var(--fill)}
 .quiz-opt.correct{background:color-mix(in srgb,var(--green) 18%,var(--surface));border-color:var(--green)}
 .quiz-opt.wrong{background:color-mix(in srgb,var(--red) 14%,var(--surface));border-color:var(--red)}
@@ -123,19 +125,32 @@ p.caption{font-size:14px;color:var(--fg2);margin:8px 0 0}
 .stack-info h4{margin:0 0 4px;font-size:17px}
 .stack-info p{margin:0;color:var(--fg2);font-size:15px}
 .layer{cursor:pointer;transition:transform .3s ease}
+.layer:focus-visible{outline:none}.layer:focus-visible rect{stroke:var(--blue);stroke-width:2}
 .layer:hover,.layer.on{transform:translateX(10px)}
 .compare{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .compare > div{background:var(--surface2);border-radius:16px;padding:14px}
 .compare h4{margin:0 0 6px;font-size:15px}
 
 /* workflow */
-.agents{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.agents{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .agent{background:var(--surface2);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:4px}
 .agent .who{font-size:12px;font-weight:700;letter-spacing:.04em}
 .agent b{font-size:15px}.agent span{font-size:13px;color:var(--fg2)}
 @media (max-width:640px){.agents{grid-template-columns:1fr}.compare{grid-template-columns:1fr}}
 footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center}
 
+
+/* phone: keep diagram labels legible (>=10px) — wide diagrams scroll inside their own card */
+@media (max-width:600px){
+  .chapter{border-radius:18px}
+  .media-card,.stepper-panel,.tsv-lab{padding:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .chapter-body svg[viewBox^="0 0 600"]{min-width:540px}
+  .media-card:has(> svg[viewBox^="0 0 600"])::before,.stepper-panel:has(> svg[viewBox^="0 0 600"])::before,.tsv-lab:has(svg[viewBox^="0 0 600"])::before{content:"↔ 그림을 옆으로 밀어서 보기";display:block;position:sticky;left:0;font-size:12px;color:var(--fg3);margin-bottom:6px}
+  .media-card figcaption,.stepper-panel figcaption,p.caption{position:sticky;left:0;max-width:calc(100vw - 88px)}
+  .seg{display:flex;width:100%}
+  .lede{font-size:17px}
+  .hero p{font-size:17px}
+}
 @keyframes flow{to{stroke-dashoffset:-24}}
 @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
 @media (prefers-reduced-motion:no-preference){
@@ -147,27 +162,28 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
 
 <nav class="nav" aria-label="목차">
   <div class="wrap">
-    <span class="nav-title">HBM 백과</span>
+    <a class="nav-title" href="#top" style="color:var(--fg)">HBM 백과</a>
     <div class="nav-links">
       <a href="#what">HBM이란</a><a href="#step-1">웨이퍼</a><a href="#step-2">DRAM</a><a href="#step-3">TSV</a>
       <a href="#step-4">박화·범프</a><a href="#step-5">적층</a><a href="#step-6">검사</a><a href="#step-7">패키징</a>
       <a href="#step-8">출하</a><a href="#glossary">용어</a><a href="#quiz">퀴즈</a>
     </div>
   </div>
+  <div class="progress" id="read-progress" aria-hidden="true"></div>
 </nav>
 
-<main class="wrap">
+<main class="wrap" id="top">
 <header class="hero">
   <div>
     <span class="eyebrow">반도체 제조 백과 · 중학생 눈높이</span>
     <h1>메모리 칩을 아파트처럼 쌓는 법</h1>
-    <p>HBM(고대역폭 메모리)은 얇은 메모리 칩 여러 장을 수직으로 쌓고 수천 개의 구멍으로 연결한 반도체입니다. 모래에서 AI 서버까지, 8단계 제조 과정을 그림과 애니메이션으로 따라가 봅니다.</p>
+    <p>HBM(고대역폭 메모리)은 얇은 메모리 칩 여러 장을 수직으로 쌓고 수천 개의 구멍으로 연결한 반도체예요. 모래에서 AI 서버까지, 8단계 제조 과정을 그림과 애니메이션으로 따라가 봅니다.</p>
     <div class="hero-cta"><a class="btn" href="#step-1">1단계부터 보기</a><a class="btn ghost" href="#quiz">퀴즈 풀기</a></div>
   </div>
   <div class="hero-art" aria-hidden="true">
     <svg viewBox="0 0 320 260">
       <rect x="20" y="214" width="280" height="22" rx="6" style="fill:var(--fill)"/>
-      <text x="160" y="229" text-anchor="middle" style="fill:var(--fg3);font-size:10px">인터포저</text>
+      <text x="160" y="229" text-anchor="middle" style="fill:var(--fg3);font-size:12px">인터포저</text>
       <rect x="30" y="150" width="110" height="60" rx="8" style="fill:var(--purple);opacity:.85"/>
       <text x="85" y="185" text-anchor="middle" style="fill:#fff;font-size:13px;font-weight:600">GPU</text>
       <g>
@@ -186,8 +202,8 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
         <line class="flow" x1="230" y1="210" x2="230" y2="68" style="stroke:var(--yellow);stroke-width:2.5"/>
       </g>
       <path class="flow" d="M140 190 H170" style="stroke:var(--yellow);stroke-width:3;fill:none"/>
-      <text x="230" y="56" text-anchor="middle" style="fill:var(--fg2);font-size:11px">DRAM 8단 + 베이스 다이</text>
-      <text x="216" y="40" style="fill:var(--copper);font-size:10px">│ TSV(구리 기둥)</text>
+      <text x="230" y="56" text-anchor="middle" style="fill:var(--fg2);font-size:12px">DRAM 8단 + 베이스 다이</text>
+      <text x="216" y="40" style="fill:var(--copper);font-size:12px">│ TSV(구리 기둥)</text>
     </svg>
   </div>
 </header>
@@ -205,16 +221,16 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
 
 <div class="part-divider"><span class="part-no">PROLOGUE</span><h2>HBM이란 무엇일까?</h2><p>공정을 보기 전에, 왜 이런 메모리가 필요한지부터 알아봅니다.</p></div>
 <section class="chapter" id="what">
-  <header class="chapter-head"><span class="step-tag">기초</span><h3>단독주택 대신 아파트를 지은 메모리</h3><p class="lede">AI는 엄청난 양의 데이터를 한꺼번에 읽어야 합니다. HBM은 메모리를 위로 쌓아 '데이터 도로'를 넓혔습니다.</p></header>
+  <header class="chapter-head"><span class="step-tag">기초</span><h3>단독주택 대신 아파트를 지은 메모리</h3><p class="lede">AI는 엄청난 양의 데이터를 한꺼번에 읽어야 해요. HBM은 메모리를 위로 쌓아 '데이터 도로'를 넓혔어요.</p></header>
   <div class="chapter-body">
     <div class="prose">
-      <p>컴퓨터의 계산 담당은 <strong>GPU·CPU</strong>, 기억 담당은 <strong>메모리(DRAM)</strong>입니다. 계산이 아무리 빨라도 메모리에서 데이터를 늦게 가져오면 기다려야 하죠. 이 데이터 이동 속도를 <strong>대역폭</strong>이라고 합니다.</p>
-      <p>보통 메모리는 칩을 기판 위에 옆으로 늘어놓습니다. HBM은 DRAM 칩을 <strong>수직으로 8~16장 쌓고</strong>, 칩을 관통하는 수천 개의 통로(TSV)로 연결한 뒤 GPU 바로 옆에 붙입니다. 길이 짧고 차선이 아주 많은 고속도로를 만든 셈입니다.</p>
+      <p>컴퓨터의 계산 담당은 <strong>GPU·CPU</strong>, 기억 담당은 <strong>메모리(DRAM)</strong>예요. 계산이 아무리 빨라도 메모리에서 데이터를 늦게 가져오면 기다려야 하죠. 이 데이터 이동 속도를 <strong>대역폭</strong>이라고 해요.</p>
+      <p>보통 메모리는 칩을 기판 위에 옆으로 늘어놓아요. HBM은 DRAM 칩을 <strong>수직으로 8~16장 쌓고</strong>, 칩을 관통하는 수천 개의 통로(TSV)로 연결한 뒤 GPU 바로 옆에 붙여요. 길이 짧고 차선이 아주 많은 고속도로를 만든 셈이에요.</p>
     </div>
     <figure class="media-card">
       <div class="stack-ui">
         <svg viewBox="0 0 300 250" role="img" aria-label="HBM 층별 구조, 층을 누르면 설명이 바뀝니다" id="stack-svg">
-          <g class="layer" data-k="mold" tabindex="0"><rect x="40" y="20" width="200" height="22" rx="5" style="fill:var(--fill);stroke:var(--sep)"/><text x="140" y="35" text-anchor="middle" style="fill:var(--fg2);font-size:11px">보호재(몰드)</text></g>
+          <g class="layer" data-k="mold" tabindex="0"><rect x="40" y="20" width="200" height="22" rx="5" style="fill:var(--fill);stroke:var(--sep)"/><text x="140" y="35" text-anchor="middle" style="fill:var(--fg2);font-size:12px">보호재(몰드)</text></g>
           <g class="layer" data-k="dram" tabindex="0">
             <rect x="40" y="48" width="200" height="18" rx="4" style="fill:var(--blue);opacity:.55"/>
             <rect x="40" y="70" width="200" height="18" rx="4" style="fill:var(--blue);opacity:.65"/>
@@ -222,21 +238,21 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
             <rect x="40" y="114" width="200" height="18" rx="4" style="fill:var(--blue);opacity:.85"/>
             <text x="140" y="105" text-anchor="middle" style="fill:#fff;font-size:12px;font-weight:600">DRAM 코어 다이 ×N</text>
           </g>
-          <g class="layer" data-k="tsv" tabindex="0"><g style="stroke:var(--copper);stroke-width:3"><line x1="80" y1="48" x2="80" y2="160"/><line x1="140" y1="48" x2="140" y2="160"/><line x1="200" y1="48" x2="200" y2="160"/></g><text x="252" y="92" style="fill:var(--copper);font-size:11px">TSV</text></g>
-          <g class="layer" data-k="bump" tabindex="0"><g style="fill:var(--yellow)"><circle cx="70" cy="139" r="3"/><circle cx="100" cy="139" r="3"/><circle cx="130" cy="139" r="3"/><circle cx="160" cy="139" r="3"/><circle cx="190" cy="139" r="3"/><circle cx="220" cy="139" r="3"/></g><text x="252" y="142" style="fill:var(--fg2);font-size:11px">범프</text></g>
-          <g class="layer" data-k="base" tabindex="0"><rect x="40" y="144" width="200" height="20" rx="4" style="fill:var(--teal)"/><text x="140" y="158" text-anchor="middle" style="fill:#fff;font-size:11px;font-weight:600">베이스(로직) 다이</text></g>
-          <g class="layer" data-k="inter" tabindex="0"><rect x="10" y="178" width="270" height="20" rx="4" style="fill:var(--fill);stroke:var(--sep)"/><text x="145" y="192" text-anchor="middle" style="fill:var(--fg2);font-size:11px">실리콘 인터포저</text></g>
-          <g class="layer" data-k="sub" tabindex="0"><rect x="0" y="210" width="290" height="22" rx="4" style="fill:var(--green);opacity:.7"/><text x="145" y="225" text-anchor="middle" style="fill:#fff;font-size:11px;font-weight:600">패키지 기판</text></g>
+          <g class="layer" data-k="tsv" tabindex="0"><g style="stroke:var(--copper);stroke-width:3"><line x1="80" y1="48" x2="80" y2="160"/><line x1="140" y1="48" x2="140" y2="160"/><line x1="200" y1="48" x2="200" y2="160"/></g><text x="252" y="92" style="fill:var(--copper);font-size:12px">TSV</text></g>
+          <g class="layer" data-k="bump" tabindex="0"><g style="fill:var(--yellow)"><circle cx="70" cy="139" r="3"/><circle cx="100" cy="139" r="3"/><circle cx="130" cy="139" r="3"/><circle cx="160" cy="139" r="3"/><circle cx="190" cy="139" r="3"/><circle cx="220" cy="139" r="3"/></g><text x="252" y="142" style="fill:var(--fg2);font-size:12px">범프</text></g>
+          <g class="layer" data-k="base" tabindex="0"><rect x="40" y="144" width="200" height="20" rx="4" style="fill:var(--teal)"/><text x="140" y="158" text-anchor="middle" style="fill:#fff;font-size:12px;font-weight:600">베이스(로직) 다이</text></g>
+          <g class="layer" data-k="inter" tabindex="0"><rect x="10" y="178" width="270" height="20" rx="4" style="fill:var(--fill);stroke:var(--sep)"/><text x="145" y="192" text-anchor="middle" style="fill:var(--fg2);font-size:12px">실리콘 인터포저</text></g>
+          <g class="layer" data-k="sub" tabindex="0"><rect x="0" y="210" width="290" height="22" rx="4" style="fill:var(--green);fill-opacity:.22;stroke:var(--green)"/><text x="145" y="225" text-anchor="middle" style="fill:var(--fg);font-size:12px;font-weight:600">패키지 기판</text></g>
         </svg>
         <div class="stack-info" aria-live="polite"><h4 id="si-t">층을 눌러 보세요</h4><p id="si-d">왼쪽 그림의 각 층을 누르면 그 부분이 하는 일과, 몇 번째 공정에서 만들어지는지 알려 줍니다.</p></div>
       </div>
-      <figcaption><b>그림 0-1</b> HBM 한 덩어리(스택)의 단면. 실제 두께는 1mm 정도이고, 그림은 이해하기 쉽게 키웠습니다.</figcaption>
+      <figcaption><b>그림 0-1</b> HBM 한 덩어리(스택)의 단면. 실제 스택 높이는 1mm가 채 안 되고, 그림은 이해하기 쉽게 키웠어요.</figcaption>
     </figure>
     <div class="compare">
-      <div><h4>일반 메모리 (단독주택)</h4><p style="margin:0;color:var(--fg2);font-size:15px">칩을 옆으로 나란히. 칩 하나당 데이터 통로가 수십 개 수준이고, GPU와 거리가 멀어요.</p></div>
+      <div><h4>일반 메모리 (단독주택)</h4><p style="margin:0;color:var(--fg2);font-size:15px">칩을 옆으로 나란히. 칩 하나의 데이터 통로가 보통 8~32개 정도이고, GPU와 거리도 멀어요.</p></div>
       <div><h4>HBM (아파트)</h4><p style="margin:0;color:var(--fg2);font-size:15px">칩을 위로 쌓아 1,024개 이상의 통로로 연결. GPU 바로 옆이라 빠르고 전기도 덜 씁니다.</p></div>
     </div>
-    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>도서관(메모리)에서 책(데이터)을 빌려 오는데, 문이 하나뿐이면 줄을 서야 합니다. HBM은 도서관을 고층으로 짓고 문을 천 개 넘게 달아 책을 한꺼번에 나르게 한 것입니다.</p></div>
+    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>도서관(메모리)에서 책(데이터)을 빌려 오는데, 문이 하나뿐이면 줄을 서야 해요. HBM은 도서관을 고층으로 짓고 문을 천 개 넘게 달아 책을 한꺼번에 나르게 한 거예요.</p></div>
   </div>
 </section>
 <style>
@@ -266,20 +282,21 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
   <header class="chapter-head">
     <span class="step-tag">STEP 1</span>
     <h3>웨이퍼 준비</h3>
-    <p class="lede">반도체의 출발점은 모래예요. 모래에서 아주 순수한 실리콘을 뽑아 기둥으로 키운 뒤, 얇은 원판으로 썰면 ‘웨이퍼’가 됩니다.</p>
+    <p class="lede">반도체의 출발점은 모래예요. 모래에서 아주 순수한 실리콘을 뽑아 기둥으로 키운 뒤, 얇은 원판으로 썰면 ‘웨이퍼’가 돼요.</p>
   </header>
   <div class="chapter-body">
     <div class="prose">
-      <p>모래의 주성분은 <strong>규소(실리콘, Si)</strong>와 산소가 결합한 물질이에요. 공장에서는 이것을 녹이고 정제해서 순도가 99.999999999%(9가 11개, ‘일레븐 나인’)에 가까운 <strong>고순도 실리콘</strong>을 만듭니다.</p>
-      <p>이 실리콘을 뜨거운 도가니에서 녹인 다음, 작은 씨앗 결정(시드)을 담갔다가 천천히 돌리며 위로 끌어올려요. 그러면 원자가 질서 정연하게 늘어선 커다란 원기둥, <strong>잉곳</strong>이 자랍니다. 이 방법을 <strong>초크랄스키법</strong>이라고 불러요.</p>
-      <p>잉곳을 다이아몬드 톱으로 얇게 썰고, 표면을 거울처럼 매끈하게 <strong>연마</strong>하면 지름 300mm짜리 둥근 판, <strong>웨이퍼</strong>가 완성돼요. 웨이퍼 한 장 위에 수백 개의 칩을 한꺼번에 만듭니다.</p>
+      <p>모래의 주성분은 <strong>규소(실리콘, Si)</strong>와 산소가 결합한 물질이에요. 공장에서는 이것을 녹이고 정제해서 순도가 99.999999999%(9가 11개, ‘일레븐 나인’) 수준인 <strong>고순도 실리콘</strong>을 만들어요. 불순물 원자가 1,000억 개 중 1개꼴이에요.</p>
+      <p>이 실리콘을 <strong>도가니</strong>(재료를 녹이는 그릇)에 넣고 약 1,400℃로 녹여요. 그다음 작은 씨앗 결정(시드)을 담갔다가 천천히 돌리며 위로 끌어올려요. 그러면 원자가 질서 정연하게 늘어선 커다란 원기둥, <strong>잉곳</strong>이 자라요. 이 방법을 <strong>초크랄스키법</strong>이라고 불러요.</p>
+      <p>잉곳을 다이아몬드 톱으로 얇게 썰고, 표면을 거울처럼 매끈하게 <strong>연마</strong>하면 지름 300mm짜리 둥근 판, <strong>웨이퍼</strong>가 완성돼요. </p>
+      <p>웨이퍼 한 장 위에는 바둑판처럼 칸을 나눠 칩 수백~천여 개를 한꺼번에 만들어요. 이 칩 한 개를 <strong>다이(Die)</strong>라고도 불러요.</p>
     </div>
 
     <figure class="media-card">
       <svg viewBox="0 0 600 300" role="img" aria-label="도가니에서 잉곳을 돌리며 끌어올리는 초크랄스키법 그림">
         <rect x="200" y="200" width="200" height="80" rx="18" style="fill:var(--fill);stroke:var(--sep);stroke-width:2"/>
         <rect x="212" y="222" width="176" height="46" rx="12" style="fill:var(--orange);opacity:.85"/>
-        <text x="300" y="250" text-anchor="middle" style="fill:var(--bg);font-size:13px;font-weight:600">녹은 실리콘 약 1,400℃</text>
+        <text x="300" y="250" text-anchor="middle" style="fill:#fff;font-weight:600;font-size:13px;font-weight:600">녹은 실리콘 약 1,400℃</text>
         <g class="pa-pull">
           <line x1="300" y1="10" x2="300" y2="70" style="stroke:var(--fg3);stroke-width:3"/>
           <rect x="262" y="70" width="76" height="150" rx="30" style="fill:var(--surface2);stroke:var(--fg3);stroke-width:2"/>
@@ -347,8 +364,8 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
 
     <div class="facts">
       <div class="fact"><b>300mm</b><span>요즘 주로 쓰는 웨이퍼 지름</span></div>
-      <div class="fact"><b>9가 11개</b><span>실리콘 순도 99.999999999%</span></div>
-      <div class="fact"><b>약 1mm 미만</b><span>웨이퍼 한 장의 두께</span></div>
+      <div class="fact"><b>9가 11개</b><span>실리콘 순도 약 99.999999999%</span></div>
+      <div class="fact"><b>약 0.8mm</b><span>깎기 전 웨이퍼 한 장의 두께</span></div>
     </div>
   </div>
 </section>
@@ -358,13 +375,14 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
   <header class="chapter-head">
     <span class="step-tag">STEP 2</span>
     <h3>DRAM 셀 만들기</h3>
-    <p class="lede">웨이퍼 위에 정보를 저장하는 아주 작은 방, ‘셀’을 수십억 개 만들어요. 빛으로 그림을 찍고, 깎고, 쌓는 과정을 수백 번 반복합니다.</p>
+    <p class="lede">웨이퍼 위에 정보를 저장하는 아주 작은 방, ‘셀’을 수백억 개 만들어요. 빛으로 그림을 찍고, 깎고, 쌓는 과정을 수백 번 반복합니다.</p>
   </header>
   <div class="chapter-body">
     <div class="prose">
-      <p>HBM 안에 들어가는 칩은 <strong>DRAM</strong>이라는 메모리예요. DRAM의 기본 단위인 <strong>셀</strong>은 스위치 역할의 <strong>트랜지스터 1개</strong>와 전기를 담아두는 <strong>커패시터 1개</strong>로 이루어져 있어요. 커패시터에 전기가 차 있으면 1, 비어 있으면 0이에요.</p>
-      <p>이 셀을 만드는 과정을 <strong>전공정</strong>이라고 해요. 표면에 얇은 막을 입히는 <strong>산화</strong>, 빛으로 회로 무늬를 찍는 <strong>포토(노광)</strong>, 필요 없는 부분을 깎는 <strong>식각</strong>, 새 재료를 얇게 쌓는 <strong>증착</strong>, 전기가 잘 통하게 불순물을 넣는 <strong>이온 주입</strong>, 셀끼리 잇는 <strong>배선</strong>이 있어요.</p>
-      <p>회로가 너무 작아서 요즘은 아주 짧은 파장의 빛인 <strong>EUV(극자외선)</strong>로 그림을 찍기도 해요. 이 과정을 층마다 되풀이하기 때문에 한 웨이퍼가 완성되기까지 수백 단계, 몇 주에서 몇 달이 걸립니다.</p>
+      <p>HBM 안에 들어가는 칩은 <strong>DRAM</strong>이라는 메모리예요. DRAM의 기본 단위인 <strong>셀</strong>은 스위치 역할의 <strong>트랜지스터 1개</strong>와 전기를 담아두는 <strong>커패시터 1개</strong>로 이루어져 있어요. 커패시터는 전기를 잠깐 담아 두는 아주 작은 그릇이에요. 커패시터에 전기가 차 있으면 1, 비어 있으면 0이에요.</p>
+      <p>이 셀을 만드는 과정을 <strong>전공정</strong>이라고 해요. 주요 공정은 여섯 가지예요.</p>
+      <p>표면에 얇은 막을 입히는 <strong>산화</strong>, 빛으로 회로 무늬를 찍는 <strong>포토(노광)</strong>, 필요 없는 부분을 깎는 <strong>식각</strong>, 새 재료를 얇게 쌓는 <strong>증착</strong>, 전기가 잘 통하게 불순물을 넣는 <strong>이온 주입</strong>, 셀끼리 잇는 <strong>배선</strong>이 있어요.</p>
+      <p>회로가 너무 작아서 요즘은 아주 짧은 파장의 빛인 <strong>EUV(극자외선)</strong>로 그림을 찍기도 해요. 이 과정을 층마다 되풀이해요. 그래서 웨이퍼 한 장이 완성되기까지 수백 단계를 거치고, 보통 두세 달쯤 걸려요.</p>
     </div>
 
     <figure class="media-card">
@@ -412,14 +430,14 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           <path d="M245 54 L245 96 M305 54 L305 96 M365 54 L365 96" style="stroke:var(--purple);stroke-width:4;stroke-dasharray:4 4"/>
           <rect x="150" y="96" width="300" height="14" rx="4" style="fill:var(--orange);opacity:.7"/>
           <rect x="150" y="110" width="300" height="34" rx="4" style="fill:var(--surface2);stroke:var(--fg3)"/>
-          <text x="300" y="168" text-anchor="middle" style="fill:var(--fg2);font-size:13px">마스크(필름)를 통과한 빛이 감광액에 회로 무늬를 찍어요</text>
+          <text x="300" y="168" text-anchor="middle" style="fill:var(--fg2);font-size:13px">마스크(회로 무늬 유리판)를 지난 빛이 감광액에 무늬를 찍어요</text>
         </svg>
       </div>
       <div class="stepper-panel" hidden>
         <svg viewBox="0 0 600 180" role="img" aria-label="식각">
           <path d="M150 70 H230 V100 H260 V70 H330 V100 H360 V70 H450 V140 H150 Z" style="fill:var(--surface2);stroke:var(--fg3)"/>
           <path d="M245 40 L245 64 M345 40 L345 64" style="stroke:var(--red);stroke-width:3;stroke-linecap:round"/>
-          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">빛을 받은 곳만 가스나 약품으로 깎아내 홈을 파요</text>
+          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">감광액이 벗겨진 곳만 가스나 약품으로 깎아 홈을 파요</text>
         </svg>
       </div>
       <div class="stepper-panel" hidden>
@@ -427,7 +445,7 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           <rect x="150" y="90" width="300" height="50" rx="6" style="fill:var(--surface2);stroke:var(--fg3)"/>
           <rect x="150" y="72" width="300" height="18" rx="4" style="fill:var(--green);opacity:.75"/>
           <g style="fill:var(--green)"><circle cx="200" cy="40" r="4"/><circle cx="260" cy="30" r="4"/><circle cx="320" cy="45" r="4"/><circle cx="380" cy="32" r="4"/><circle cx="420" cy="48" r="4"/></g>
-          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">원자 몇 개 두께의 새 막을 고르게 쌓아 올려요</text>
+          <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">아주 얇은 새 막을 고르게 쌓아 올려요</text>
         </svg>
       </div>
       <div class="stepper-panel" hidden>
@@ -441,7 +459,6 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
       <div class="stepper-panel" hidden>
         <svg viewBox="0 0 600 180" role="img" aria-label="배선">
           <rect x="150" y="100" width="300" height="40" rx="6" style="fill:var(--surface2);stroke:var(--fg3)"/>
-          <rect x="190" y="100" width="12" height="-0" />
           <path d="M196 100 V60 H404 V100 M300 60 V100" style="fill:none;stroke:var(--copper);stroke-width:8;stroke-linejoin:round"/>
           <text x="300" y="165" text-anchor="middle" style="fill:var(--fg2);font-size:13px">금속(구리 등) 길을 깔아 수십억 개 셀을 서로 연결해요</text>
         </svg>
@@ -452,8 +469,8 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
 
     <div class="facts">
       <div class="fact"><b>1T + 1C</b><span>셀 하나 = 트랜지스터 1 + 커패시터 1</span></div>
-      <div class="fact"><b>수백 단계</b><span>층을 쌓기 위해 반복하는 공정 수</span></div>
-      <div class="fact"><b>수십억 개</b><span>DRAM 칩 한 개에 담긴 셀</span></div>
+      <div class="fact"><b>수백 단계</b><span>웨이퍼 한 장이 거치는 공정 수</span></div>
+      <div class="fact"><b>수백억 개</b><span>DRAM 칩 한 개에 담긴 셀(16Gb 칩 ≈ 160억 개)</span></div>
     </div>
   </div>
 </section>
@@ -467,9 +484,10 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
   </header>
   <div class="chapter-body">
     <div class="prose">
-      <p><strong>TSV(Through-Silicon Via, 실리콘 관통 전극)</strong>는 실리콘 칩을 위에서 아래까지 꿰뚫는 전기 통로예요. 예전에는 칩 가장자리에서 가는 금선으로 연결했지만(와이어 본딩), TSV는 칩 한가운데를 직접 뚫어 <strong>훨씬 짧고 많은 길</strong>을 만들 수 있어요.</p>
-      <p>먼저 <strong>식각</strong>으로 머리카락 굵기보다 훨씬 가는 깊은 구멍을 파요. 구멍 벽에 전기가 새지 않도록 <strong>절연막</strong>을 입힌 뒤, <strong>구리</strong>를 꽉 채워 넣습니다. 그다음 웨이퍼 뒷면을 갈아서 얇게 만들면 구리 기둥 끝이 뒷면으로 드러나요.</p>
-      <p>HBM 칩 한 장에는 이런 TSV가 <strong>수천 개</strong> 있어요. 길이 많고 짧기 때문에 한꺼번에 아주 많은 데이터를 빠르게 주고받을 수 있습니다.</p>
+      <p><strong>TSV(Through-Silicon Via, 실리콘 관통 전극)</strong>는 실리콘 칩을 위에서 아래까지 꿰뚫는 전기 통로예요. 예전에는 칩 가장자리에서 가는 금선으로 연결했지만(와이어 본딩), TSV는 칩을 직접 뚫기 때문에 <strong>훨씬 짧고 많은 길</strong>을 만들 수 있어요.</p>
+      <p>HBM에서는 보통 트랜지스터를 만든 뒤, 배선을 깔기 전후 사이에 TSV를 뚫어요. 이 순서를 ‘비아 미들(Via-middle)’이라고 해요.</p>
+      <p>먼저 <strong>식각</strong>으로 깊은 구멍을 파요. 구멍 지름은 수 μm로, 머리카락 굵기의 10분의 1쯤이에요. (1μm는 1mm의 1,000분의 1이에요.) 구멍 벽에 전기가 새지 않도록 <strong>절연막</strong>을 입힌 뒤, <strong>구리</strong>를 꽉 채워 넣어요. 뒷면을 갈아 구리 기둥 끝을 드러내는 일은 STEP 4에서 해요.</p>
+      <p>HBM 칩 한 장에는 이런 TSV가 <strong>수천 개</strong> 있어요. 길이 많고 짧기 때문에 한꺼번에 아주 많은 데이터를 빠르게 주고받을 수 있어요.</p>
     </div>
 
     <figure class="media-card">
@@ -480,7 +498,7 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           <rect x="120" y="150" width="360" height="36" rx="8" style="fill:var(--surface2);stroke:var(--fg3)"/>
           <rect x="120" y="200" width="360" height="36" rx="8" style="fill:var(--surface2);stroke:var(--fg3)"/>
           <rect x="100" y="250" width="400" height="30" rx="8" style="fill:var(--fill);stroke:var(--sep)"/>
-          <text x="300" y="270" text-anchor="middle" style="fill:var(--fg2);font-size:12px">맨 아래 바닥 칩</text>
+          <text x="300" y="270" text-anchor="middle" style="fill:var(--fg2);font-size:12px">베이스(로직) 다이</text>
         </g>
         <g style="fill:var(--copper)">
           <rect x="200" y="50" width="10" height="200" rx="3"/>
@@ -502,15 +520,15 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
     <div class="media-card tsv-lab">
       <label for="tsv-range" style="font-weight:600">슬라이더를 움직여 TSV 만드는 과정을 보세요</label>
       <input type="range" class="range" id="tsv-range" min="0" max="100" value="0" aria-describedby="tsv-status">
-      <svg viewBox="0 0 600 260" role="img" aria-label="TSV 형성 단계">
+      <svg viewBox="0 0 600 260" role="img" aria-label="TSV 형성 단계: 슬라이더 위치에 따라 구멍 파기, 절연막, 구리 채우기, 뒷면 갈기가 차례로 그려져요">
         <rect id="tsv-wafer" x="150" y="40" width="300" height="180" rx="8" style="fill:var(--surface2);stroke:var(--fg3);stroke-width:2"/>
-        <rect id="tsv-thin" x="150" y="220" width="300" height="0" style="fill:var(--bg)"/>
+        <rect id="tsv-thin" x="148" y="220" width="304" height="0" style="fill:var(--surface2)"/>
         <rect id="tsv-hole" x="270" y="40" width="60" height="0" rx="4" style="fill:var(--bg);stroke:var(--fg3)"/>
         <rect id="tsv-liner" x="270" y="40" width="60" height="0" rx="4" style="fill:none;stroke:var(--teal);stroke-width:5;opacity:0"/>
         <rect id="tsv-cu" x="276" y="40" width="48" height="0" rx="3" style="fill:var(--copper)"/>
         <text x="300" y="250" text-anchor="middle" id="tsv-label" style="fill:var(--fg2);font-size:13px">① 매끈한 웨이퍼</text>
       </svg>
-      <p id="tsv-status" class="caption" aria-live="polite">구멍을 뚫기 전, 회로가 다 만들어진 웨이퍼예요.</p>
+      <p id="tsv-status" class="caption" aria-live="polite">트랜지스터까지 만들어 둔 DRAM 웨이퍼예요. 여기에 구멍을 뚫어요.</p>
     </div>
 
     <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>칩을 쌓은 HBM은 ‘아파트’, TSV는 아파트 한가운데를 관통하는 ‘엘리베이터’예요. 바깥 계단(와이어)으로 빙 돌아가는 대신, 엘리베이터 수천 대가 한꺼번에 층을 오가니 훨씬 빨라요.</p></div>
@@ -518,7 +536,7 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
     <div class="facts">
       <div class="fact"><b>수천 개</b><span>칩 한 장에 뚫는 TSV 수</span></div>
       <div class="fact"><b>구리</b><span>구멍을 채우는 금속</span></div>
-      <div class="fact"><b>머리카락보다 가늘게</b><span>TSV 구멍의 굵기</span></div>
+      <div class="fact"><b>수 μm</b><span>TSV 구멍 지름(머리카락의 약 1/10)</span></div>
     </div>
   </div>
 </section>
@@ -547,11 +565,11 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
       cu = s3.querySelector('#tsv-cu'), thin = s3.querySelector('#tsv-thin'),
       label = s3.querySelector('#tsv-label'), status = s3.querySelector('#tsv-status');
   var stages = [
-    ['① 매끈한 웨이퍼', '구멍을 뚫기 전, 회로가 다 만들어진 웨이퍼예요.'],
+    ['① 매끈한 웨이퍼', '트랜지스터까지 만들어 둔 DRAM 웨이퍼예요. 여기에 구멍을 뚫어요.'],
     ['② 식각으로 깊은 구멍 파기', '가스로 실리콘을 깊고 곧게 깎아 가는 구멍을 만들어요.'],
     ['③ 절연막 입히기', '구멍 벽에 얇은 막을 입혀 전기가 실리콘으로 새지 않게 해요.'],
     ['④ 구리 채우기', '도금 방식으로 구멍 안을 구리로 빈틈없이 채워요.'],
-    ['⑤ 뒷면 갈기', '뒷면을 갈아 웨이퍼를 얇게 만들면 구리 기둥 끝이 드러나요. 이제 칩을 쌓을 준비 완료!']
+    ['⑤ 뒷면 갈기(STEP 4)', '(STEP 4 미리 보기) 뒷면을 갈아 얇게 만들면 구리 기둥 끝이 드러나요. 그 뒤 칩으로 잘라 검사해요.']
   ];
   function upd() {
     var v = +r.value;
@@ -596,7 +614,7 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
 <div class="part-divider">
   <span class="part-no">PART 2</span>
   <h2>쌓기</h2>
-  <p>회로가 그려진 DRAM 칩을 얇게 깎고, 아파트처럼 위로 차곡차곡 쌓아 붙인 다음, 단단히 감싸고 검사합니다. HBM이 "높은(High) 대역폭"을 낼 수 있는 비밀이 바로 이 쌓기 단계에 있어요.</p>
+  <p>회로가 그려진 DRAM 칩을 얇게 깎고, 아파트처럼 위로 차곡차곡 쌓아 붙인 다음, 단단히 감싸고 검사해요. HBM이 "높은(High) 대역폭"을 낼 수 있는 비밀이 바로 이 쌓기 단계에 있어요.</p>
 </div>
 
 <!-- ============ STEP 4 ============ -->
@@ -604,13 +622,15 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
   <header class="chapter-head">
     <span class="step-tag">STEP 4</span>
     <h3>얇게 깎고 범프 달기</h3>
-    <p class="lede">웨이퍼 뒷면을 종이보다 얇게 갈아내 TSV 구멍의 끝을 드러내고, 칩끼리 연결할 아주 작은 납땜 구슬(마이크로범프)을 붙입니다.</p>
+    <p class="lede">칩끼리 연결할 아주 작은 금속 돌기(마이크로범프)를 만들고, 웨이퍼 뒷면을 종이보다 얇게 갈아 TSV의 끝을 드러낸 뒤, 낱개 칩으로 잘라 검사해요.</p>
   </header>
   <div class="chapter-body">
     <div class="prose">
-      <p>앞 단계에서 만든 웨이퍼는 두께가 수백 μm(마이크로미터)나 됩니다. 이대로 여러 장을 쌓으면 너무 두꺼워지고, 칩 속에 뚫어 둔 TSV(실리콘 관통 전극)도 아직 뒷면까지 뚫려 있지 않아요.</p>
-      <p>그래서 <b>백그라인딩(Back Grinding)</b>으로 웨이퍼 뒷면을 빙글빙글 도는 연마 휠로 갈아 수십 μm 두께까지 얇게 만듭니다. 그러면 안에 묻혀 있던 TSV 구리 기둥의 끝이 뒷면에 '쏙' 드러나게 됩니다.</p>
-      <p>이렇게 얇아진 웨이퍼는 감자칩처럼 쉽게 휘거나 깨지기 때문에, 작업하는 동안 단단한 <b>캐리어 웨이퍼</b>에 임시로 붙여 둡니다. 마지막으로 TSV 끝 위에 <b>마이크로범프</b>라는 아주 작은 납땜 구슬을 만들어, 위아래 칩을 전기적으로 연결할 준비를 마칩니다.</p>
+      <p>앞 단계에서 만든 웨이퍼는 두께가 수백 μm(마이크로미터)예요. 1μm는 1mm를 1,000으로 나눈 길이예요. 이대로 여러 장을 쌓으면 너무 두꺼워져요. 게다가 칩 속 TSV(실리콘 관통 전극)는 아직 뒷면까지 닿지 않은 상태예요.</p>
+      <p>먼저 칩 앞면(회로가 있는 면)에 <b>마이크로범프</b>를 만들어요. 마이크로범프는 위아래 칩을 전기로 이어 주는, 구리 기둥 위에 땜납을 얹은 아주 작은 돌기예요.</p>
+      <p>그다음 웨이퍼를 뒤집어 단단한 <b>캐리어 웨이퍼</b>(임시 받침판)에 붙여요. 얇아진 웨이퍼는 감자칩처럼 쉽게 휘거나 깨지기 때문이에요.</p>
+      <p>이제 <b>백그라인딩(Back Grinding, 뒷면 연마)</b>을 해요. 빙글빙글 도는 연마 휠로 뒷면을 갈아 약 수십 μm까지 얇게 만들어요. 그러면 안에 묻혀 있던 TSV 구리 기둥의 끝이 뒷면에 '쏙' 드러나요. 드러난 끝에는 위 칩의 범프가 닿을 작은 받침(패드)을 만들어 둡니다.</p>
+      <p>작업이 끝나면 캐리어 웨이퍼를 떼어 내고(디본딩), 웨이퍼를 잘라 낱개 칩으로 나눠요. 칩마다 검사해서 정상인 칩(<b>KGD</b>, Known Good Die)만 골라 STEP 5로 보냅니다.</p>
     </div>
 
     <figure class="media-card">
@@ -649,7 +669,7 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
         <!-- bumps inset -->
         <g transform="translate(20,276)">
           <circle cx="115" cy="0" r="6" style="fill:var(--orange)"/>
-          <text x="128" y="4" style="fill:var(--fg2);font-size:12px">마이크로범프 = TSV 끝에 붙이는 작은 납땜 구슬</text>
+          <text x="128" y="4" style="fill:var(--fg2);font-size:12px">마이크로범프 = 칩과 칩을 잇는 아주 작은 금속 돌기</text>
         </g>
       </svg>
       <figcaption><b>그림 4-1</b> 연마 휠이 웨이퍼를 갈아내면 두께가 줄어들고, 속에 묻혀 있던 TSV(구리 기둥) 끝이 표면에 드러납니다.</figcaption>
@@ -661,7 +681,7 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
     </div>
 
     <div class="facts">
-      <div class="fact"><b>수십 μm</b><span>깎고 난 DRAM 칩 두께 (머리카락 굵기 정도)</span></div>
+      <div class="fact"><b>약 수십 μm</b><span>깎고 난 DRAM 칩 두께 (머리카락보다 얇음)</span></div>
       <div class="fact"><b>수천 개</b><span>칩 한 장에 뚫린 TSV 연결 통로</span></div>
       <div class="fact"><b>임시 접착</b><span>얇은 웨이퍼를 캐리어에 붙였다 뗌</span></div>
     </div>
@@ -673,12 +693,78 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
   <header class="chapter-head">
     <span class="step-tag">STEP 5</span>
     <h3>쌓고 붙이기</h3>
-    <p class="lede">웨이퍼를 칩(다이) 단위로 잘라 낸 뒤, 맨 아래 베이스(로직) 다이 위에 DRAM 칩을 8단·12단·16단으로 정확히 쌓아 붙입니다.</p>
+    <p class="lede">잘라 낸 DRAM 칩 가운데 검사를 통과한 칩만 골라, 아직 자르지 않은 베이스 웨이퍼 위에 한 장씩 8단·12단·16단으로 쌓아 붙여요.</p>
   </header>
   <div class="chapter-body">
     <div class="prose">
-      <p>먼저 웨이퍼를 다이아몬드 날이나 레이저로 잘라 낱개 칩, 즉 <b>다이(Die)</b>로 만듭니다. 맨 아래에는 신호를 정리하고 GPU와 대화하는 <b>베이스 다이</b>가 놓이고, 그 위에 DRAM 다이가 층층이 올라갑니다.</p>
-      <p>칩을 쌓을 때는 위 칩의 범프와 아래 칩의 TSV가 정확히 맞닿아야 합니다. 머리카락보다 훨씬 작은 오차 안에서 수천 개의 연결점을 한꺼번에 맞춰야 하니, 아주 정밀한 기술이 필요해요. 칩을 붙이는 방법은 회사와 세대에 따라 다르며, 대표적인 세 가지를 아래에서 비교해 보세요.</p>
+      <p>STEP 4에서 DRAM 웨이퍼는 다이아몬드 날이나 레이저로 잘라 낱개 칩, 즉 <b>다이(Die)</b>가 되었고, 검사를 통과한 칩만 골라 두었어요. 반면 맨 아래에 들어갈 <b>베이스 다이</b>(신호를 정리하고 GPU와 대화하는 칩)는 <b>자르지 않은 웨이퍼 상태 그대로</b> 받침으로 써요.</p>
+      <p>베이스 웨이퍼 위의 칸마다 골라 둔 DRAM 칩을 한 장씩 올려 쌓고, 다 쌓은 다음 STEP 6에서 몰딩한 뒤에야 베이스 웨이퍼를 잘라 HBM 한 개씩으로 나눠요. 이렇게 칩을 웨이퍼 위에 쌓는 방식을 <b>CoW(Chip-on-Wafer, 칩 온 웨이퍼)</b>라고 해요.</p>
+    </div>
+
+    <figure class="media-card" id="cw">
+      <div class="seg" role="tablist" aria-label="쌓는 방식 비교" id="cw-seg">
+        <button class="seg-btn" role="tab" aria-pressed="true" data-panel="cw-cow">CoW · 칩을 웨이퍼 위에</button>
+        <button class="seg-btn" role="tab" aria-pressed="false" data-panel="cw-wow">WoW · 웨이퍼끼리 통째로</button>
+      </div>
+      <div id="cw-cow" style="margin-top:12px">
+        <svg viewBox="0 0 600 280" role="img" aria-label="CoW: 자르지 않은 베이스 웨이퍼 위 세 칸에 검사를 통과한 칩만 한 장씩 내려와 쌓인다">
+          <text x="20" y="22" style="fill:var(--fg2);font-size:12px;font-weight:600">① 잘라서 검사한 DRAM 칩</text>
+          <g>
+            <rect x="20" y="34" width="56" height="14" rx="3" style="fill:var(--blue)"/><text x="84" y="45" style="fill:var(--green);font-size:12px;font-weight:700">✓</text>
+            <rect x="100" y="34" width="56" height="14" rx="3" style="fill:var(--blue)"/><text x="164" y="45" style="fill:var(--green);font-size:12px;font-weight:700">✓</text>
+            <rect x="180" y="34" width="56" height="14" rx="3" style="fill:var(--red);opacity:.75"/><text x="244" y="45" style="fill:var(--red);font-size:12px;font-weight:700">✕ 버림</text>
+          </g>
+          <path class="flow" d="M128 52 C 128 80, 300 70, 300 96" style="fill:none;stroke:var(--fg3);stroke-width:1.5"/>
+          <g class="cw-drop"><rect x="250" y="98" width="100" height="14" rx="3" style="fill:var(--blue)"/></g>
+          <g>
+            <rect x="90" y="178" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.8"/><rect x="90" y="162" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.7"/><rect x="90" y="146" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.6"/><rect x="90" y="130" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.5"/>
+            <rect x="250" y="178" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.8"/><rect x="250" y="162" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.7"/><rect x="250" y="146" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.6"/>
+            <rect x="410" y="178" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.8"/><rect x="410" y="162" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.7"/><rect x="410" y="146" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.6"/><rect x="410" y="130" width="100" height="14" rx="3" style="fill:var(--blue);opacity:.5"/>
+          </g>
+          <rect x="40" y="196" width="520" height="26" rx="13" style="fill:var(--teal)"/>
+          <g style="stroke:var(--surface2);stroke-width:2;stroke-dasharray:4 3"><line x1="220" y1="198" x2="220" y2="220"/><line x1="380" y1="198" x2="380" y2="220"/></g>
+          <text x="300" y="213" text-anchor="middle" style="fill:#fff;font-size:12px;font-weight:600">② 자르지 않은 베이스 다이 웨이퍼</text>
+          <text x="300" y="246" text-anchor="middle" style="fill:var(--fg2);font-size:12px">점선 = 나중에(STEP 6 이후) 자를 자리</text>
+          <text x="300" y="268" text-anchor="middle" style="fill:var(--green);font-size:13px;font-weight:600">좋은 칩만 골라 쌓으니 → 스택 전체가 정상</text>
+        </svg>
+      </div>
+      <div id="cw-wow" hidden style="margin-top:12px">
+        <svg viewBox="0 0 600 280" role="img" aria-label="WoW: 웨이퍼를 통째로 겹치면 한 층의 불량 칩 때문에 그 칸의 스택 전체가 불량이 된다">
+          <text x="20" y="22" style="fill:var(--fg2);font-size:12px;font-weight:600">자르지 않은 웨이퍼를 통째로 겹쳐 붙이기</text>
+          <g>
+            <rect x="40" y="60" width="520" height="22" rx="11" style="fill:var(--blue);opacity:.55"/>
+            <rect x="40" y="88" width="520" height="22" rx="11" style="fill:var(--blue);opacity:.65"/>
+            <rect x="40" y="116" width="520" height="22" rx="11" style="fill:var(--blue);opacity:.75"/>
+            <rect x="40" y="144" width="520" height="22" rx="11" style="fill:var(--blue);opacity:.85"/>
+            <rect x="40" y="172" width="520" height="22" rx="11" style="fill:var(--teal)"/>
+          </g>
+          <g style="stroke:var(--surface2);stroke-width:2;stroke-dasharray:4 3"><line x1="170" y1="60" x2="170" y2="194"/><line x1="300" y1="60" x2="300" y2="194"/><line x1="430" y1="60" x2="430" y2="194"/></g>
+          <rect class="pulse" x="303" y="57" width="124" height="140" rx="6" style="fill:var(--red);opacity:.22;stroke:var(--red);stroke-width:2"/>
+          <rect x="318" y="90" width="94" height="18" rx="4" style="fill:var(--red)"/>
+          <text x="365" y="104" text-anchor="middle" style="fill:#fff;font-size:12px;font-weight:700">✕ 불량 칩</text>
+          <text x="365" y="48" text-anchor="middle" style="fill:var(--red);font-size:12px;font-weight:600">한 층의 불량 칩 1개 → 이 칸 전체 불량</text>
+          <text x="560" y="214" text-anchor="end" style="fill:var(--fg3);font-size:12px">맨 아래: 베이스 웨이퍼</text>
+          <text x="300" y="228" text-anchor="middle" style="fill:var(--fg2);font-size:12px">미리 골라낼 수 없어서, 한 층만 불량이어도 그 칸의 스택 전체가 불량</text>
+          <text x="300" y="256" text-anchor="middle" style="fill:var(--red);font-size:13px;font-weight:600">층이 많을수록 버려지는 양이 커짐 → HBM 양산에서는 잘 쓰지 않음</text>
+        </svg>
+      </div>
+      <figcaption><b>그림 5-0</b> 쌓는 방식 비교. 오늘날 HBM은 대부분 CoW로 만들어요. 웨이퍼끼리 붙이는 WoW는 한 번에 처리해 빠르지만, 불량 칩을 미리 걸러 낼 수 없어 수율 문제가 큽니다.</figcaption>
+    </figure>
+    <div class="compare">
+      <div><h4>CoW (칩 온 웨이퍼)</h4><p style="margin:0;color:var(--fg2);font-size:15px">검사를 통과한 칩만 골라 한 장씩 올려요. 느리지만 버리는 칩이 적어서 현재 HBM의 기본 방식이에요.</p></div>
+      <div><h4>WoW (웨이퍼 온 웨이퍼)</h4><p style="margin:0;color:var(--fg2);font-size:15px">웨이퍼를 통째로 겹쳐 한 번에 붙여요. 빠르지만 불량 칩까지 함께 쌓여, 층이 많은 HBM에는 불리해요.</p></div>
+    </div>
+    <script>
+    (function(){var seg=document.getElementById('cw-seg');if(!seg)return;var b=seg.querySelectorAll('.seg-btn');
+      b.forEach(function(x){x.addEventListener('click',function(){b.forEach(function(y){var on=y===x;y.setAttribute('aria-pressed',on);y.setAttribute('aria-selected',on);document.getElementById(y.dataset.panel).hidden=!on;});});});})();
+    </script>
+    <style>
+      @media (prefers-reduced-motion:no-preference){.cw-drop{animation:cw-drop 2.4s ease-in infinite}}
+      @keyframes cw-drop{0%{transform:translateY(-30px);opacity:0}25%{opacity:1}70%,100%{transform:translateY(32px);opacity:1}}
+    </style>
+
+    <div class="prose">      <p>칩을 쌓을 때는 위 칩의 범프와 아래 칩의 TSV가 정확히 맞닿아야 해요. 머리카락 굵기보다 훨씬 작은 오차 안에서 수천 개의 연결점을 한꺼번에 맞춰야 해요.</p>
+      <p>칩을 붙이는 방법(<b>본딩</b>)은 회사와 세대에 따라 달라요. 대표적인 세 가지를 아래에서 비교해 보세요. 그림 속 맨 아래 보라색 판은 아직 자르지 않은 베이스 웨이퍼의 한 칸이에요.</p>
     </div>
 
     <div class="seg" role="tablist" aria-label="본딩 방식 선택" id="pb-bond-seg">
@@ -709,11 +795,11 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           <text x="470" y="176" style="fill:var(--fg2);font-size:12px">← DRAM 다이</text>
           <text x="30" y="40" style="fill:var(--fg2);font-size:12px">한 층 놓고, 꾹 누르고, 또 한 층…</text>
         </svg>
-        <figcaption><b>그림 5-1</b> TC-NCF: 칩 사이에 얇은 접착 필름(NCF)을 끼우고, 한 층씩 열과 압력을 가해 붙입니다.</figcaption>
+        <figcaption><b>그림 5-1</b> TC-NCF: 칩 사이에 얇은 접착 필름(NCF)을 끼우고, 한 층씩 열과 압력을 가해 붙여요.</figcaption>
       </figure>
       <div class="facts">
         <div class="fact"><b>장점</b><span>필름이 칩 사이 간격을 고르게 잡아 주고 휘어짐을 눌러 줌</span></div>
-        <div class="fact"><b>단점</b><span>한 층씩 눌러야 해서 시간이 걸리고, 열이 빠지는 길이 상대적으로 좁음</span></div>
+        <div class="fact"><b>단점</b><span>한 층씩 따로 눌러야 해서 시간이 오래 걸림</span></div>
         <div class="fact"><b>비유</b><span>양면테이프를 붙이고 다리미로 한 장씩 꾹꾹 누르기</span></div>
       </div>
     </div>
@@ -745,7 +831,7 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           <text x="470" y="236" style="fill:var(--fg2);font-size:12px">← 보호재(MUF)</text>
           <text x="470" y="196" style="fill:var(--fg2);font-size:12px">← 범프</text>
         </svg>
-        <figcaption><b>그림 5-2</b> MR-MUF: 칩을 먼저 모두 쌓은 뒤 한꺼번에 열을 가해 범프를 녹여 붙이고, 칩 사이 틈을 액체 보호재로 채워 굳힙니다.</figcaption>
+        <figcaption><b>그림 5-2</b> MR-MUF: 칩을 한 장씩 살짝 올려 임시로 고정해 두고, 다 쌓은 뒤 한꺼번에 열을 가해 범프를 녹여 붙여요(매스 리플로우). 그다음 칩 사이 틈과 바깥을 액체 보호재로 한 번에 채워 굳힙니다(몰디드 언더필).</figcaption>
       </figure>
       <div class="facts">
         <div class="fact"><b>장점</b><span>여러 층을 한 번에 붙여 빠르고, 보호재가 열을 잘 빼 줌</span></div>
@@ -772,12 +858,12 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           <text x="30" y="60" style="fill:var(--fg2);font-size:12px">범프도, 필름도 없이 칩끼리 바로 맞붙어요</text>
           <text x="30" y="80" style="fill:var(--fg2);font-size:12px">→ 같은 높이에 더 많은 층을 쌓을 수 있음</text>
         </svg>
-        <figcaption><b>그림 5-3</b> 하이브리드 본딩: 칩 표면을 거울처럼 평평하게 닦은 뒤, 구리 패드와 절연막을 맞대어 범프 없이 직접 붙입니다.</figcaption>
+        <figcaption><b>그림 5-3</b> 하이브리드 본딩: 칩 표면을 거울처럼 평평하게 닦은 뒤, 구리 패드와 절연막을 맞대어 범프 없이 직접 붙여요.</figcaption>
       </figure>
       <div class="facts">
         <div class="fact"><b>장점</b><span>칩 사이 틈이 거의 없어 더 얇게, 더 많이 쌓고 연결점도 더 촘촘히</span></div>
         <div class="fact"><b>단점</b><span>먼지 한 톨도 허용하지 않는 극도로 깨끗하고 평평한 표면이 필요해 어려움</span></div>
-        <div class="fact"><b>차세대</b><span>16단 이상 고적층 HBM을 위해 개발 중인 기술</span></div>
+        <div class="fact"><b>차세대</b><span>16단 이상처럼 아주 높이 쌓는 HBM을 위해 준비 중인 기술</span></div>
       </div>
     </div>
 
@@ -803,8 +889,9 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
   </header>
   <div class="chapter-body">
     <div class="prose">
-      <p>쌓아 올린 칩 탑은 아직 연약합니다. 그래서 <b>몰딩(Molding)</b>으로 바깥을 에폭시 같은 보호재로 감싸 충격, 습기, 먼지로부터 지켜 줍니다. HBM은 좁은 공간에서 많은 일을 하기 때문에 열이 많이 나는데, 보호재와 구조는 이 열이 잘 빠져나가도록 설계됩니다.</p>
-      <p>그다음은 <b>KGSD(Known Good Stacked Die)</b> 검사입니다. "확실히 좋은 쌓은 칩"이라는 뜻이에요. 쌓은 칩 중 <b>단 한 층이라도 불량이면 탑 전체가 불량</b>이 되기 때문에, 층이 많아질수록 모든 층이 완벽할 확률(수율)이 빠르게 떨어집니다. 아래 슬라이더로 직접 확인해 보세요.</p>
+      <p>쌓아 올린 칩 탑은 아직 연약해요. 그래서 <b>몰딩(Molding)</b>으로 바깥을 에폭시 같은 단단한 보호재로 감싸요. 충격, 습기, 먼지를 막아 주는 갑옷이에요. MR-MUF 방식이라면 STEP 5에서 틈 채우기와 몰딩을 이미 한 번에 끝냈어요.</p>
+      <p>몰딩은 아직 <b>베이스 웨이퍼 상태에서 한꺼번에</b> 해요. 그다음 윗면을 평평하게 깎고, 마지막으로 베이스 웨이퍼를 잘라 HBM 한 개씩(스택)으로 나눠요.</p>
+      <p>이제 <b>KGSD(Known Good Stacked Die)</b> 검사를 해요. "확실히 좋은 쌓은 칩"이라는 뜻이에요. 미리 골라 둔 좋은 칩이라도, 붙이는 과정에서 위치가 어긋나거나 휘어져 불량이 생길 수 있어요. 그런데 <b>단 한 층만 불량이어도 탑 전체가 불량</b>이에요. 그래서 층이 많아질수록 모든 층이 완벽할 확률(<b>수율</b>, 만든 것 중 합격품의 비율)이 빠르게 떨어집니다. 아래 슬라이더로 직접 확인해 보세요.</p>
     </div>
 
     <figure class="media-card">
@@ -819,7 +906,7 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
         <rect x="190" y="123" width="220" height="24" rx="2" style="fill:var(--blue);opacity:.55"/>
         <rect x="190" y="95" width="220" height="24" rx="2" style="fill:var(--blue);opacity:.55"/>
         <text x="440" y="100" style="fill:var(--fg2);font-size:12px">몰딩(보호재)</text>
-        <text x="440" y="250" style="fill:var(--fg2);font-size:12px">베이스 다이</text>
+        <text x="440" y="250" style="fill:var(--fg2);font-size:12px">베이스 다이 (잘라 낸 뒤)</text>
         <!-- probe scan -->
         <g class="pb-scan">
           <rect x="185" y="88" width="230" height="174" rx="6" style="fill:none;stroke:var(--green);stroke-width:2;stroke-dasharray:6 4"/>
@@ -832,11 +919,11 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           <text x="30" y="165" style="fill:var(--orange);font-size:12px">열 빼기</text>
         </g>
       </svg>
-      <figcaption><b>그림 6-1</b> 보호재로 감싼 칩 탑을 검사 장비가 확인합니다. 열이 잘 빠지는지도 중요한 검사 항목이에요.</figcaption>
+      <figcaption><b>그림 6-1</b> 보호재로 감싼 칩 탑을 검사 장비가 확인해요. 열이 잘 빠지는지도 중요한 검사 항목이에요.</figcaption>
     </figure>
 
     <div class="media-card" id="pb-yield">
-      <label for="pb-yield-range"><b>쌓는 층수</b> (층마다 합격 확률 99%라고 가정)</label>
+      <label for="pb-yield-range"><b>쌓는 층수</b> (한 층을 붙일 때마다 성공 확률 99%라고 가정한 예시예요. 실제 수율은 회사마다 다르고 공개되지 않아요.)</label>
       <input type="range" class="range" id="pb-yield-range" min="4" max="16" step="1" value="8" aria-describedby="pb-yield-out">
       <output class="readout" id="pb-yield-out" for="pb-yield-range">8단 → 전체 합격 확률 92.3%</output>
       <svg viewBox="0 0 600 70" role="img" aria-label="전체 수율 막대 그래프" style="width:100%;height:auto;margin-top:8px">
@@ -901,14 +988,16 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
   }
 })();
 </script>
-<div class="part-divider"><span class="part-no">PART 3</span><h2>연결하기</h2><p>완성된 HBM 탑을 GPU 바로 옆에 붙이고, 마지막 검사를 거쳐 데이터센터로 보내는 과정입니다.</p></div>
+<div class="part-divider"><span class="part-no">PART 3</span><h2>연결하기</h2><p>완성된 HBM 탑을 GPU 바로 옆에 붙이고, 마지막 검사를 거쳐 데이터센터로 보내는 과정이에요.</p></div>
 
 <section class="chapter" id="step-7">
-  <header class="chapter-head"><span class="step-tag">STEP 7</span><h3>GPU 옆에 붙이기: 2.5D 패키징</h3><p class="lede">HBM은 혼자서는 일하지 않습니다. 계산을 담당하는 GPU 바로 옆, 손가락 한 마디도 안 되는 거리에 붙어야 진짜 실력이 나옵니다.</p></header>
+  <header class="chapter-head"><span class="step-tag">STEP 7</span><h3>GPU 옆에 붙이기: 2.5D 패키징</h3><p class="lede">HBM은 혼자서는 일하지 않아요. 계산을 담당하는 GPU 바로 옆, 손가락 한 마디도 안 되는 거리에 붙어야 진짜 실력이 나와요.</p></header>
   <div class="chapter-body">
     <div class="prose">
-      <p>보통 컴퓨터에서는 메모리가 기판 위 멀리 떨어진 곳에 꽂혀 있고, 수십 개 정도의 선으로 CPU와 이어집니다. HBM은 다릅니다. <b>실리콘 인터포저</b>라는 얇은 실리콘 판을 깔고, 그 위에 GPU와 HBM 탑 여러 개를 나란히 올립니다.</p>
-      <p>인터포저는 반도체 공정으로 만든 판이라서 머리카락보다 훨씬 가는 배선을 아주 촘촘하게 그릴 수 있습니다. 덕분에 HBM 탑 하나와 GPU 사이에 <b>1024개가 넘는 데이터 통로</b>를 깔 수 있습니다. 칩을 위로 쌓지는 않고 판 위에 옆으로 나란히 놓지만, 판 자체가 칩처럼 정교하기 때문에 2D와 3D 사이라는 뜻으로 <b>2.5D</b>라고 부릅니다.</p>
+      <p>보통 컴퓨터에서는 메모리가 기판 위 멀리 떨어진 곳에 꽂혀 있고, 수십 개 정도의 선으로 CPU와 이어져요. HBM은 달라요. <b>실리콘 인터포저</b>라는 얇은 실리콘 판을 깔고, 그 위에 GPU와 HBM 탑 여러 개를 나란히 올려요.</p>
+      <p>인터포저는 반도체 공정으로 만든 판이라서 머리카락보다 훨씬 가는 배선을 아주 촘촘하게 그릴 수 있어요. 덕분에 HBM 탑 하나와 GPU 사이에 <b>1024개</b>의 데이터 통로를 깔 수 있어요. 최신 HBM4는 이 통로가 <b>2048개</b>로 두 배가 되었어요.</p>
+      <p>칩을 위로 쌓지는 않고 판 위에 옆으로 나란히 놓지만, 판 자체가 칩처럼 정교하기 때문에 2D와 3D 사이라는 뜻으로 <b>2.5D</b>라고 불러요.</p>
+      <p>이 작업은 보통 HBM을 만든 메모리 회사가 아니라, GPU를 만드는 <b>파운드리(반도체 위탁 생산 회사)</b>의 패키징 공장에서 해요. 메모리 회사는 STEP 6에서 검사를 마친 HBM을 이곳으로 보내요.</p>
     </div>
 
     <figure class="media-card">
@@ -921,9 +1010,9 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
         <rect x="30" y="240" width="540" height="34" rx="6" style="fill:var(--fill)"/>
         <text x="300" y="262" text-anchor="middle" font-size="13" style="fill:var(--fg2)">패키지 기판 (초록색 회로기판)</text>
         <rect x="60" y="208" width="480" height="28" rx="4" style="fill:var(--copper);opacity:.85"/>
-        <text x="300" y="227" text-anchor="middle" font-size="13" style="fill:var(--bg)">실리콘 인터포저 (촘촘한 배선판)</text>
+        <text x="300" y="227" text-anchor="middle" font-size="13" style="fill:#fff;font-weight:600">실리콘 인터포저 (촘촘한 배선판)</text>
         <rect x="220" y="110" width="160" height="94" rx="8" style="fill:var(--blue)"/>
-        <text x="300" y="162" text-anchor="middle" font-size="18" font-weight="600" style="fill:var(--bg)">GPU</text>
+        <text x="300" y="162" text-anchor="middle" font-size="18" font-weight="600" style="fill:#fff;font-weight:600">GPU</text>
         <g>
           <rect x="80" y="70" width="56" height="134" rx="6" style="fill:var(--purple)"/>
           <rect x="146" y="70" width="56" height="134" rx="6" style="fill:var(--purple)"/>
@@ -944,12 +1033,12 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           <path class="pc-lane" d="M426 216 H 300"/>
           <path class="pc-lane" d="M492 222 H 300"/>
         </g>
-        <text x="300" y="30" text-anchor="middle" font-size="14" style="fill:var(--fg)">노란 선 = 인터포저 속 데이터 통로 (탑마다 1024개 이상)</text>
+        <text x="300" y="30" text-anchor="middle" font-size="14" style="fill:var(--fg)">노란 선 = 인터포저 속 데이터 통로 (탑마다 1024개, HBM4는 2048개)</text>
       </svg>
-      <figcaption><b>그림 7-1</b> 2.5D 패키징의 옆모습. GPU 양옆의 HBM 탑이 인터포저 속 배선으로 연결됩니다.</figcaption>
+      <figcaption><b>그림 7-1</b> 2.5D 패키징의 옆모습. GPU 양옆의 HBM 탑이 인터포저 속 배선으로 연결돼요.</figcaption>
     </figure>
 
-    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>일반 메모리가 2차선 시골길로 연결된 창고라면, HBM은 1024차선 고속도로로 공장 바로 옆에 붙은 창고입니다. 차 한 대의 속도는 크게 다르지 않아도, 한 번에 지나가는 차가 엄청나게 많아서 짐(데이터)이 훨씬 빨리 옮겨집니다.</p></div>
+    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>일반 메모리가 2차선 시골길로 연결된 창고라면, HBM은 1024차선(최신 HBM4는 2048차선) 고속도로로 공장 바로 옆에 붙은 창고예요. 차 한 대의 속도는 오히려 조금 느려도, 한 번에 지나가는 차가 엄청나게 많아서 짐(데이터)이 훨씬 빨리 옮겨져요.</p></div>
 
     <div class="seg" role="tablist" aria-label="패키징 방식 비교" id="pkg-seg">
       <button class="seg-btn" role="tab" aria-pressed="false" data-panel="pkg-2d">2D</button>
@@ -962,47 +1051,47 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
         <rect x="30" y="190" width="540" height="40" rx="6" style="fill:var(--fill)"/>
         <text x="300" y="216" text-anchor="middle" font-size="13" style="fill:var(--fg2)">일반 회로기판</text>
         <rect x="70" y="120" width="130" height="68" rx="8" style="fill:var(--blue)"/>
-        <text x="135" y="160" text-anchor="middle" font-size="16" style="fill:var(--bg)">GPU</text>
+        <text x="135" y="160" text-anchor="middle" font-size="16" style="fill:#fff;font-weight:600">GPU</text>
         <rect x="420" y="130" width="110" height="58" rx="8" style="fill:var(--purple)"/>
-        <text x="475" y="164" text-anchor="middle" font-size="14" style="fill:var(--bg)">메모리</text>
+        <text x="475" y="164" text-anchor="middle" font-size="14" style="fill:#fff;font-weight:600">메모리</text>
         <g fill="none" style="stroke:var(--orange);stroke-width:2.5">
           <path d="M200 175 C 300 175, 320 175, 420 175"/>
           <path d="M200 165 C 300 150, 320 150, 420 165"/>
         </g>
         <text x="310" y="132" text-anchor="middle" font-size="13" style="fill:var(--fg)">멀고 가는 길 몇 개</text>
         <text x="300" y="40" text-anchor="middle" font-size="15" font-weight="600" style="fill:var(--fg)">2D: 기판 위에 따로따로</text>
-        <text x="300" y="64" text-anchor="middle" font-size="13" style="fill:var(--fg2)">거리가 멀고 통로가 적어 데이터가 천천히 오갑니다</text>
+        <text x="300" y="64" text-anchor="middle" font-size="13" style="fill:var(--fg2)">거리가 멀고 통로가 적어 데이터가 천천히 오가요</text>
       </svg>
-      <figcaption><b>그림 7-2</b> 2D 방식. 그래픽카드의 일반 메모리(GDDR)가 이런 식으로 놓입니다.</figcaption>
+      <figcaption><b>그림 7-2</b> 2D 방식. 그래픽카드의 일반 메모리(GDDR)가 이런 식으로 놓여요.</figcaption>
     </figure>
 
     <figure class="media-card" id="pkg-25d">
       <svg viewBox="0 0 600 260" role="img" aria-label="2.5D 방식: 인터포저 위에 GPU와 HBM이 나란히, 촘촘한 배선">
         <rect x="30" y="200" width="540" height="34" rx="6" style="fill:var(--fill)"/>
         <rect x="90" y="170" width="420" height="28" rx="4" style="fill:var(--copper);opacity:.85"/>
-        <text x="300" y="189" text-anchor="middle" font-size="13" style="fill:var(--bg)">실리콘 인터포저</text>
+        <text x="300" y="189" text-anchor="middle" font-size="13" style="fill:#fff;font-weight:600">실리콘 인터포저</text>
         <rect x="250" y="100" width="150" height="68" rx="8" style="fill:var(--blue)"/>
-        <text x="325" y="140" text-anchor="middle" font-size="16" style="fill:var(--bg)">GPU</text>
+        <text x="325" y="140" text-anchor="middle" font-size="16" style="fill:#fff;font-weight:600">GPU</text>
         <rect x="150" y="80" width="70" height="88" rx="6" style="fill:var(--purple)"/>
-        <text x="185" y="130" text-anchor="middle" font-size="13" style="fill:var(--bg)">HBM</text>
+        <text x="185" y="130" text-anchor="middle" font-size="13" style="fill:#fff;font-weight:600">HBM</text>
         <g style="stroke:var(--yellow);stroke-width:1.2">
           <line x1="220" y1="174" x2="250" y2="174"/><line x1="220" y1="178" x2="250" y2="178"/><line x1="220" y1="182" x2="250" y2="182"/><line x1="220" y1="186" x2="250" y2="186"/><line x1="220" y1="190" x2="250" y2="190"/><line x1="220" y1="194" x2="250" y2="194"/>
         </g>
         <text x="300" y="40" text-anchor="middle" font-size="15" font-weight="600" style="fill:var(--fg)">2.5D: 정교한 판 위에 나란히</text>
         <text x="300" y="64" text-anchor="middle" font-size="13" style="fill:var(--fg2)">짧고 넓은 길 수천 개. 지금 AI 가속기의 표준 방식</text>
       </svg>
-      <figcaption><b>그림 7-3</b> 2.5D 방식. HBM과 GPU가 인터포저 위에서 아주 가까이 붙습니다.</figcaption>
+      <figcaption><b>그림 7-3</b> 2.5D 방식. HBM과 GPU가 인터포저 위에서 아주 가까이 붙어요.</figcaption>
     </figure>
 
     <figure class="media-card" id="pkg-3d" hidden>
       <svg viewBox="0 0 600 260" role="img" aria-label="3D 방식: 메모리를 계산 칩 바로 위에 쌓아 수직으로 연결">
         <rect x="30" y="200" width="540" height="34" rx="6" style="fill:var(--fill)"/>
         <rect x="220" y="160" width="160" height="38" rx="6" style="fill:var(--blue)"/>
-        <text x="300" y="184" text-anchor="middle" font-size="14" style="fill:var(--bg)">계산 칩</text>
+        <text x="300" y="184" text-anchor="middle" font-size="14" style="fill:#fff;font-weight:600">계산 칩</text>
         <rect x="235" y="128" width="130" height="28" rx="4" style="fill:var(--purple)"/>
         <rect x="235" y="96" width="130" height="28" rx="4" style="fill:var(--purple)"/>
         <rect x="235" y="64" width="130" height="28" rx="4" style="fill:var(--purple)"/>
-        <text x="300" y="114" text-anchor="middle" font-size="13" style="fill:var(--bg)">메모리</text>
+        <text x="300" y="114" text-anchor="middle" font-size="13" style="fill:#fff;font-weight:600">메모리</text>
         <g style="stroke:var(--yellow);stroke-width:2">
           <line x1="260" y1="64" x2="260" y2="160"/><line x1="285" y1="64" x2="285" y2="160"/><line x1="315" y1="64" x2="315" y2="160"/><line x1="340" y1="64" x2="340" y2="160"/>
         </g>
@@ -1010,23 +1099,23 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
         <text x="460" y="120" text-anchor="middle" font-size="13" style="fill:var(--fg2)">거리가 가장 짧지만</text>
         <text x="460" y="140" text-anchor="middle" font-size="13" style="fill:var(--fg2)">열을 빼기 어려워요</text>
       </svg>
-      <figcaption><b>그림 7-4</b> 3D 방식. 미래 기술로 연구 중이며, HBM 탑 내부(칩끼리 쌓기)에는 이미 쓰이고 있습니다.</figcaption>
+      <figcaption><b>그림 7-4</b> 3D 방식. HBM을 GPU 위에 바로 쌓는 방식은 아직 연구 중이에요. 다만 HBM 탑 안에서 메모리 칩끼리 쌓을 때는 이미 3D 방식을 쓰고 있어요.</figcaption>
     </figure>
 
     <div class="facts">
-      <div class="fact"><b>1024개+</b><span>HBM 탑 하나당 데이터 통로 수</span></div>
-      <div class="fact"><b>수 mm</b><span>GPU와 HBM 사이 거리</span></div>
-      <div class="fact"><b>4~8개</b><span>최신 AI 가속기 한 개에 붙는 HBM 탑 수</span></div>
+      <div class="fact"><b>1024개</b><span>HBM 탑 하나당 데이터 통로 수 (HBM4는 2048개)</span></div>
+      <div class="fact"><b>약 1mm 안팎</b><span>GPU와 HBM 사이 간격</span></div>
+      <div class="fact"><b>약 4~8개</b><span>최신 AI 가속기 한 개에 붙는 HBM 탑 수</span></div>
     </div>
   </div>
 </section>
 
 <section class="chapter" id="step-8">
-  <header class="chapter-head"><span class="step-tag">STEP 8</span><h3>최종 검사와 출하</h3><p class="lede">하나라도 고장 나면 비싼 GPU 전체를 버려야 할 수 있기 때문에, 마지막 검사는 아주 꼼꼼합니다.</p></header>
+  <header class="chapter-head"><span class="step-tag">STEP 8</span><h3>최종 검사와 출하</h3><p class="lede">하나라도 고장 나면 비싼 GPU 전체를 버려야 할 수 있기 때문에, 마지막 검사는 아주 꼼꼼해요.</p></header>
   <div class="chapter-body">
     <div class="prose">
-      <p>먼저 <b>번인(Burn-in) 테스트</b>를 합니다. 칩을 일부러 뜨거운 온도와 높은 전압에 오래 두어서, 금방 고장 날 약한 칩을 미리 걸러냅니다. 사람으로 치면 입사 전에 체력 시험을 보는 것과 비슷합니다.</p>
-      <p>다음은 <b>시스템 레벨 테스트</b>입니다. 실제로 AI 계산을 시키듯 데이터를 쉬지 않고 읽고 쓰게 해서, 모든 통로가 정확한지 확인합니다. 통과한 패키지는 AI 가속기 보드에 장착되고, 서버에 들어가 <b>데이터센터</b>로 출발합니다.</p>
+      <p>먼저 <b>번인(Burn-in) 테스트</b>를 해요. 칩을 일부러 뜨거운 온도와 높은 전압에 오래 둬요. 그러면 금방 고장 날 약한 칩이 미리 드러나서 걸러낼 수 있어요. 사람으로 치면 입사 전에 체력 시험을 보는 것과 비슷해요.</p>
+      <p>다음은 <b>시스템 레벨 테스트</b>예요. 실제로 AI 계산을 시키듯 데이터를 쉬지 않고 읽고 쓰게 해요. 그래서 수천 개의 통로가 모두 정확한지 확인해요. 통과한 패키지는 AI 가속기 보드에 장착되고, 서버에 들어가 <b>데이터센터</b>로 출발해요.</p>
     </div>
 
     <figure class="media-card">
@@ -1038,38 +1127,38 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
         </style>
         <line x1="75" y1="100" x2="525" y2="100" style="stroke:var(--sep);stroke-width:3"/>
         <g font-size="13" text-anchor="middle">
-          <circle cx="75" cy="100" r="34" style="fill:var(--red)"/><text x="75" y="105" style="fill:var(--bg)">번인</text>
+          <circle cx="75" cy="100" r="34" style="fill:var(--red)"/><text x="75" y="105" style="fill:#fff;font-weight:600">번인</text>
           <text x="75" y="160" style="fill:var(--fg)">고온·고전압</text><text x="75" y="178" style="fill:var(--fg2)">약한 칩 걸러내기</text>
-          <circle cx="225" cy="100" r="34" style="fill:var(--orange)"/><text x="225" y="105" style="fill:var(--bg)">실전 시험</text>
+          <circle cx="225" cy="100" r="34" style="fill:var(--orange)"/><text x="225" y="105" style="fill:#fff;font-weight:600">실전 시험</text>
           <text x="225" y="160" style="fill:var(--fg)">시스템 테스트</text><text x="225" y="178" style="fill:var(--fg2)">실제처럼 읽고 쓰기</text>
-          <circle cx="375" cy="100" r="34" style="fill:var(--green)"/><text x="375" y="105" style="fill:var(--bg)">보드 장착</text>
+          <circle cx="375" cy="100" r="34" style="fill:var(--green)"/><text x="375" y="105" style="fill:#fff;font-weight:600">보드 장착</text>
           <text x="375" y="160" style="fill:var(--fg)">AI 가속기 보드</text><text x="375" y="178" style="fill:var(--fg2)">서버에 꽂기</text>
-          <circle cx="525" cy="100" r="34" style="fill:var(--teal)"/><text x="525" y="105" style="fill:var(--bg)">출하</text>
+          <circle cx="525" cy="100" r="34" style="fill:var(--teal)"/><text x="525" y="105" style="fill:#fff;font-weight:600">출하</text>
           <text x="525" y="160" style="fill:var(--fg)">데이터센터</text><text x="525" y="178" style="fill:var(--fg2)">AI 학습·서비스</text>
         </g>
         <circle class="pc-dot" cx="75" cy="56" r="7" style="fill:var(--yellow)"/>
       </svg>
-      <figcaption><b>그림 8-1</b> 마지막 여정. 검사를 통과한 HBM만 데이터센터에 도착합니다.</figcaption>
+      <figcaption><b>그림 8-1</b> 마지막 여정. 검사를 통과한 HBM만 데이터센터에 도착해요.</figcaption>
     </figure>
 
-    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>완성된 자동차를 출고하기 전에 혹한·폭염 시험장을 달리게 하고, 실제 도로에서 시운전을 한 뒤 고객에게 보내는 것과 같습니다.</p></div>
+    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>완성된 자동차를 출고하기 전에 혹한·폭염 시험장을 달리게 하고, 실제 도로에서 시운전을 한 뒤 고객에게 보내는 것과 같아요.</p></div>
   </div>
 </section>
 
-<div class="part-divider"><span class="part-no">APPENDIX</span><h2>부록</h2><p>세대별 비교, 용어집, 그리고 배운 내용을 확인하는 퀴즈입니다.</p></div>
+<div class="part-divider"><span class="part-no">APPENDIX</span><h2>부록</h2><p>세대별 비교, 용어집, 그리고 배운 내용을 확인하는 퀴즈예요.</p></div>
 
 <section class="chapter" id="generations">
-  <header class="chapter-head"><span class="step-tag">부록</span><h3>HBM 세대 비교</h3><p class="lede">세대가 바뀔 때마다 더 높이 쌓고, 더 빨리 데이터를 주고받게 되었습니다.</p></header>
+  <header class="chapter-head"><span class="step-tag">부록</span><h3>HBM 세대 비교</h3><p class="lede">세대가 바뀔 때마다 더 높이 쌓고, 더 빨리 데이터를 주고받게 되었어요.</p></header>
   <div class="chapter-body">
     <div class="table-wrap">
       <table>
-        <thead><tr><th>세대</th><th>처음 나온 시기</th><th>스택당 대역폭</th><th>최대 단수</th></tr></thead>
+        <thead><tr><th>세대</th><th>처음 나온 시기</th><th>스택당 대역폭</th><th>대표 단수</th></tr></thead>
         <tbody>
           <tr><td>HBM</td><td>약 2015년</td><td>약 128 GB/s</td><td>4단</td></tr>
           <tr><td>HBM2</td><td>약 2016년</td><td>약 256 GB/s</td><td>8단</td></tr>
-          <tr><td>HBM2E</td><td>약 2020년</td><td>약 460 GB/s</td><td>8단</td></tr>
+          <tr><td>HBM2E</td><td>약 2020년</td><td>약 410~460 GB/s</td><td>8단</td></tr>
           <tr><td>HBM3</td><td>약 2022년</td><td>약 819 GB/s</td><td>12단</td></tr>
-          <tr><td>HBM3E</td><td>약 2024년</td><td>약 1.2 TB/s</td><td>12단</td></tr>
+          <tr><td>HBM3E</td><td>약 2024년</td><td>약 1.2 TB/s</td><td>12단 (16단 개발)</td></tr>
           <tr><td>HBM4</td><td>약 2025~2026년</td><td>약 2 TB/s</td><td>16단</td></tr>
         </tbody>
       </table>
@@ -1094,7 +1183,7 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           <text x="168" y="87" style="fill:var(--fg2)">256</text>
           <text x="100" y="125" text-anchor="end" style="fill:var(--fg)">HBM2E</text>
           <rect x="110" y="110" width="92" height="24" rx="4" style="fill:var(--blue);opacity:.65"/>
-          <text x="209" y="127" style="fill:var(--fg2)">460</text>
+          <text x="209" y="127" style="fill:var(--fg2)">약 460</text>
           <text x="100" y="165" text-anchor="end" style="fill:var(--fg)">HBM3</text>
           <rect x="110" y="150" width="163.8" height="24" rx="4" style="fill:var(--blue);opacity:.75"/>
           <text x="281" y="167" style="fill:var(--fg2)">819</text>
@@ -1103,10 +1192,10 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           <text x="357" y="207" style="fill:var(--fg2)">약 1,200</text>
           <text x="100" y="245" text-anchor="end" style="fill:var(--fg)">HBM4</text>
           <rect x="110" y="230" width="400" height="24" rx="4" style="fill:var(--blue)"/>
-          <text x="500" y="247" text-anchor="end" style="fill:var(--bg)">약 2,000</text>
+          <text x="500" y="247" text-anchor="end" style="fill:#fff;font-weight:600">약 2,000</text>
         </g>
       </svg>
-      <figcaption><b>그림 A-1</b> 스택 하나가 1초에 주고받는 데이터 양(약값, GB/s). 10년 사이 약 15배가 되었습니다. 제조사와 제품에 따라 수치는 조금씩 다릅니다.</figcaption>
+      <figcaption><b>그림 A-1</b> 스택 하나가 1초에 주고받는 데이터 양(약값, GB/s). 10년 사이 약 15배가 되었어요. 제조사와 제품에 따라 수치는 조금씩 달라요.</figcaption>
     </figure>
   </div>
 </section>
@@ -1116,53 +1205,62 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
   <div class="chapter-body">
     <input type="search" class="search" id="gloss-q" placeholder="용어 검색 (예: TSV)" aria-label="용어 검색">
     <dl class="glossary" id="gloss-list">
-      <div><dt>웨이퍼</dt><dd>반도체를 만드는 둥글고 얇은 실리콘 원판. 지름은 보통 300mm로, 피자 한 판 크기입니다.</dd></div>
-      <div><dt>다이 (Die)</dt><dd>웨이퍼를 잘라 낸 칩 한 조각. HBM 탑은 이 다이를 여러 장 쌓아 만듭니다.</dd></div>
-      <div><dt>DRAM</dt><dd>전기를 담는 작은 그릇(커패시터)에 0과 1을 저장하는 메모리. 전원이 꺼지면 내용이 사라집니다.</dd></div>
-      <div><dt>TSV</dt><dd>실리콘 관통 전극. 칩에 아주 가는 구멍을 뚫고 구리를 채워, 위아래 칩을 엘리베이터처럼 잇는 통로입니다.</dd></div>
-      <div><dt>마이크로범프</dt><dd>칩과 칩 사이를 붙이는 아주 작은 금속 돌기. 지름이 수십 마이크로미터 정도입니다.</dd></div>
-      <div><dt>인터포저</dt><dd>GPU와 HBM을 나란히 올려놓는 얇은 실리콘 배선판. 촘촘한 길을 수천 개 깔 수 있습니다.</dd></div>
-      <div><dt>대역폭</dt><dd>1초에 주고받을 수 있는 데이터 양. 도로의 차선 수 × 차의 속도와 비슷한 개념입니다.</dd></div>
-      <div><dt>수율</dt><dd>만든 칩 가운데 합격품의 비율. 100개 중 90개가 좋으면 수율 90%입니다.</dd></div>
-      <div><dt>KGSD</dt><dd>Known Good Stacked Die. 쌓은 뒤 검사까지 마쳐 '좋은 것으로 확인된' HBM 탑을 말합니다.</dd></div>
-      <div><dt>MR-MUF</dt><dd>칩을 쌓은 뒤 액체 보호재를 한꺼번에 흘려 넣어 굳히는 방식. 열을 잘 빼는 장점이 있습니다.</dd></div>
-      <div><dt>TC-NCF</dt><dd>칩 사이에 얇은 접착 필름을 깔고, 열과 압력으로 한 층씩 눌러 붙이는 방식입니다.</dd></div>
-      <div><dt>하이브리드 본딩</dt><dd>범프 없이 구리 면과 구리 면을 직접 붙이는 차세대 기술. 탑을 더 얇게, 더 높이 쌓을 수 있습니다.</dd></div>
-      <div><dt>베이스 다이</dt><dd>HBM 탑 맨 아래에 놓이는 칩. 위층 메모리를 관리하고 GPU와 신호를 주고받는 관제탑 역할을 합니다.</dd></div>
+      <div><dt>웨이퍼</dt><dd>반도체를 만드는 둥글고 얇은 실리콘 원판. 지름은 보통 300mm로, 피자 한 판 크기예요.</dd></div>
+      <div><dt>다이 (Die)</dt><dd>웨이퍼를 잘라 낸 칩 한 조각. HBM 탑은 이 다이를 여러 장 쌓아 만들어요.</dd></div>
+      <div><dt>DRAM</dt><dd>전기를 담는 작은 그릇(커패시터)에 0과 1을 저장하는 메모리. 전원이 꺼지면 내용이 사라져요.</dd></div>
+      <div><dt>TSV</dt><dd>실리콘 관통 전극. 칩에 아주 가는 구멍을 뚫고 구리를 채워, 위아래 칩을 엘리베이터처럼 잇는 통로예요.</dd></div>
+      <div><dt>마이크로범프</dt><dd>칩과 칩 사이를 붙이는 아주 작은 금속 돌기. 지름이 수십 마이크로미터 정도예요.</dd></div>
+      <div><dt>2.5D 패키징</dt><dd>인터포저 위에 GPU와 HBM을 옆으로 나란히 놓고 촘촘한 배선으로 잇는 방식. 위로 쌓는 3D와 그냥 기판에 놓는 2D의 중간이라 2.5D라고 불러요.</dd></div>
+      <div><dt>인터포저</dt><dd>GPU와 HBM을 나란히 올려놓는 얇은 실리콘 배선판. 촘촘한 길을 수천 개 깔 수 있어요.</dd></div>
+      <div><dt>대역폭</dt><dd>1초에 주고받을 수 있는 데이터 양. 도로의 차선 수 × 차의 속도와 비슷한 개념이에요.</dd></div>
+      <div><dt>수율</dt><dd>만든 칩 가운데 합격품의 비율. 100개 중 90개가 좋으면 수율 90%예요.</dd></div>
+      <div><dt>KGD</dt><dd>Known Good Die. 쌓기 전에 낱개로 검사해서 '좋은 것으로 확인된' 칩 한 장을 말해요. 좋은 칩만 골라 쌓아야 탑 전체가 불량이 될 위험이 줄어들어요.</dd></div>
+      <div><dt>CoW (칩 온 웨이퍼)</dt><dd>Chip-on-Wafer. 자르지 않은 베이스 다이 웨이퍼 위에, 잘라서 검사를 통과한 DRAM 칩을 한 장씩 쌓는 방식. 지금 HBM을 만드는 기본 방식이에요.</dd></div>
+      <div><dt>WoW (웨이퍼 온 웨이퍼)</dt><dd>Wafer-on-Wafer. 웨이퍼를 통째로 겹쳐 붙이는 방식. 빠르지만 불량 칩을 미리 걸러낼 수 없어서, 층이 많은 HBM에는 불리해요.</dd></div>
+      <div><dt>KGSD</dt><dd>Known Good Stacked Die. 쌓은 뒤 검사까지 마쳐 '좋은 것으로 확인된' HBM 탑을 말해요.</dd></div>
+      <div><dt>MR-MUF</dt><dd>칩을 쌓은 뒤 열로 한꺼번에 녹여 붙이고, 칩 사이에 액체 보호재를 흘려 넣어 굳히는 방식. 열을 잘 빼는 장점이 있어요.</dd></div>
+      <div><dt>TC-NCF</dt><dd>칩 사이에 얇은 접착 필름을 깔고, 열과 압력으로 한 층씩 눌러 붙이는 방식이에요.</dd></div>
+      <div><dt>하이브리드 본딩</dt><dd>범프 없이 구리 면과 구리 면을 직접 붙이는 차세대 기술. 탑을 더 얇게, 더 높이 쌓을 수 있어요.</dd></div>
+      <div><dt>베이스 다이</dt><dd>HBM 탑 맨 아래에 놓이는 칩. 위층 메모리를 관리하고 GPU와 신호를 주고받는 관제탑 역할을 해요.</dd></div>
     </dl>
-    <p class="readout" id="gloss-empty" hidden>찾는 용어가 없습니다. 다른 단어로 검색해 보세요.</p>
+    <p class="readout" id="gloss-empty" hidden>찾는 용어가 없어요. 다른 단어로 검색해 보세요.</p>
   </div>
 </section>
 
 <section class="chapter" id="quiz">
-  <header class="chapter-head"><span class="step-tag">부록</span><h3>확인 퀴즈</h3><p class="lede">다섯 문제로 지금까지 배운 내용을 점검해 봅시다. 보기를 누르면 바로 정답과 설명이 나옵니다.</p></header>
+  <header class="chapter-head"><span class="step-tag">부록</span><h3>확인 퀴즈</h3><p class="lede">여섯 문제로 지금까지 배운 내용을 점검해 봐요. 보기를 누르면 바로 정답과 설명이 나와요.</p></header>
   <div class="chapter-body">
     <div class="quiz-q">
       <p class="q">1. HBM 칩을 위아래로 연결하는, 칩을 관통하는 구리 통로의 이름은?</p>
       <div class="quiz-opts"><button class="quiz-opt">인터포저</button><button class="quiz-opt" data-ok="1">TSV</button><button class="quiz-opt">웨이퍼</button></div>
-      <p class="quiz-exp" hidden>TSV(실리콘 관통 전극)는 칩에 구멍을 뚫고 구리를 채워 만든 수직 통로입니다.</p>
+      <p class="quiz-exp" hidden>TSV(실리콘 관통 전극)는 칩에 구멍을 뚫고 구리를 채워 만든 수직 통로예요.</p>
     </div>
     <div class="quiz-q">
       <p class="q">2. GPU와 HBM을 나란히 올려놓는 얇은 실리콘 배선판은?</p>
       <div class="quiz-opts"><button class="quiz-opt" data-ok="1">인터포저</button><button class="quiz-opt">베이스 다이</button><button class="quiz-opt">마이크로범프</button></div>
-      <p class="quiz-exp" hidden>인터포저 위에 GPU와 HBM을 나란히 놓기 때문에 이 방식을 2.5D 패키징이라고 부릅니다.</p>
+      <p class="quiz-exp" hidden>인터포저 위에 GPU와 HBM을 나란히 놓기 때문에 이 방식을 2.5D 패키징이라고 불러요.</p>
     </div>
     <div class="quiz-q">
       <p class="q">3. HBM이 일반 메모리보다 데이터를 훨씬 많이 주고받을 수 있는 가장 큰 이유는?</p>
       <div class="quiz-opts"><button class="quiz-opt">칩 하나의 크기가 커서</button><button class="quiz-opt" data-ok="1">데이터 통로가 1024개 이상으로 매우 많아서</button><button class="quiz-opt">전기를 더 많이 써서</button></div>
-      <p class="quiz-exp" hidden>차선이 아주 많은 고속도로처럼, 한 번에 지나가는 데이터가 많아 대역폭이 커집니다.</p>
+      <p class="quiz-exp" hidden>차선이 아주 많은 고속도로처럼, 한 번에 지나가는 데이터가 많아 대역폭이 커져요.</p>
     </div>
     <div class="quiz-q">
       <p class="q">4. 칩을 뜨거운 온도와 높은 전압에 오래 두어 약한 칩을 걸러내는 검사는?</p>
       <div class="quiz-opts"><button class="quiz-opt">하이브리드 본딩</button><button class="quiz-opt">MR-MUF</button><button class="quiz-opt" data-ok="1">번인 테스트</button></div>
-      <p class="quiz-exp" hidden>번인 테스트는 일찍 고장 날 칩을 출하 전에 미리 찾아내는 체력 시험입니다.</p>
+      <p class="quiz-exp" hidden>번인 테스트는 일찍 고장 날 칩을 출하 전에 미리 찾아내는 체력 시험이에요.</p>
     </div>
     <div class="quiz-q">
       <p class="q">5. 만든 칩 100개 중 95개가 합격이라면 수율은?</p>
       <div class="quiz-opts"><button class="quiz-opt">5%</button><button class="quiz-opt" data-ok="1">95%</button><button class="quiz-opt">100%</button></div>
-      <p class="quiz-exp" hidden>수율은 합격품의 비율입니다. HBM은 여러 장을 쌓기 때문에 한 장만 불량이어도 탑 전체가 불량이 되어 수율 관리가 특히 중요합니다.</p>
+      <p class="quiz-exp" hidden>수율은 합격품의 비율이에요. HBM은 여러 장을 쌓기 때문에 한 장만 불량이어도 탑 전체가 불량이 되어 수율 관리가 특히 중요해요.</p>
     </div>
-    <output class="readout" id="quiz-score">0 / 5 문제 풀이</output>
+    <div class="quiz-q">
+      <p class="q">6. 오늘날 HBM을 쌓는 기본 방식(CoW)에 대한 설명으로 맞는 것은?</p>
+      <div class="quiz-opts"><button class="quiz-opt">DRAM 웨이퍼를 자르지 않고 통째로 여러 장 겹친다</button><button class="quiz-opt" data-ok="1">자르지 않은 베이스 웨이퍼 위에, 검사를 통과한 DRAM 칩을 한 장씩 쌓는다</button><button class="quiz-opt">GPU 위에 DRAM 칩을 바로 쌓는다</button></div>
+      <p class="quiz-exp" hidden>CoW(칩 온 웨이퍼)는 좋은 칩(KGD)만 골라 쌓을 수 있어서, 한 층의 불량 때문에 탑 전체를 버리는 일을 줄여 줘요. 베이스 웨이퍼는 다 쌓고 몰딩한 뒤에 잘라요.</p>
+    </div>
+    <output class="readout" id="quiz-score" aria-live="polite">0 / 6 문제 풀이</output>
   </div>
 </section>
 
@@ -1225,7 +1323,7 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           if (score) {
             score.textContent = answered < total
               ? correct + ' / ' + answered + ' 정답 (' + answered + '/' + total + ' 문제 풀이)'
-              : '최종 점수 ' + correct + ' / ' + total + (correct === total ? ' · 완벽합니다!' : ' · 틀린 문제의 설명을 다시 읽어 보세요');
+              : '최종 점수 ' + correct + ' / ' + total + (correct === total ? ' · 완벽해요!' : ' · 틀린 문제의 설명을 다시 읽어 보세요');
           }
         });
       });
@@ -1234,45 +1332,49 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
 })();
 </script>
 
-<div class="part-divider"><span class="part-no">MAKING OF</span><h2>이 백과사전은 이렇게 만들었어요</h2><p>네 개의 AI 에이전트가 역할을 나눠 동시에 작업했습니다.</p></div>
+<div class="part-divider"><span class="part-no">MAKING OF</span><h2>이 백과사전은 이렇게 만들었어요</h2><p>1차에서는 에이전트들이 장을 나눠 썼고, 2차에서는 다른 에이전트들이 내용과 디자인을 다시 검수했어요.</p></div>
 <section class="chapter" id="workflow">
-  <header class="chapter-head"><span class="step-tag">워크플로우</span><h3>멀티에이전트 제작 과정</h3><p class="lede">오케스트레이터가 디자인 규칙을 정하고, 세 작성 에이전트가 장을 나눠 병렬로 쓴 뒤 하나로 조립했습니다.</p></header>
+  <header class="chapter-head"><span class="step-tag">워크플로우</span><h3>멀티에이전트 제작 과정</h3><p class="lede">오케스트레이터가 규칙을 정하고, 1차 작성과 2차 검수를 각각 여러 에이전트가 동시에 나눠 맡았어요.</p></header>
   <div class="chapter-body">
     <figure class="media-card">
-      <svg viewBox="0 0 600 250" role="img" aria-label="오케스트레이터에서 세 에이전트로 나뉘었다가 조립 단계로 모이는 흐름도">
-        <rect x="210" y="10" width="180" height="46" rx="12" style="fill:var(--blue)"/>
-        <text x="300" y="30" text-anchor="middle" style="fill:#fff;font-size:13px;font-weight:700">오케스트레이터</text>
-        <text x="300" y="46" text-anchor="middle" style="fill:#fff;font-size:11px">디자인 규격 · 뼈대 · 프롤로그</text>
+      <svg viewBox="0 0 600 330" role="img" aria-label="오케스트레이터에서 1차 작성 에이전트 셋, 2차 검수 에이전트 넷을 거쳐 조립과 배포로 이어지는 흐름도">
+        <rect x="200" y="8" width="200" height="44" rx="12" style="fill:var(--blue)"/>
+        <text x="300" y="27" text-anchor="middle" style="fill:#fff;font-size:13px;font-weight:700">오케스트레이터</text>
+        <text x="300" y="43" text-anchor="middle" style="fill:#fff;font-size:12px">디자인 규격 · 뼈대 · 조립</text>
+        <text x="20" y="84" style="fill:var(--fg3);font-size:12px;font-weight:700">1차 · 작성</text>
         <g style="fill:none;stroke:var(--fg3);stroke-width:1.5">
-          <path class="flow" d="M260 56 C 200 80, 110 80, 100 100"/><path class="flow" d="M300 56 V100"/><path class="flow" d="M340 56 C 400 80, 490 80, 500 100"/>
-          <path class="flow" d="M100 156 C 110 180, 250 180, 280 194"/><path class="flow" d="M300 156 V194"/><path class="flow" d="M500 156 C 490 180, 350 180, 320 194"/>
+          <path class="flow" d="M250 52 C 200 70, 130 70, 115 90"/><path class="flow" d="M300 52 V90"/><path class="flow" d="M350 52 C 400 70, 470 70, 485 90"/>
+          <path class="flow" d="M115 134 V176"/><path class="flow" d="M300 134 C 300 150, 230 160, 225 176"/><path class="flow" d="M300 134 C 300 150, 370 160, 375 176"/><path class="flow" d="M485 134 V176"/>
+          <path class="flow" d="M75 220 C 90 250, 250 250, 280 268"/><path class="flow" d="M225 220 C 235 245, 280 250, 292 268"/><path class="flow" d="M375 220 C 365 245, 320 250, 308 268"/><path class="flow" d="M525 220 C 510 250, 350 250, 320 268"/>
         </g>
         <g>
-          <rect x="20" y="100" width="160" height="56" rx="12" style="fill:var(--surface);stroke:var(--sep)"/>
-          <text x="100" y="122" text-anchor="middle" style="fill:var(--orange);font-size:12px;font-weight:700">에이전트 A</text>
-          <text x="100" y="141" text-anchor="middle" style="fill:var(--fg2);font-size:11px">1부 칩 만들기 (1~3)</text>
-          <rect x="220" y="100" width="160" height="56" rx="12" style="fill:var(--surface);stroke:var(--sep)"/>
-          <text x="300" y="122" text-anchor="middle" style="fill:var(--green);font-size:12px;font-weight:700">에이전트 B</text>
-          <text x="300" y="141" text-anchor="middle" style="fill:var(--fg2);font-size:11px">2부 쌓기 (4~6)</text>
-          <rect x="420" y="100" width="160" height="56" rx="12" style="fill:var(--surface);stroke:var(--sep)"/>
-          <text x="500" y="122" text-anchor="middle" style="fill:var(--purple);font-size:12px;font-weight:700">에이전트 C</text>
-          <text x="500" y="141" text-anchor="middle" style="fill:var(--fg2);font-size:11px">3부 연결 · 부록 (7~8)</text>
+          <rect x="40" y="90" width="150" height="44" rx="12" style="fill:var(--surface);stroke:var(--sep)"/><text x="115" y="109" text-anchor="middle" style="fill:var(--orange);font-size:12px;font-weight:700">작성 A</text><text x="115" y="125" text-anchor="middle" style="fill:var(--fg2);font-size:12px">1부 칩 만들기</text>
+          <rect x="225" y="90" width="150" height="44" rx="12" style="fill:var(--surface);stroke:var(--sep)"/><text x="300" y="109" text-anchor="middle" style="fill:var(--green);font-size:12px;font-weight:700">작성 B</text><text x="300" y="125" text-anchor="middle" style="fill:var(--fg2);font-size:12px">2부 쌓기</text>
+          <rect x="410" y="90" width="150" height="44" rx="12" style="fill:var(--surface);stroke:var(--sep)"/><text x="485" y="109" text-anchor="middle" style="fill:var(--purple);font-size:12px;font-weight:700">작성 C</text><text x="485" y="125" text-anchor="middle" style="fill:var(--fg2);font-size:12px">3부 연결 · 부록</text>
         </g>
-        <rect x="210" y="194" width="180" height="46" rx="12" style="fill:var(--fg)"/>
-        <text x="300" y="214" text-anchor="middle" style="fill:var(--bg);font-size:13px;font-weight:700">조립 · 검수 · 배포</text>
-        <text x="300" y="230" text-anchor="middle" style="fill:var(--bg);font-size:11px">하나의 페이지로 합치기</text>
+        <text x="20" y="170" style="fill:var(--fg3);font-size:12px;font-weight:700">2차 · 검수</text>
+        <g>
+          <rect x="10" y="176" width="130" height="44" rx="12" style="fill:var(--surface);stroke:var(--orange)"/><text x="75" y="195" text-anchor="middle" style="fill:var(--orange);font-size:12px;font-weight:700">내용 검수 A</text><text x="75" y="211" text-anchor="middle" style="fill:var(--fg2);font-size:12px">사실 · 쉬운 말</text>
+          <rect x="160" y="176" width="130" height="44" rx="12" style="fill:var(--surface);stroke:var(--green)"/><text x="225" y="195" text-anchor="middle" style="fill:var(--green);font-size:12px;font-weight:700">내용 검수 B</text><text x="225" y="211" text-anchor="middle" style="fill:var(--fg2);font-size:12px">사실 · 쉬운 말</text>
+          <rect x="310" y="176" width="130" height="44" rx="12" style="fill:var(--surface);stroke:var(--purple)"/><text x="375" y="195" text-anchor="middle" style="fill:var(--purple);font-size:12px;font-weight:700">내용 검수 C</text><text x="375" y="211" text-anchor="middle" style="fill:var(--fg2);font-size:12px">사실 · 쉬운 말</text>
+          <rect x="460" y="176" width="130" height="44" rx="12" style="fill:var(--surface);stroke:var(--blue)"/><text x="525" y="195" text-anchor="middle" style="fill:var(--blue);font-size:12px;font-weight:700">디자인 검수</text><text x="525" y="211" text-anchor="middle" style="fill:var(--fg2);font-size:12px">가독성 · 화면</text>
+        </g>
+        <rect x="200" y="268" width="200" height="44" rx="12" style="fill:var(--fg)"/>
+        <text x="300" y="287" text-anchor="middle" style="fill:var(--bg);font-size:13px;font-weight:700">조립 · 최종 확인 · 배포</text>
+        <text x="300" y="303" text-anchor="middle" style="fill:var(--bg);font-size:12px">하나의 페이지로 합치기</text>
       </svg>
-      <figcaption><b>그림 W-1</b> 작업 흐름. 공통 CSS 규격(색 토큰, 카드·버튼 모양)을 먼저 정했기 때문에 따로 쓴 장들이 한 책처럼 보입니다.</figcaption>
+      <figcaption><b>그림 W-1</b> 작업 흐름. 공통 CSS 규격(색, 카드, 버튼 모양)을 먼저 정해 두어서, 따로 쓴 장들도 한 권의 책처럼 보여요. 2차 검수에서는 쓴 에이전트와 다른 에이전트가 사실과 문장을 다시 확인했어요.</figcaption>
     </figure>
     <div class="agents">
-      <div class="agent"><span class="who" style="color:var(--orange)">에이전트 A</span><b>칩 만들기</b><span>웨이퍼, DRAM 셀, TSV 장의 글·그림·인터랙션</span></div>
-      <div class="agent"><span class="who" style="color:var(--green)">에이전트 B</span><b>쌓기</b><span>박화·범프, 본딩 3방식 비교, 수율 계산기</span></div>
-      <div class="agent"><span class="who" style="color:var(--purple)">에이전트 C</span><b>연결·부록</b><span>2.5D 패키징, 출하, 세대표, 용어집, 퀴즈</span></div>
+      <div class="agent"><span class="who" style="color:var(--orange)">작성 A → 검수 A</span><b>칩 만들기</b><span>웨이퍼, DRAM 셀, TSV</span></div>
+      <div class="agent"><span class="who" style="color:var(--green)">작성 B → 검수 B</span><b>쌓기</b><span>박화·범프, CoW·WoW, 본딩 3방식, 수율 계산기</span></div>
+      <div class="agent"><span class="who" style="color:var(--purple)">작성 C → 검수 C</span><b>연결·부록</b><span>2.5D 패키징, 출하, 세대표, 용어집, 퀴즈</span></div>
+      <div class="agent"><span class="who" style="color:var(--blue)">디자인 검수</span><b>가독성·화면</b><span>글자 크기, 줄 간격, 휴대폰 그림 크기, 다크 모드</span></div>
     </div>
   </div>
 </section>
 </main>
-<footer class="wrap">HBM 제조 백과 · 학습용 자료입니다. 수치는 대략적인 값이며 제조사와 세대에 따라 다릅니다.</footer>
+<footer class="wrap">HBM 제조 백과 · 학습용 자료예요. 수치는 대략적인 값이며 제조사와 세대에 따라 다릅니다.</footer>
 
 <script>
 (function(){
@@ -1288,6 +1390,8 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
   var layers=document.querySelectorAll('#stack-svg .layer'),t=document.getElementById('si-t'),d=document.getElementById('si-d');
   function pick(el){layers.forEach(function(l){l.classList.toggle('on',l===el)});var v=info[el.dataset.k];t.textContent=v[0];d.textContent=v[1];}
   layers.forEach(function(l){l.addEventListener('click',function(){pick(l)});l.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(l)}})});
+  var bar=document.getElementById('read-progress');
+  if(bar){var tick=false;window.addEventListener('scroll',function(){if(tick)return;tick=true;requestAnimationFrame(function(){var h=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')';tick=false;});},{passive:true});}
   var links=[].slice.call(document.querySelectorAll('.nav-links a'));
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-40% 0px -55% 0px'});
