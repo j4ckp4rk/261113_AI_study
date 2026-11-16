@@ -5,7 +5,9 @@
   <div class="chapter-body">
     <div class="prose">
       <p>보통 컴퓨터에서는 메모리가 기판 위 멀리 떨어진 곳에 꽂혀 있고, 수십 개 정도의 선으로 CPU와 이어집니다. HBM은 다릅니다. <b>실리콘 인터포저</b>라는 얇은 실리콘 판을 깔고, 그 위에 GPU와 HBM 탑 여러 개를 나란히 올립니다.</p>
-      <p>인터포저는 반도체 공정으로 만든 판이라서 머리카락보다 훨씬 가는 배선을 아주 촘촘하게 그릴 수 있습니다. 덕분에 HBM 탑 하나와 GPU 사이에 <b>1024개가 넘는 데이터 통로</b>를 깔 수 있습니다. 칩을 위로 쌓지는 않고 판 위에 옆으로 나란히 놓지만, 판 자체가 칩처럼 정교하기 때문에 2D와 3D 사이라는 뜻으로 <b>2.5D</b>라고 부릅니다.</p>
+      <p>인터포저는 반도체 공정으로 만든 판이라서 머리카락보다 훨씬 가는 배선을 아주 촘촘하게 그릴 수 있습니다. 덕분에 HBM 탑 하나와 GPU 사이에 <b>1024개</b>의 데이터 통로를 깔 수 있습니다. 최신 HBM4는 이 통로가 <b>2048개</b>로 두 배가 되었습니다.</p>
+      <p>칩을 위로 쌓지는 않고 판 위에 옆으로 나란히 놓지만, 판 자체가 칩처럼 정교하기 때문에 2D와 3D 사이라는 뜻으로 <b>2.5D</b>라고 부릅니다.</p>
+      <p>이 작업은 보통 HBM을 만든 메모리 회사가 아니라, GPU를 만드는 <b>파운드리(반도체 위탁 생산 회사)</b>의 패키징 공장에서 합니다. 메모리 회사는 STEP 6에서 검사를 마친 HBM을 이곳으로 보냅니다.</p>
     </div>
 
     <figure class="media-card">
@@ -41,12 +43,12 @@
           <path class="pc-lane" d="M426 216 H 300"/>
           <path class="pc-lane" d="M492 222 H 300"/>
         </g>
-        <text x="300" y="30" text-anchor="middle" font-size="14" style="fill:var(--fg)">노란 선 = 인터포저 속 데이터 통로 (탑마다 1024개 이상)</text>
+        <text x="300" y="30" text-anchor="middle" font-size="14" style="fill:var(--fg)">노란 선 = 인터포저 속 데이터 통로 (탑마다 1024개, HBM4는 2048개)</text>
       </svg>
       <figcaption><b>그림 7-1</b> 2.5D 패키징의 옆모습. GPU 양옆의 HBM 탑이 인터포저 속 배선으로 연결됩니다.</figcaption>
     </figure>
 
-    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>일반 메모리가 2차선 시골길로 연결된 창고라면, HBM은 1024차선 고속도로로 공장 바로 옆에 붙은 창고입니다. 차 한 대의 속도는 크게 다르지 않아도, 한 번에 지나가는 차가 엄청나게 많아서 짐(데이터)이 훨씬 빨리 옮겨집니다.</p></div>
+    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>일반 메모리가 2차선 시골길로 연결된 창고라면, HBM은 1024차선(최신 HBM4는 2048차선) 고속도로로 공장 바로 옆에 붙은 창고입니다. 차 한 대의 속도는 오히려 조금 느려도, 한 번에 지나가는 차가 엄청나게 많아서 짐(데이터)이 훨씬 빨리 옮겨집니다.</p></div>
 
     <div class="seg" role="tablist" aria-label="패키징 방식 비교" id="pkg-seg">
       <button class="seg-btn" role="tab" aria-pressed="false" data-panel="pkg-2d">2D</button>
@@ -107,13 +109,13 @@
         <text x="460" y="120" text-anchor="middle" font-size="13" style="fill:var(--fg2)">거리가 가장 짧지만</text>
         <text x="460" y="140" text-anchor="middle" font-size="13" style="fill:var(--fg2)">열을 빼기 어려워요</text>
       </svg>
-      <figcaption><b>그림 7-4</b> 3D 방식. 미래 기술로 연구 중이며, HBM 탑 내부(칩끼리 쌓기)에는 이미 쓰이고 있습니다.</figcaption>
+      <figcaption><b>그림 7-4</b> 3D 방식. HBM을 GPU 위에 바로 쌓는 방식은 아직 연구 중입니다. 다만 HBM 탑 안에서 메모리 칩끼리 쌓을 때는 이미 3D 방식을 쓰고 있습니다.</figcaption>
     </figure>
 
     <div class="facts">
-      <div class="fact"><b>1024개+</b><span>HBM 탑 하나당 데이터 통로 수</span></div>
-      <div class="fact"><b>수 mm</b><span>GPU와 HBM 사이 거리</span></div>
-      <div class="fact"><b>4~8개</b><span>최신 AI 가속기 한 개에 붙는 HBM 탑 수</span></div>
+      <div class="fact"><b>1024개</b><span>HBM 탑 하나당 데이터 통로 수 (HBM4는 2048개)</span></div>
+      <div class="fact"><b>약 1mm 안팎</b><span>GPU와 HBM 사이 간격</span></div>
+      <div class="fact"><b>약 4~8개</b><span>최신 AI 가속기 한 개에 붙는 HBM 탑 수</span></div>
     </div>
   </div>
 </section>
@@ -122,8 +124,8 @@
   <header class="chapter-head"><span class="step-tag">STEP 8</span><h3>최종 검사와 출하</h3><p class="lede">하나라도 고장 나면 비싼 GPU 전체를 버려야 할 수 있기 때문에, 마지막 검사는 아주 꼼꼼합니다.</p></header>
   <div class="chapter-body">
     <div class="prose">
-      <p>먼저 <b>번인(Burn-in) 테스트</b>를 합니다. 칩을 일부러 뜨거운 온도와 높은 전압에 오래 두어서, 금방 고장 날 약한 칩을 미리 걸러냅니다. 사람으로 치면 입사 전에 체력 시험을 보는 것과 비슷합니다.</p>
-      <p>다음은 <b>시스템 레벨 테스트</b>입니다. 실제로 AI 계산을 시키듯 데이터를 쉬지 않고 읽고 쓰게 해서, 모든 통로가 정확한지 확인합니다. 통과한 패키지는 AI 가속기 보드에 장착되고, 서버에 들어가 <b>데이터센터</b>로 출발합니다.</p>
+      <p>먼저 <b>번인(Burn-in) 테스트</b>를 합니다. 칩을 일부러 뜨거운 온도와 높은 전압에 오래 둡니다. 그러면 금방 고장 날 약한 칩이 미리 드러나서 걸러낼 수 있습니다. 사람으로 치면 입사 전에 체력 시험을 보는 것과 비슷합니다.</p>
+      <p>다음은 <b>시스템 레벨 테스트</b>입니다. 실제로 AI 계산을 시키듯 데이터를 쉬지 않고 읽고 쓰게 합니다. 그래서 수천 개의 통로가 모두 정확한지 확인합니다. 통과한 패키지는 AI 가속기 보드에 장착되고, 서버에 들어가 <b>데이터센터</b>로 출발합니다.</p>
     </div>
 
     <figure class="media-card">
@@ -160,13 +162,13 @@
   <div class="chapter-body">
     <div class="table-wrap">
       <table>
-        <thead><tr><th>세대</th><th>처음 나온 시기</th><th>스택당 대역폭</th><th>최대 단수</th></tr></thead>
+        <thead><tr><th>세대</th><th>처음 나온 시기</th><th>스택당 대역폭</th><th>대표 단수</th></tr></thead>
         <tbody>
           <tr><td>HBM</td><td>약 2015년</td><td>약 128 GB/s</td><td>4단</td></tr>
           <tr><td>HBM2</td><td>약 2016년</td><td>약 256 GB/s</td><td>8단</td></tr>
-          <tr><td>HBM2E</td><td>약 2020년</td><td>약 460 GB/s</td><td>8단</td></tr>
+          <tr><td>HBM2E</td><td>약 2020년</td><td>약 410~460 GB/s</td><td>8단</td></tr>
           <tr><td>HBM3</td><td>약 2022년</td><td>약 819 GB/s</td><td>12단</td></tr>
-          <tr><td>HBM3E</td><td>약 2024년</td><td>약 1.2 TB/s</td><td>12단</td></tr>
+          <tr><td>HBM3E</td><td>약 2024년</td><td>약 1.2 TB/s</td><td>12단 (16단 개발)</td></tr>
           <tr><td>HBM4</td><td>약 2025~2026년</td><td>약 2 TB/s</td><td>16단</td></tr>
         </tbody>
       </table>
@@ -191,7 +193,7 @@
           <text x="168" y="87" style="fill:var(--fg2)">256</text>
           <text x="100" y="125" text-anchor="end" style="fill:var(--fg)">HBM2E</text>
           <rect x="110" y="110" width="92" height="24" rx="4" style="fill:var(--blue);opacity:.65"/>
-          <text x="209" y="127" style="fill:var(--fg2)">460</text>
+          <text x="209" y="127" style="fill:var(--fg2)">약 460</text>
           <text x="100" y="165" text-anchor="end" style="fill:var(--fg)">HBM3</text>
           <rect x="110" y="150" width="163.8" height="24" rx="4" style="fill:var(--blue);opacity:.75"/>
           <text x="281" y="167" style="fill:var(--fg2)">819</text>
@@ -218,11 +220,15 @@
       <div><dt>DRAM</dt><dd>전기를 담는 작은 그릇(커패시터)에 0과 1을 저장하는 메모리. 전원이 꺼지면 내용이 사라집니다.</dd></div>
       <div><dt>TSV</dt><dd>실리콘 관통 전극. 칩에 아주 가는 구멍을 뚫고 구리를 채워, 위아래 칩을 엘리베이터처럼 잇는 통로입니다.</dd></div>
       <div><dt>마이크로범프</dt><dd>칩과 칩 사이를 붙이는 아주 작은 금속 돌기. 지름이 수십 마이크로미터 정도입니다.</dd></div>
+      <div><dt>2.5D 패키징</dt><dd>인터포저 위에 GPU와 HBM을 옆으로 나란히 놓고 촘촘한 배선으로 잇는 방식. 위로 쌓는 3D와 그냥 기판에 놓는 2D의 중간이라 2.5D라고 부릅니다.</dd></div>
       <div><dt>인터포저</dt><dd>GPU와 HBM을 나란히 올려놓는 얇은 실리콘 배선판. 촘촘한 길을 수천 개 깔 수 있습니다.</dd></div>
       <div><dt>대역폭</dt><dd>1초에 주고받을 수 있는 데이터 양. 도로의 차선 수 × 차의 속도와 비슷한 개념입니다.</dd></div>
       <div><dt>수율</dt><dd>만든 칩 가운데 합격품의 비율. 100개 중 90개가 좋으면 수율 90%입니다.</dd></div>
+      <div><dt>KGD</dt><dd>Known Good Die. 쌓기 전에 낱개로 검사해서 '좋은 것으로 확인된' 칩 한 장을 말합니다. 좋은 칩만 골라 쌓아야 탑 전체가 불량이 될 위험이 줄어듭니다.</dd></div>
+      <div><dt>CoW (칩 온 웨이퍼)</dt><dd>Chip-on-Wafer. 자르지 않은 베이스 다이 웨이퍼 위에, 잘라서 검사를 통과한 DRAM 칩을 한 장씩 쌓는 방식. 지금 HBM을 만드는 기본 방식입니다.</dd></div>
+      <div><dt>WoW (웨이퍼 온 웨이퍼)</dt><dd>Wafer-on-Wafer. 웨이퍼를 통째로 겹쳐 붙이는 방식. 빠르지만 불량 칩을 미리 걸러낼 수 없어서, 층이 많은 HBM에는 불리합니다.</dd></div>
       <div><dt>KGSD</dt><dd>Known Good Stacked Die. 쌓은 뒤 검사까지 마쳐 '좋은 것으로 확인된' HBM 탑을 말합니다.</dd></div>
-      <div><dt>MR-MUF</dt><dd>칩을 쌓은 뒤 액체 보호재를 한꺼번에 흘려 넣어 굳히는 방식. 열을 잘 빼는 장점이 있습니다.</dd></div>
+      <div><dt>MR-MUF</dt><dd>칩을 쌓은 뒤 열로 한꺼번에 녹여 붙이고, 칩 사이에 액체 보호재를 흘려 넣어 굳히는 방식. 열을 잘 빼는 장점이 있습니다.</dd></div>
       <div><dt>TC-NCF</dt><dd>칩 사이에 얇은 접착 필름을 깔고, 열과 압력으로 한 층씩 눌러 붙이는 방식입니다.</dd></div>
       <div><dt>하이브리드 본딩</dt><dd>범프 없이 구리 면과 구리 면을 직접 붙이는 차세대 기술. 탑을 더 얇게, 더 높이 쌓을 수 있습니다.</dd></div>
       <div><dt>베이스 다이</dt><dd>HBM 탑 맨 아래에 놓이는 칩. 위층 메모리를 관리하고 GPU와 신호를 주고받는 관제탑 역할을 합니다.</dd></div>
@@ -232,7 +238,7 @@
 </section>
 
 <section class="chapter" id="quiz">
-  <header class="chapter-head"><span class="step-tag">부록</span><h3>확인 퀴즈</h3><p class="lede">다섯 문제로 지금까지 배운 내용을 점검해 봅시다. 보기를 누르면 바로 정답과 설명이 나옵니다.</p></header>
+  <header class="chapter-head"><span class="step-tag">부록</span><h3>확인 퀴즈</h3><p class="lede">여섯 문제로 지금까지 배운 내용을 점검해 봅시다. 보기를 누르면 바로 정답과 설명이 나옵니다.</p></header>
   <div class="chapter-body">
     <div class="quiz-q">
       <p class="q">1. HBM 칩을 위아래로 연결하는, 칩을 관통하는 구리 통로의 이름은?</p>
@@ -259,7 +265,12 @@
       <div class="quiz-opts"><button class="quiz-opt">5%</button><button class="quiz-opt" data-ok="1">95%</button><button class="quiz-opt">100%</button></div>
       <p class="quiz-exp" hidden>수율은 합격품의 비율입니다. HBM은 여러 장을 쌓기 때문에 한 장만 불량이어도 탑 전체가 불량이 되어 수율 관리가 특히 중요합니다.</p>
     </div>
-    <output class="readout" id="quiz-score">0 / 5 문제 풀이</output>
+    <div class="quiz-q">
+      <p class="q">6. 오늘날 HBM을 쌓는 기본 방식(CoW)에 대한 설명으로 맞는 것은?</p>
+      <div class="quiz-opts"><button class="quiz-opt">DRAM 웨이퍼를 자르지 않고 통째로 여러 장 겹친다</button><button class="quiz-opt" data-ok="1">자르지 않은 베이스 웨이퍼 위에, 검사를 통과한 DRAM 칩을 한 장씩 쌓는다</button><button class="quiz-opt">GPU 위에 DRAM 칩을 바로 쌓는다</button></div>
+      <p class="quiz-exp" hidden>CoW(칩 온 웨이퍼)는 좋은 칩(KGD)만 골라 쌓을 수 있어서, 한 층의 불량 때문에 탑 전체를 버리는 일을 줄여 줍니다. 베이스 웨이퍼는 다 쌓고 몰딩한 뒤에 자릅니다.</p>
+    </div>
+    <output class="readout" id="quiz-score" aria-live="polite">0 / 6 문제 풀이</output>
   </div>
 </section>
 

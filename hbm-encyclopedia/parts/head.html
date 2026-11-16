@@ -20,7 +20,7 @@
   --red:#ff453a; --teal:#40c8e0; --yellow:#ffd60a; --copper:#e08a4e; --nav:rgba(22,22,24,.72); color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:64px}
-body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;word-break:keep-all}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.72;letter-spacing:-.003em;-webkit-font-smoothing:antialiased;word-break:keep-all}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--nav)}
 .wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 a{color:var(--blue);text-decoration:none}
@@ -29,11 +29,12 @@ strong{font-weight:650}
 
 /* nav */
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sep)}
-.nav .wrap{display:flex;align-items:center;gap:14px;height:52px}
+.nav{position:sticky}.nav .wrap{display:flex;align-items:center;gap:14px;height:52px}
 .nav-title{font-weight:600;font-size:15px;white-space:nowrap}
 .nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0}
 .nav-links::-webkit-scrollbar{display:none}
-.nav-links a{font-size:13px;color:var(--fg2);padding:5px 10px;border-radius:999px;white-space:nowrap}
+.nav-links a{font-size:13px;color:var(--fg2);padding:6px 11px;min-height:32px;display:inline-flex;align-items:center;border-radius:999px;white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-.5px;height:2px;width:100%;background:var(--blue);transform-origin:0 50%;transform:scaleX(0)}
 .nav-links a:hover,.nav-links a.on{background:var(--fill);color:var(--fg)}
 
 /* hero */
@@ -57,17 +58,18 @@ strong{font-weight:650}
 @media (max-width:720px){.roadmap{grid-template-columns:repeat(2,1fr)}}
 
 /* part divider + chapters */
-.part-divider{padding-block:44px 8px}
+.part-divider{padding-block:64px 4px;border-top:.5px solid var(--sep);margin-top:40px}
+.part-divider:first-of-type{border-top:0}
 .part-no{font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--fg3)}
 .part-divider h2{font-family:var(--display);font-size:clamp(28px,4.5vw,40px);margin:.1em 0 .2em;letter-spacing:-.015em;font-weight:700}
 .part-divider p{color:var(--fg2);margin:0;max-width:40em}
-.chapter{background:var(--surface);border-radius:22px;padding:28px clamp(18px,4vw,36px);margin-block:18px}
+.chapter{background:var(--surface);border-radius:22px;padding:32px clamp(16px,4vw,40px);margin-block:20px;box-shadow:0 .5px 0 var(--sep)}
 .chapter-head{margin-bottom:14px}
 .step-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.05em;color:var(--blue);background:color-mix(in srgb,var(--blue) 12%,transparent);padding:3px 10px;border-radius:999px}
 .chapter-head h3{font-family:var(--display);font-size:clamp(23px,3.4vw,30px);line-height:1.2;margin:.45em 0 .25em;letter-spacing:-.01em;text-wrap:balance;font-weight:700}
 .lede{color:var(--fg2);font-size:18px;margin:0}
-.chapter-body{display:flex;flex-direction:column;gap:18px}
-.prose{max-width:40em}.prose p{margin:0 0 .8em}.prose p:last-child{margin:0}
+.chapter-body{display:flex;flex-direction:column;gap:22px}
+.prose{max-width:38em}.prose p{margin:0 0 .9em}.prose p:last-child{margin:0}
 .prose ul,.prose ol{margin:0 0 .8em;padding-left:1.2em}
 
 .media-card{margin:0;background:var(--surface2);border-radius:18px;padding:16px;overflow:hidden}
@@ -79,14 +81,14 @@ strong{font-weight:650}
 .analogy-label{font-size:12px;font-weight:700;color:var(--orange);letter-spacing:.04em}
 .analogy p{margin:.2em 0 0}
 
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--sep);border-radius:16px;overflow:hidden}
-.fact{background:var(--surface2);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.facts{display:flex;flex-wrap:wrap;gap:1px;background:var(--sep);border-radius:16px;overflow:hidden}
+.fact{flex:1 1 150px;background:var(--surface2);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
 .fact b{font-family:var(--display);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.fact span{font-size:13px;color:var(--fg2);line-height:1.4}
+.fact span{font-size:14px;color:var(--fg2);line-height:1.4}
 
 /* controls */
 .seg{display:inline-flex;flex-wrap:wrap;gap:2px;background:var(--fill);padding:2px;border-radius:10px;max-width:100%}
-.seg-btn{border:0;background:transparent;color:var(--fg);font:500 14px var(--font);padding:7px 14px;border-radius:8px;cursor:pointer;transition:background .2s,box-shadow .2s}
+.seg-btn{border:0;background:transparent;color:var(--fg);font:500 14px var(--font);padding:7px 14px;min-height:36px;flex:1 1 auto;border-radius:8px;cursor:pointer;transition:background .2s,box-shadow .2s}
 .seg-btn[aria-pressed="true"],.seg-btn[aria-selected="true"]{background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.12),0 0 0 .5px var(--sep);font-weight:600}
 .range{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:var(--fill);outline-offset:6px}
 .range::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 0 0 .5px rgba(0,0,0,.04),0 3px 8px rgba(0,0,0,.15),0 3px 1px rgba(0,0,0,.06);cursor:pointer}
@@ -110,7 +112,7 @@ p.caption{font-size:14px;color:var(--fg2);margin:8px 0 0}
 .quiz-q{background:var(--surface2);border-radius:16px;padding:16px}
 .quiz-q .q{font-weight:600;margin:0 0 10px}
 .quiz-opts{display:flex;flex-direction:column;gap:8px}
-.quiz-opt{text-align:left;font:15px var(--font);padding:11px 14px;border-radius:12px;border:.5px solid var(--sep);background:var(--surface);color:var(--fg);cursor:pointer}
+.quiz-opt{text-align:left;font:16px var(--font);padding:12px 16px;min-height:44px;border-radius:12px;border:.5px solid var(--sep);background:var(--surface);color:var(--fg);cursor:pointer}
 .quiz-opt:hover{background:var(--fill)}
 .quiz-opt.correct{background:color-mix(in srgb,var(--green) 18%,var(--surface));border-color:var(--green)}
 .quiz-opt.wrong{background:color-mix(in srgb,var(--red) 14%,var(--surface));border-color:var(--red)}
@@ -123,19 +125,31 @@ p.caption{font-size:14px;color:var(--fg2);margin:8px 0 0}
 .stack-info h4{margin:0 0 4px;font-size:17px}
 .stack-info p{margin:0;color:var(--fg2);font-size:15px}
 .layer{cursor:pointer;transition:transform .3s ease}
+.layer:focus-visible{outline:none}.layer:focus-visible rect{stroke:var(--blue);stroke-width:2}
 .layer:hover,.layer.on{transform:translateX(10px)}
 .compare{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .compare > div{background:var(--surface2);border-radius:16px;padding:14px}
 .compare h4{margin:0 0 6px;font-size:15px}
 
 /* workflow */
-.agents{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.agents{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .agent{background:var(--surface2);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:4px}
 .agent .who{font-size:12px;font-weight:700;letter-spacing:.04em}
 .agent b{font-size:15px}.agent span{font-size:13px;color:var(--fg2)}
 @media (max-width:640px){.agents{grid-template-columns:1fr}.compare{grid-template-columns:1fr}}
 footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center}
 
+
+/* phone: keep diagram labels legible (>=10px) — wide diagrams scroll inside their own card */
+@media (max-width:600px){
+  .chapter{border-radius:18px}
+  .media-card,.stepper-panel,.tsv-lab{padding:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .chapter-body svg[viewBox^="0 0 600"]{min-width:540px}
+  .media-card figcaption,.stepper-panel figcaption,p.caption{position:sticky;left:0;max-width:calc(100vw - 88px)}
+  .seg{display:flex;width:100%}
+  .lede{font-size:17px}
+  .hero p{font-size:17px}
+}
 @keyframes flow{to{stroke-dashoffset:-24}}
 @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
 @media (prefers-reduced-motion:no-preference){
@@ -147,16 +161,17 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
 
 <nav class="nav" aria-label="목차">
   <div class="wrap">
-    <span class="nav-title">HBM 백과</span>
+    <a class="nav-title" href="#top" style="color:var(--fg)">HBM 백과</a>
     <div class="nav-links">
       <a href="#what">HBM이란</a><a href="#step-1">웨이퍼</a><a href="#step-2">DRAM</a><a href="#step-3">TSV</a>
       <a href="#step-4">박화·범프</a><a href="#step-5">적층</a><a href="#step-6">검사</a><a href="#step-7">패키징</a>
       <a href="#step-8">출하</a><a href="#glossary">용어</a><a href="#quiz">퀴즈</a>
     </div>
   </div>
+  <div class="progress" id="read-progress" aria-hidden="true"></div>
 </nav>
 
-<main class="wrap">
+<main class="wrap" id="top">
 <header class="hero">
   <div>
     <span class="eyebrow">반도체 제조 백과 · 중학생 눈높이</span>
@@ -230,10 +245,10 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
         </svg>
         <div class="stack-info" aria-live="polite"><h4 id="si-t">층을 눌러 보세요</h4><p id="si-d">왼쪽 그림의 각 층을 누르면 그 부분이 하는 일과, 몇 번째 공정에서 만들어지는지 알려 줍니다.</p></div>
       </div>
-      <figcaption><b>그림 0-1</b> HBM 한 덩어리(스택)의 단면. 실제 두께는 1mm 정도이고, 그림은 이해하기 쉽게 키웠습니다.</figcaption>
+      <figcaption><b>그림 0-1</b> HBM 한 덩어리(스택)의 단면. 실제 스택 높이는 1mm가 채 안 되고, 그림은 이해하기 쉽게 키웠습니다.</figcaption>
     </figure>
     <div class="compare">
-      <div><h4>일반 메모리 (단독주택)</h4><p style="margin:0;color:var(--fg2);font-size:15px">칩을 옆으로 나란히. 칩 하나당 데이터 통로가 수십 개 수준이고, GPU와 거리가 멀어요.</p></div>
+      <div><h4>일반 메모리 (단독주택)</h4><p style="margin:0;color:var(--fg2);font-size:15px">칩을 옆으로 나란히. 칩 하나의 데이터 통로가 보통 8~32개 정도이고, GPU와 거리도 멀어요.</p></div>
       <div><h4>HBM (아파트)</h4><p style="margin:0;color:var(--fg2);font-size:15px">칩을 위로 쌓아 1,024개 이상의 통로로 연결. GPU 바로 옆이라 빠르고 전기도 덜 씁니다.</p></div>
     </div>
     <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>도서관(메모리)에서 책(데이터)을 빌려 오는데, 문이 하나뿐이면 줄을 서야 합니다. HBM은 도서관을 고층으로 짓고 문을 천 개 넘게 달아 책을 한꺼번에 나르게 한 것입니다.</p></div>
