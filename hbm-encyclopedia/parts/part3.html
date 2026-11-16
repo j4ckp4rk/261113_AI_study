@@ -1,13 +1,80 @@
-<div class="part-divider"><span class="part-no">PART 3</span><h2>연결하기</h2><p>완성된 HBM 탑을 GPU 바로 옆에 붙이고, 마지막 검사를 거쳐 데이터센터로 보내는 과정이에요.</p></div>
+<section class="chapter" id="handoff">
+  <header class="chapter-head"><span class="step-tag">바통 터치</span><span class="who-tag">메모리 회사 → 패키징 공장</span><h3>완성된 HBM은 어디로 갈까?</h3><p class="lede">STEP 6까지 마친 HBM은 메모리 회사를 떠나요. GPU와 합치는 일은 다른 회사들이 맡아요.</p></header>
+  <div class="chapter-body">
+    <div class="prose">
+      <p><b>엔비디아</b>는 GPU를 <b>설계</b>하는 회사예요. 직접 칩 공장을 갖고 있지 않아요. 이렇게 설계만 하는 회사를 <b>팹리스</b>라고 불러요.</p>
+      <p>실제 GPU 칩은 <b>TSMC</b> 같은 <b>파운드리</b>(설계도를 받아 칩을 대신 만들어 주는 회사)가 만들어요. 파운드리의 패키징 공장에서 GPU 칩과, 메모리 회사에서 받은 HBM을 하나로 조립해요. 이 조립부터가 2편이에요.</p>
+      <p>그래서 AI 가속기 하나에는 여러 회사의 일이 모여 있어요. 삼성전자처럼 메모리와 파운드리를 모두 가진 회사도 있고, HBM4부터는 맨 아래 베이스 다이를 파운드리 공정으로 만들기도 해요. 그래도 큰 그림은 같아요. <b>HBM을 쌓는 일은 메모리 회사, GPU 옆에 붙이는 일은 패키징 공장</b>이에요.</p>
+    </div>
+    <figure class="media-card">
+      <svg viewBox="0 0 600 300" role="img" aria-label="세 줄 흐름도. 메모리 회사가 HBM을 완성해 파운드리 패키징 공장으로 보내고, 엔비디아의 설계도로 만든 GPU 칩과 함께 2.5D 조립과 최종 검사를 거친다">
+        <rect x="4" y="8" width="592" height="94" rx="14" style="fill:var(--blue);opacity:.09"/>
+        <rect x="4" y="110" width="592" height="66" rx="14" style="fill:var(--purple);opacity:.07"/>
+        <rect x="4" y="184" width="592" height="108" rx="14" style="fill:var(--purple);opacity:.13"/>
+        <text x="16" y="30" style="fill:var(--blue);font-size:13px;font-weight:700">메모리 회사</text>
+        <text x="16" y="47" style="fill:var(--fg2);font-size:12px">삼성전자·SK하이닉스</text>
+        <text x="16" y="62" style="fill:var(--fg2);font-size:12px">마이크론</text>
+        <text x="16" y="138" style="fill:var(--purple);font-size:13px;font-weight:700">GPU 회사</text>
+        <text x="16" y="155" style="fill:var(--fg2);font-size:12px">엔비디아 등</text>
+        <text x="16" y="210" style="fill:var(--purple);font-size:13px;font-weight:700">파운드리</text>
+        <text x="16" y="227" style="fill:var(--fg2);font-size:12px">패키징 공장</text>
+        <text x="16" y="242" style="fill:var(--fg2);font-size:12px">TSMC 등</text>
+        <g style="font-size:12px" text-anchor="middle">
+          <rect x="140" y="30" width="96" height="36" rx="9" style="fill:var(--surface);stroke:var(--blue)"/><text x="188" y="53" style="fill:var(--fg)">웨이퍼·회로</text><text x="188" y="86" style="fill:var(--fg3)">STEP 1–3</text>
+          <rect x="250" y="30" width="96" height="36" rx="9" style="fill:var(--surface);stroke:var(--blue)"/><text x="298" y="53" style="fill:var(--fg)">깎기·쌓기</text><text x="298" y="86" style="fill:var(--fg3)">STEP 4–5</text>
+          <rect x="360" y="30" width="96" height="36" rx="9" style="fill:var(--surface);stroke:var(--blue)"/><text x="408" y="53" style="fill:var(--fg)">몰딩·검사</text><text x="408" y="86" style="fill:var(--fg3)">STEP 6</text>
+          <rect x="470" y="30" width="116" height="36" rx="9" style="fill:var(--blue)"/><text x="528" y="53" style="fill:#fff;font-weight:700">HBM 완성</text>
+          <rect x="140" y="124" width="140" height="36" rx="9" style="fill:var(--surface);stroke:var(--purple)"/><text x="210" y="147" style="fill:var(--fg)">GPU 설계도</text>
+          <rect x="140" y="204" width="96" height="36" rx="9" style="fill:var(--surface);stroke:var(--purple)"/><text x="188" y="227" style="fill:var(--fg)">GPU 칩 생산</text>
+          <rect x="250" y="204" width="96" height="36" rx="9" style="fill:var(--surface);stroke:var(--purple)"/><text x="298" y="227" style="fill:var(--fg)">인터포저</text>
+          <rect x="360" y="204" width="96" height="36" rx="9" style="fill:var(--purple)"/><text x="408" y="227" style="fill:#fff;font-weight:700">2.5D 조립</text><text x="408" y="260" style="fill:var(--fg3)">STEP 7</text>
+          <rect x="470" y="204" width="116" height="36" rx="9" style="fill:var(--surface);stroke:var(--purple)"/><text x="528" y="227" style="fill:var(--fg)">검사·출하</text><text x="528" y="260" style="fill:var(--fg3)">STEP 8</text>
+        </g>
+        <g style="fill:none;stroke:var(--fg3);stroke-width:1.5">
+          <path d="M236 48 H250 M346 48 H360 M456 48 H470 M236 222 H250 M346 222 H360 M456 222 H470"/>
+          <path class="flow" d="M210 160 V204"/>
+        </g>
+        <path class="flow" d="M528 66 C 528 140, 420 150, 412 204" style="fill:none;stroke:var(--blue);stroke-width:2.5"/>
+        <text x="486" y="124" text-anchor="end" style="fill:var(--blue);font-size:12px;font-weight:700">합격한 HBM 배송</text>
+        <text x="218" y="190" style="fill:var(--fg2);font-size:12px">설계도 전달</text>
+        <text x="300" y="284" text-anchor="middle" style="fill:var(--fg2);font-size:12px">완성된 가속기 → 서버 회사 → 데이터센터</text>
+      </svg>
+      <figcaption><b>그림 H-1</b> 누가 무엇을 하나. 파란 줄은 1편(메모리 회사), 보라 줄은 2편(GPU 회사와 파운드리)이에요. 파란 화살표가 두 편이 만나는 지점이에요.</figcaption>
+    </figure>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>회사 종류</th><th>대표 회사</th><th>하는 일</th><th>이 책에서</th></tr></thead>
+        <tbody>
+          <tr><td>메모리 회사</td><td>삼성전자, SK하이닉스, 마이크론</td><td>DRAM 칩을 만들고 HBM으로 쌓아요</td><td>1편 STEP 1–6</td></tr>
+          <tr><td>GPU 회사 (팹리스)</td><td>엔비디아, AMD</td><td>GPU를 설계하고 어떤 HBM을 쓸지 정해요</td><td>전체 설계</td></tr>
+          <tr><td>파운드리 · 패키징</td><td>TSMC 등</td><td>GPU 칩과 인터포저를 만들고, HBM과 조립해요</td><td>2편 STEP 7–8</td></tr>
+          <tr><td>서버 회사</td><td>여러 서버 제조사</td><td>완성된 가속기를 보드와 서버에 넣어요</td><td>STEP 8 마지막</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>메모리 회사는 고성능 <b>엔진</b>을 만드는 회사예요. 엔비디아는 <b>자동차를 설계</b>하는 회사이고, 파운드리는 그 설계대로 차체를 만들고 엔진을 얹어 <b>조립하는 공장</b>이에요.</p></div>
+  </div>
+</section>
 
-<section class="chapter" id="step-7">
-  <header class="chapter-head"><span class="step-tag">STEP 7</span><h3>GPU 옆에 붙이기: 2.5D 패키징</h3><p class="lede">HBM은 혼자서는 일하지 않아요. 계산을 담당하는 GPU 바로 옆, 손가락 한 마디도 안 되는 거리에 붙어야 진짜 실력이 나와요.</p></header>
+<section class="book gpu" id="book-2" aria-labelledby="book-2-t">
+  <span class="book-no">2편 · STEP 7 – 8</span>
+  <h2 id="book-2-t">GPU에 탑재하기</h2>
+  <p>이제 무대가 바뀌어요. 메모리 회사에서 온 HBM을 GPU 칩 바로 옆에 붙여, 하나의 AI 가속기로 만드는 과정이에요.</p>
+  <dl>
+    <div><dt>어디서</dt><dd>파운드리 패키징 공장 (TSMC 등)<br>설계는 엔비디아 같은 GPU 회사</dd></div>
+    <div><dt>들어오는 것</dt><dd>HBM 스택 + GPU 칩 + 인터포저</dd></div>
+    <div><dt>나가는 것</dt><dd>AI 가속기 패키지 → 서버</dd></div>
+  </dl>
+</section>
+
+<section class="chapter gpu" id="step-7">
+  <header class="chapter-head"><span class="step-tag">STEP 7</span><span class="who-tag">파운드리 패키징 공장</span><h3>GPU 옆에 붙이기: 2.5D 패키징</h3><p class="lede">HBM은 혼자서는 일하지 않아요. 계산을 담당하는 GPU 바로 옆, 손가락 한 마디도 안 되는 거리에 붙어야 진짜 실력이 나와요.</p></header>
   <div class="chapter-body">
     <div class="prose">
       <p>보통 컴퓨터에서는 메모리가 기판 위 멀리 떨어진 곳에 꽂혀 있고, 수십 개 정도의 선으로 CPU와 이어져요. HBM은 달라요. <b>실리콘 인터포저</b>라는 얇은 실리콘 판을 깔고, 그 위에 GPU와 HBM 탑 여러 개를 나란히 올려요.</p>
       <p>인터포저는 반도체 공정으로 만든 판이라서 머리카락보다 훨씬 가는 배선을 아주 촘촘하게 그릴 수 있어요. 덕분에 HBM 탑 하나와 GPU 사이에 <b>1024개</b>의 데이터 통로를 깔 수 있어요. 최신 HBM4는 이 통로가 <b>2048개</b>로 두 배가 되었어요.</p>
       <p>칩을 위로 쌓지는 않고 판 위에 옆으로 나란히 놓지만, 판 자체가 칩처럼 정교하기 때문에 2D와 3D 사이라는 뜻으로 <b>2.5D</b>라고 불러요.</p>
-      <p>이 작업은 보통 HBM을 만든 메모리 회사가 아니라, GPU를 만드는 <b>파운드리(반도체 위탁 생산 회사)</b>의 패키징 공장에서 해요. 메모리 회사는 STEP 6에서 검사를 마친 HBM을 이곳으로 보내요.</p>
+      <p>재료는 세 가지예요. 엔비디아의 설계도대로 파운드리가 만든 <b>GPU 칩</b>, 역시 파운드리가 만든 <b>인터포저</b>, 그리고 메모리 회사에서 배송된 <b>HBM</b>이에요. 패키징 공장은 인터포저 위에 GPU 칩과 HBM을 올려 붙이고, 이것을 다시 패키지 기판 위에 얹어요. TSMC는 이런 2.5D 조립 방식을 <b>CoWoS</b>(코워스)라고 불러요.</p>
     </div>
 
     <figure class="media-card">
@@ -120,12 +187,12 @@
   </div>
 </section>
 
-<section class="chapter" id="step-8">
-  <header class="chapter-head"><span class="step-tag">STEP 8</span><h3>최종 검사와 출하</h3><p class="lede">하나라도 고장 나면 비싼 GPU 전체를 버려야 할 수 있기 때문에, 마지막 검사는 아주 꼼꼼해요.</p></header>
+<section class="chapter gpu" id="step-8">
+  <header class="chapter-head"><span class="step-tag">STEP 8</span><span class="who-tag">패키징 공장 → 서버 회사</span><h3>최종 검사와 출하</h3><p class="lede">HBM과 GPU를 한 번 붙이면 다시 떼어 낼 수 없어요. HBM 하나만 고장 나도 비싼 패키지 전체를 못 쓸 수 있어서, 마지막 검사는 아주 꼼꼼해요.</p></header>
   <div class="chapter-body">
     <div class="prose">
-      <p>먼저 <b>번인(Burn-in) 테스트</b>를 해요. 칩을 일부러 뜨거운 온도와 높은 전압에 오래 둬요. 그러면 금방 고장 날 약한 칩이 미리 드러나서 걸러낼 수 있어요. 사람으로 치면 입사 전에 체력 시험을 보는 것과 비슷해요.</p>
-      <p>다음은 <b>시스템 레벨 테스트</b>예요. 실제로 AI 계산을 시키듯 데이터를 쉬지 않고 읽고 쓰게 해요. 그래서 수천 개의 통로가 모두 정확한지 확인해요. 통과한 패키지는 AI 가속기 보드에 장착되고, 서버에 들어가 <b>데이터센터</b>로 출발해요.</p>
+      <p>완성된 GPU+HBM 패키지는 먼저 <b>번인(Burn-in) 테스트</b>를 받아요. 패키지를 일부러 뜨거운 온도와 높은 전압에 오래 둬요. 그러면 금방 고장 날 약한 칩이 미리 드러나서 걸러낼 수 있어요. 사람으로 치면 입사 전에 체력 시험을 보는 것과 비슷해요.</p>
+      <p>다음은 <b>시스템 레벨 테스트</b>예요. 실제로 AI 계산을 시키듯 데이터를 쉬지 않고 읽고 쓰게 해요. 그래서 수천 개의 통로가 모두 정확한지 확인해요. 통과한 패키지는 GPU 회사의 제품이 되어 서버 회사로 보내져요. 그곳에서 AI 가속기 보드에 장착되고, 서버에 들어가 <b>데이터센터</b>로 출발해요.</p>
     </div>
 
     <figure class="media-card">
@@ -148,7 +215,7 @@
         </g>
         <circle class="pc-dot" cx="75" cy="56" r="7" style="fill:var(--yellow)"/>
       </svg>
-      <figcaption><b>그림 8-1</b> 마지막 여정. 검사를 통과한 HBM만 데이터센터에 도착해요.</figcaption>
+      <figcaption><b>그림 8-1</b> 마지막 여정. 검사를 통과한 GPU+HBM 패키지만 데이터센터에 도착해요.</figcaption>
     </figure>
 
     <div class="analogy"><span class="analogy-label">쉽게 말하면</span><p>완성된 자동차를 출고하기 전에 혹한·폭염 시험장을 달리게 하고, 실제 도로에서 시운전을 한 뒤 고객에게 보내는 것과 같아요.</p></div>
@@ -231,6 +298,9 @@
       <div><dt>MR-MUF</dt><dd>칩을 쌓은 뒤 열로 한꺼번에 녹여 붙이고, 칩 사이에 액체 보호재를 흘려 넣어 굳히는 방식. 열을 잘 빼는 장점이 있어요.</dd></div>
       <div><dt>TC-NCF</dt><dd>칩 사이에 얇은 접착 필름을 깔고, 열과 압력으로 한 층씩 눌러 붙이는 방식이에요.</dd></div>
       <div><dt>하이브리드 본딩</dt><dd>범프 없이 구리 면과 구리 면을 직접 붙이는 차세대 기술. 탑을 더 얇게, 더 높이 쌓을 수 있어요.</dd></div>
+      <div><dt>팹리스</dt><dd>칩 공장 없이 설계만 하는 회사. 엔비디아가 대표적이에요.</dd></div>
+      <div><dt>파운드리</dt><dd>다른 회사의 설계도를 받아 칩을 대신 만들어 주는 회사. TSMC가 대표적이에요. HBM과 GPU를 조립하는 패키징도 맡아요.</dd></div>
+      <div><dt>CoWoS</dt><dd>TSMC의 2.5D 패키징 방식 이름. 인터포저 위에 GPU와 HBM을 나란히 올려 붙여요.</dd></div>
       <div><dt>베이스 다이</dt><dd>HBM 탑 맨 아래에 놓이는 칩. 위층 메모리를 관리하고 GPU와 신호를 주고받는 관제탑 역할을 해요.</dd></div>
     </dl>
     <p class="readout" id="gloss-empty" hidden>찾는 용어가 없어요. 다른 단어로 검색해 보세요.</p>
@@ -238,7 +308,7 @@
 </section>
 
 <section class="chapter" id="quiz">
-  <header class="chapter-head"><span class="step-tag">부록</span><h3>확인 퀴즈</h3><p class="lede">여섯 문제로 지금까지 배운 내용을 점검해 봐요. 보기를 누르면 바로 정답과 설명이 나와요.</p></header>
+  <header class="chapter-head"><span class="step-tag">부록</span><h3>확인 퀴즈</h3><p class="lede">일곱 문제로 지금까지 배운 내용을 점검해 봐요. 보기를 누르면 바로 정답과 설명이 나와요.</p></header>
   <div class="chapter-body">
     <div class="quiz-q">
       <p class="q">1. HBM 칩을 위아래로 연결하는, 칩을 관통하는 구리 통로의 이름은?</p>
@@ -270,7 +340,12 @@
       <div class="quiz-opts"><button class="quiz-opt">DRAM 웨이퍼를 자르지 않고 통째로 여러 장 겹친다</button><button class="quiz-opt" data-ok="1">자르지 않은 베이스 웨이퍼 위에, 검사를 통과한 DRAM 칩을 한 장씩 쌓는다</button><button class="quiz-opt">GPU 위에 DRAM 칩을 바로 쌓는다</button></div>
       <p class="quiz-exp" hidden>CoW(칩 온 웨이퍼)는 좋은 칩(KGD)만 골라 쌓을 수 있어서, 한 층의 불량 때문에 탑 전체를 버리는 일을 줄여 줘요. 베이스 웨이퍼는 다 쌓고 몰딩한 뒤에 잘라요.</p>
     </div>
-    <output class="readout" id="quiz-score" aria-live="polite">0 / 6 문제 풀이</output>
+    <div class="quiz-q">
+      <p class="q">7. 완성된 HBM을 GPU 바로 옆에 붙이는 2.5D 패키징은 주로 어디서 할까요?</p>
+      <div class="quiz-opts"><button class="quiz-opt">HBM을 쌓은 메모리 회사 공장</button><button class="quiz-opt" data-ok="1">파운드리(TSMC 등)의 패키징 공장</button><button class="quiz-opt">엔비디아 본사의 칩 공장</button></div>
+      <p class="quiz-exp" hidden>엔비디아는 설계만 하는 팹리스라 칩 공장이 없어요. 메모리 회사가 만든 HBM은 파운드리의 패키징 공장으로 보내져 GPU 칩과 조립돼요.</p>
+    </div>
+    <output class="readout" id="quiz-score" aria-live="polite">0 / 7 문제 풀이</output>
   </div>
 </section>
 
