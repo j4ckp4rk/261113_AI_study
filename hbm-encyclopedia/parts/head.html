@@ -5,7 +5,7 @@
 :root{
   --bg:#f2f2f7; --surface:#ffffff; --surface2:#f7f7fa; --fg:#1c1c1e; --fg2:#3c3c43cc; --fg3:#3c3c4399;
   --sep:#3c3c4329; --fill:#7878801f; --blue:#007aff; --green:#34c759; --orange:#ff9500; --purple:#af52de;
-  --red:#ff3b30; --teal:#30b0c7; --yellow:#ffcc00; --copper:#c8743a; --nav:rgba(249,249,251,.78);
+  --red:#ff3b30; --teal:#00849b; --yellow:#ffcc00; --copper:#c8743a; --nav:rgba(249,249,251,.78);
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo","Pretendard","Noto Sans KR",system-ui,sans-serif;
   --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono",Menlo,monospace;
@@ -13,11 +13,11 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#000000; --surface:#1c1c1e; --surface2:#2c2c2e; --fg:#f2f2f7; --fg2:#ebebf5cc; --fg3:#ebebf599;
   --sep:#54545899; --fill:#7878805c; --blue:#0a84ff; --green:#30d158; --orange:#ff9f0a; --purple:#bf5af2;
-  --red:#ff453a; --teal:#40c8e0; --yellow:#ffd60a; --copper:#e08a4e; --nav:rgba(22,22,24,.72); color-scheme:dark}}
+  --red:#ff453a; --teal:#1a9cb3; --yellow:#ffd60a; --copper:#e08a4e; --nav:rgba(22,22,24,.72); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#000000; --surface:#1c1c1e; --surface2:#2c2c2e; --fg:#f2f2f7; --fg2:#ebebf5cc; --fg3:#ebebf599;
   --sep:#54545899; --fill:#7878805c; --blue:#0a84ff; --green:#30d158; --orange:#ff9f0a; --purple:#bf5af2;
-  --red:#ff453a; --teal:#40c8e0; --yellow:#ffd60a; --copper:#e08a4e; --nav:rgba(22,22,24,.72); color-scheme:dark}
+  --red:#ff453a; --teal:#1a9cb3; --yellow:#ffd60a; --copper:#e08a4e; --nav:rgba(22,22,24,.72); color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:64px}
 body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.72;letter-spacing:-.003em;-webkit-font-smoothing:antialiased;word-break:keep-all}
@@ -241,7 +241,7 @@ footer{color:var(--fg3);font-size:13px;padding-block:32px 48px;text-align:center
           <g class="layer" data-k="bump" tabindex="0"><g style="fill:var(--yellow)"><circle cx="70" cy="139" r="3"/><circle cx="100" cy="139" r="3"/><circle cx="130" cy="139" r="3"/><circle cx="160" cy="139" r="3"/><circle cx="190" cy="139" r="3"/><circle cx="220" cy="139" r="3"/></g><text x="252" y="142" style="fill:var(--fg2);font-size:11px">범프</text></g>
           <g class="layer" data-k="base" tabindex="0"><rect x="40" y="144" width="200" height="20" rx="4" style="fill:var(--teal)"/><text x="140" y="158" text-anchor="middle" style="fill:#fff;font-size:11px;font-weight:600">베이스(로직) 다이</text></g>
           <g class="layer" data-k="inter" tabindex="0"><rect x="10" y="178" width="270" height="20" rx="4" style="fill:var(--fill);stroke:var(--sep)"/><text x="145" y="192" text-anchor="middle" style="fill:var(--fg2);font-size:11px">실리콘 인터포저</text></g>
-          <g class="layer" data-k="sub" tabindex="0"><rect x="0" y="210" width="290" height="22" rx="4" style="fill:var(--green);opacity:.7"/><text x="145" y="225" text-anchor="middle" style="fill:#fff;font-size:11px;font-weight:600">패키지 기판</text></g>
+          <g class="layer" data-k="sub" tabindex="0"><rect x="0" y="210" width="290" height="22" rx="4" style="fill:var(--green);fill-opacity:.22;stroke:var(--green)"/><text x="145" y="225" text-anchor="middle" style="fill:var(--fg);font-size:11px;font-weight:600">패키지 기판</text></g>
         </svg>
         <div class="stack-info" aria-live="polite"><h4 id="si-t">층을 눌러 보세요</h4><p id="si-d">왼쪽 그림의 각 층을 누르면 그 부분이 하는 일과, 몇 번째 공정에서 만들어지는지 알려 줍니다.</p></div>
       </div>

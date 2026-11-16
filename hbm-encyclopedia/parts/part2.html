@@ -22,7 +22,7 @@
 <div class="part-divider">
   <span class="part-no">PART 2</span>
   <h2>쌓기</h2>
-  <p>회로가 그려진 DRAM 칩을 얇게 깎고, 아파트처럼 위로 차곡차곡 쌓아 붙인 다음, 단단히 감싸고 검사합니다. HBM이 "높은(High) 대역폭"을 낼 수 있는 비밀이 바로 이 쌓기 단계에 있어요.</p>
+  <p>회로가 그려진 DRAM 칩을 얇게 깎고, 아파트처럼 위로 차곡차곡 쌓아 붙인 다음, 단단히 감싸고 검사해요. HBM이 "높은(High) 대역폭"을 낼 수 있는 비밀이 바로 이 쌓기 단계에 있어요.</p>
 </div>
 
 <!-- ============ STEP 4 ============ -->
@@ -30,11 +30,11 @@
   <header class="chapter-head">
     <span class="step-tag">STEP 4</span>
     <h3>얇게 깎고 범프 달기</h3>
-    <p class="lede">칩끼리 연결할 아주 작은 금속 돌기(마이크로범프)를 만들고, 웨이퍼 뒷면을 종이보다 얇게 갈아 TSV의 끝을 드러낸 뒤, 낱개 칩으로 잘라 검사합니다.</p>
+    <p class="lede">칩끼리 연결할 아주 작은 금속 돌기(마이크로범프)를 만들고, 웨이퍼 뒷면을 종이보다 얇게 갈아 TSV의 끝을 드러낸 뒤, 낱개 칩으로 잘라 검사해요.</p>
   </header>
   <div class="chapter-body">
     <div class="prose">
-      <p>앞 단계에서 만든 웨이퍼는 두께가 수백 μm(마이크로미터)예요. 1μm는 1mm를 1,000으로 나눈 길이입니다. 이대로 여러 장을 쌓으면 너무 두꺼워져요. 게다가 칩 속 TSV(실리콘 관통 전극)는 아직 뒷면까지 닿지 않은 상태예요.</p>
+      <p>앞 단계에서 만든 웨이퍼는 두께가 수백 μm(마이크로미터)예요. 1μm는 1mm를 1,000으로 나눈 길이예요. 이대로 여러 장을 쌓으면 너무 두꺼워져요. 게다가 칩 속 TSV(실리콘 관통 전극)는 아직 뒷면까지 닿지 않은 상태예요.</p>
       <p>먼저 칩 앞면(회로가 있는 면)에 <b>마이크로범프</b>를 만들어요. 마이크로범프는 위아래 칩을 전기로 이어 주는, 구리 기둥 위에 땜납을 얹은 아주 작은 돌기예요.</p>
       <p>그다음 웨이퍼를 뒤집어 단단한 <b>캐리어 웨이퍼</b>(임시 받침판)에 붙여요. 얇아진 웨이퍼는 감자칩처럼 쉽게 휘거나 깨지기 때문이에요.</p>
       <p>이제 <b>백그라인딩(Back Grinding, 뒷면 연마)</b>을 해요. 빙글빙글 도는 연마 휠로 뒷면을 갈아 약 수십 μm까지 얇게 만들어요. 그러면 안에 묻혀 있던 TSV 구리 기둥의 끝이 뒷면에 '쏙' 드러나요. 드러난 끝에는 위 칩의 범프가 닿을 작은 받침(패드)을 만들어 둡니다.</p>
@@ -101,12 +101,12 @@
   <header class="chapter-head">
     <span class="step-tag">STEP 5</span>
     <h3>쌓고 붙이기</h3>
-    <p class="lede">잘라 낸 DRAM 칩 가운데 검사를 통과한 칩만 골라, 아직 자르지 않은 베이스 웨이퍼 위에 한 장씩 8단·12단·16단으로 쌓아 붙입니다.</p>
+    <p class="lede">잘라 낸 DRAM 칩 가운데 검사를 통과한 칩만 골라, 아직 자르지 않은 베이스 웨이퍼 위에 한 장씩 8단·12단·16단으로 쌓아 붙여요.</p>
   </header>
   <div class="chapter-body">
     <div class="prose">
-      <p>STEP 4에서 DRAM 웨이퍼는 다이아몬드 날이나 레이저로 잘라 낱개 칩, 즉 <b>다이(Die)</b>가 되었고, 검사를 통과한 칩만 골라 두었어요. 반면 맨 아래에 들어갈 <b>베이스 다이</b>(신호를 정리하고 GPU와 대화하는 칩)는 <b>자르지 않은 웨이퍼 상태 그대로</b> 받침으로 씁니다.</p>
-      <p>베이스 웨이퍼 위의 칸마다 골라 둔 DRAM 칩을 한 장씩 올려 쌓고, 다 쌓은 다음 STEP 6에서 몰딩한 뒤에야 베이스 웨이퍼를 잘라 HBM 한 개씩으로 나눕니다. 이렇게 칩을 웨이퍼 위에 쌓는 방식을 <b>CoW(Chip-on-Wafer, 칩 온 웨이퍼)</b>라고 해요.</p>
+      <p>STEP 4에서 DRAM 웨이퍼는 다이아몬드 날이나 레이저로 잘라 낱개 칩, 즉 <b>다이(Die)</b>가 되었고, 검사를 통과한 칩만 골라 두었어요. 반면 맨 아래에 들어갈 <b>베이스 다이</b>(신호를 정리하고 GPU와 대화하는 칩)는 <b>자르지 않은 웨이퍼 상태 그대로</b> 받침으로 써요.</p>
+      <p>베이스 웨이퍼 위의 칸마다 골라 둔 DRAM 칩을 한 장씩 올려 쌓고, 다 쌓은 다음 STEP 6에서 몰딩한 뒤에야 베이스 웨이퍼를 잘라 HBM 한 개씩으로 나눠요. 이렇게 칩을 웨이퍼 위에 쌓는 방식을 <b>CoW(Chip-on-Wafer, 칩 온 웨이퍼)</b>라고 해요.</p>
     </div>
 
     <figure class="media-card" id="cw">
@@ -156,11 +156,11 @@
           <text x="300" y="256" text-anchor="middle" style="fill:var(--red);font-size:13px;font-weight:600">층이 많을수록 버려지는 양이 커짐 → HBM 양산에서는 잘 쓰지 않음</text>
         </svg>
       </div>
-      <figcaption><b>그림 5-0</b> 쌓는 방식 비교. 오늘날 HBM은 대부분 CoW로 만듭니다. 웨이퍼끼리 붙이는 WoW는 한 번에 처리해 빠르지만, 불량 칩을 미리 걸러 낼 수 없어 수율 문제가 큽니다.</figcaption>
+      <figcaption><b>그림 5-0</b> 쌓는 방식 비교. 오늘날 HBM은 대부분 CoW로 만들어요. 웨이퍼끼리 붙이는 WoW는 한 번에 처리해 빠르지만, 불량 칩을 미리 걸러 낼 수 없어 수율 문제가 큽니다.</figcaption>
     </figure>
     <div class="compare">
-      <div><h4>CoW (칩 온 웨이퍼)</h4><p style="margin:0;color:var(--fg2);font-size:15px">검사를 통과한 칩만 골라 한 장씩 올려요. 느리지만 버리는 칩이 적어서 현재 HBM의 기본 방식입니다.</p></div>
-      <div><h4>WoW (웨이퍼 온 웨이퍼)</h4><p style="margin:0;color:var(--fg2);font-size:15px">웨이퍼를 통째로 겹쳐 한 번에 붙여요. 빠르지만 불량 칩까지 함께 쌓여, 층이 많은 HBM에는 불리합니다.</p></div>
+      <div><h4>CoW (칩 온 웨이퍼)</h4><p style="margin:0;color:var(--fg2);font-size:15px">검사를 통과한 칩만 골라 한 장씩 올려요. 느리지만 버리는 칩이 적어서 현재 HBM의 기본 방식이에요.</p></div>
+      <div><h4>WoW (웨이퍼 온 웨이퍼)</h4><p style="margin:0;color:var(--fg2);font-size:15px">웨이퍼를 통째로 겹쳐 한 번에 붙여요. 빠르지만 불량 칩까지 함께 쌓여, 층이 많은 HBM에는 불리해요.</p></div>
     </div>
     <script>
     (function(){var seg=document.getElementById('cw-seg');if(!seg)return;var b=seg.querySelectorAll('.seg-btn');
@@ -171,7 +171,7 @@
       @keyframes cw-drop{0%{transform:translateY(-30px);opacity:0}25%{opacity:1}70%,100%{transform:translateY(32px);opacity:1}}
     </style>
 
-    <div class="prose">      <p>칩을 쌓을 때는 위 칩의 범프와 아래 칩의 TSV가 정확히 맞닿아야 합니다. 머리카락 굵기보다 훨씬 작은 오차 안에서 수천 개의 연결점을 한꺼번에 맞춰야 해요.</p>
+    <div class="prose">      <p>칩을 쌓을 때는 위 칩의 범프와 아래 칩의 TSV가 정확히 맞닿아야 해요. 머리카락 굵기보다 훨씬 작은 오차 안에서 수천 개의 연결점을 한꺼번에 맞춰야 해요.</p>
       <p>칩을 붙이는 방법(<b>본딩</b>)은 회사와 세대에 따라 달라요. 대표적인 세 가지를 아래에서 비교해 보세요. 그림 속 맨 아래 보라색 판은 아직 자르지 않은 베이스 웨이퍼의 한 칸이에요.</p>
     </div>
 
@@ -203,7 +203,7 @@
           <text x="470" y="176" style="fill:var(--fg2);font-size:12px">← DRAM 다이</text>
           <text x="30" y="40" style="fill:var(--fg2);font-size:12px">한 층 놓고, 꾹 누르고, 또 한 층…</text>
         </svg>
-        <figcaption><b>그림 5-1</b> TC-NCF: 칩 사이에 얇은 접착 필름(NCF)을 끼우고, 한 층씩 열과 압력을 가해 붙입니다.</figcaption>
+        <figcaption><b>그림 5-1</b> TC-NCF: 칩 사이에 얇은 접착 필름(NCF)을 끼우고, 한 층씩 열과 압력을 가해 붙여요.</figcaption>
       </figure>
       <div class="facts">
         <div class="fact"><b>장점</b><span>필름이 칩 사이 간격을 고르게 잡아 주고 휘어짐을 눌러 줌</span></div>
@@ -266,7 +266,7 @@
           <text x="30" y="60" style="fill:var(--fg2);font-size:12px">범프도, 필름도 없이 칩끼리 바로 맞붙어요</text>
           <text x="30" y="80" style="fill:var(--fg2);font-size:12px">→ 같은 높이에 더 많은 층을 쌓을 수 있음</text>
         </svg>
-        <figcaption><b>그림 5-3</b> 하이브리드 본딩: 칩 표면을 거울처럼 평평하게 닦은 뒤, 구리 패드와 절연막을 맞대어 범프 없이 직접 붙입니다.</figcaption>
+        <figcaption><b>그림 5-3</b> 하이브리드 본딩: 칩 표면을 거울처럼 평평하게 닦은 뒤, 구리 패드와 절연막을 맞대어 범프 없이 직접 붙여요.</figcaption>
       </figure>
       <div class="facts">
         <div class="fact"><b>장점</b><span>칩 사이 틈이 거의 없어 더 얇게, 더 많이 쌓고 연결점도 더 촘촘히</span></div>
@@ -298,7 +298,7 @@
   <div class="chapter-body">
     <div class="prose">
       <p>쌓아 올린 칩 탑은 아직 연약해요. 그래서 <b>몰딩(Molding)</b>으로 바깥을 에폭시 같은 단단한 보호재로 감싸요. 충격, 습기, 먼지를 막아 주는 갑옷이에요. MR-MUF 방식이라면 STEP 5에서 틈 채우기와 몰딩을 이미 한 번에 끝냈어요.</p>
-      <p>몰딩은 아직 <b>베이스 웨이퍼 상태에서 한꺼번에</b> 해요. 그다음 윗면을 평평하게 깎고, 마지막으로 베이스 웨이퍼를 잘라 HBM 한 개씩(스택)으로 나눕니다.</p>
+      <p>몰딩은 아직 <b>베이스 웨이퍼 상태에서 한꺼번에</b> 해요. 그다음 윗면을 평평하게 깎고, 마지막으로 베이스 웨이퍼를 잘라 HBM 한 개씩(스택)으로 나눠요.</p>
       <p>이제 <b>KGSD(Known Good Stacked Die)</b> 검사를 해요. "확실히 좋은 쌓은 칩"이라는 뜻이에요. 미리 골라 둔 좋은 칩이라도, 붙이는 과정에서 위치가 어긋나거나 휘어져 불량이 생길 수 있어요. 그런데 <b>단 한 층만 불량이어도 탑 전체가 불량</b>이에요. 그래서 층이 많아질수록 모든 층이 완벽할 확률(<b>수율</b>, 만든 것 중 합격품의 비율)이 빠르게 떨어집니다. 아래 슬라이더로 직접 확인해 보세요.</p>
     </div>
 
@@ -327,7 +327,7 @@
           <text x="30" y="165" style="fill:var(--orange);font-size:12px">열 빼기</text>
         </g>
       </svg>
-      <figcaption><b>그림 6-1</b> 보호재로 감싼 칩 탑을 검사 장비가 확인합니다. 열이 잘 빠지는지도 중요한 검사 항목이에요.</figcaption>
+      <figcaption><b>그림 6-1</b> 보호재로 감싼 칩 탑을 검사 장비가 확인해요. 열이 잘 빠지는지도 중요한 검사 항목이에요.</figcaption>
     </figure>
 
     <div class="media-card" id="pb-yield">
